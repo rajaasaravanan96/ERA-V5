@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fair BPE Tokenizer · ERA V5 Session 2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0b0e14; --panel:#121722; --panel-2:#171d2b; --line:#232b3d;
+    --text:#d9dfeb; --muted:#8b94a7; --amber:#ffb454; --amber-dim:#a8752f;
+    --teal:#4fd6be; --red:#f07178; --green:#8ce99a; --code-bg:#0d1119; --radius:10px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);font-family:'Space Grotesk',system-ui,sans-serif;font-size:16px;line-height:1.6}
+  .wrap{max-width:820px;margin:0 auto;padding:0 24px 70px}
+  a{color:var(--teal)}
+
+  header{padding:52px 0 32px;border-bottom:1px solid var(--line)}
+  .eyebrow{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--amber);margin-bottom:12px}
+  h1{font-size:clamp(28px,5vw,42px);font-weight:700;letter-spacing:-.02em}
+  .sub{margin-top:12px;color:var(--muted);max-width:600px}
+  .formula{margin-top:18px;display:inline-block;font-family:'IBM Plex Mono',monospace;
+    font-size:13px;color:var(--teal);background:var(--code-bg);border:1px solid var(--line);
+    border-radius:8px;padding:8px 14px}
+
+  section.card{margin:28px 0;background:var(--panel);border:1px solid var(--line);
+    border-radius:var(--radius);padding:24px}
+  section.card h2{font-size:19px;margin-bottom:6px}
+  .desc{color:var(--muted);font-size:14px;margin-bottom:16px}
+
+  .configrow{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin-bottom:6px}
+  label{display:block;font-size:12px;color:var(--muted);margin-bottom:4px}
+  input[type=number],textarea{
+    width:100%;background:var(--code-bg);border:1px solid var(--line);color:var(--text);
+    border-radius:6px;padding:8px 10px;font-family:'IBM Plex Mono',monospace;font-size:13px;
+  }
+  textarea{min-height:70px;resize:vertical}
+
+  button{font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:14px;
+    background:var(--amber);color:#0b0e14;border:none;border-radius:7px;
+    padding:10px 18px;cursor:pointer}
+  button:disabled{background:var(--line);color:var(--muted);cursor:not-allowed}
+  button.secondary{background:transparent;color:var(--teal);border:1px solid var(--teal)}
+  button.ghost{background:transparent;color:var(--muted);border:1px solid var(--line)}
+  .rowbtns{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:10px}
+  .status{font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--muted)}
+  .status.err{color:var(--red)}
+
+  .toggle{background:none;border:none;color:var(--muted);font-family:'IBM Plex Mono',monospace;
+    font-size:12px;text-decoration:underline dotted;cursor:pointer;padding:0;margin-top:14px}
+  .advanced{display:none;margin-top:14px}
+  .advanced.open{display:block}
+  .advanced .lang{margin-bottom:10px}
+  .advanced .lang .tag{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--amber);margin-bottom:4px}
+
+  table{width:100%;border-collapse:collapse;font-size:14px;margin-top:6px}
+  th,td{padding:9px 10px;text-align:left;border-bottom:1px solid var(--line)}
+  th{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--muted);font-weight:500}
+  td.mono,th.mono{font-family:'IBM Plex Mono',monospace}
+  tr.best td{color:var(--green)}
+  tr.worst td{color:var(--red)}
+
+  .scoreboard{margin-top:18px;text-align:center;padding:26px 18px;
+    background:var(--code-bg);border:1px solid var(--amber-dim);border-radius:10px}
+  .scoreboard .label{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--muted)}
+  .scoreboard .value{font-size:clamp(34px,7vw,56px);font-weight:700;color:var(--amber);letter-spacing:-.02em}
+  .scoreboard .calc{font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--teal);margin-top:6px}
+
+  .roundlist{margin-top:14px;font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--muted)}
+  .roundlist div{padding:5px 0;border-bottom:1px solid var(--line)}
+  .roundlist .win{color:var(--green)}
+
+  .downloads{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+  .hidden{display:none}
+
+  #tryInput{min-height:90px}
+  .trystats{font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--teal);margin-top:14px}
+  .chips{margin-top:10px;display:flex;flex-wrap:wrap;gap:5px}
+  .chip{font-family:'IBM Plex Mono',monospace;font-size:12.5px;background:var(--code-bg);
+    border:1px solid var(--line);border-radius:5px;padding:3px 7px;white-space:pre}
+  .chip:nth-child(odd){border-color:var(--amber-dim)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">ERA V5 · Session 2 assignment · Python backend + web frontend</div>
+    <h1>Fair BPE Tokenizer</h1>
+    <p class="sub">English, Hindi, Telugu, Tamil. One 10,000-token BPE tokenizer, trained
+      server-side, auto-rebalanced until fertility is equal across all four.</p>
+    <div class="formula">score = 1000 / (max fertility − min fertility)</div>
+  </header>
+
+  <section class="card">
+    <h2>Train</h2>
+    <p class="desc">Fetches all four Wikipedia pages on the server and trains automatically —
+      nothing to configure unless you want to.</p>
+
+    <div class="configrow">
+      <div><label for="vocabSize">Vocabulary size</label>
+        <input type="number" id="vocabSize" value="10000" min="1000" max="20000" step="500"></div>
+      <div><label for="rounds">Auto-balance rounds</label>
+        <input type="number" id="rounds" value="10" min="1" max="16"></div>
+    </div>
+
+    <div class="rowbtns">
+      <button id="trainBtn">Train tokenizer</button>
+      <span class="status" id="trainStatus"></span>
+    </div>
+
+    <button class="toggle" id="advToggle">advanced: paste your own text instead of fetching ▾</button>
+    <div class="advanced" id="advBox">
+      <div class="lang"><div class="tag">English</div><textarea id="txt-en" placeholder="Paste English text (optional)"></textarea></div>
+      <div class="lang"><div class="tag">Hindi</div><textarea id="txt-hi" placeholder="Paste Hindi text (optional)"></textarea></div>
+      <div class="lang"><div class="tag">Telugu</div><textarea id="txt-te" placeholder="Paste Telugu text (optional)"></textarea></div>
+      <div class="lang"><div class="tag">Tamil</div><textarea id="txt-ta" placeholder="Paste Tamil text (optional)"></textarea></div>
+    </div>
+  </section>
+
+  <section class="card hidden" id="resultsCard">
+    <h2>Results</h2>
+    <table>
+      <thead><tr><th>Language</th><th class="mono">Words</th><th class="mono">Tokens</th><th class="mono">Fertility</th></tr></thead>
+      <tbody id="resultsBody"></tbody>
+    </table>
+
+    <div class="scoreboard">
+      <div class="label">your self-score</div>
+      <div class="value" id="scoreValue">—</div>
+      <div class="calc" id="scoreCalc"></div>
+    </div>
+
+    <div class="roundlist" id="roundList"></div>
+
+    <div class="downloads">
+      <button class="secondary" id="dlTokenizer">Download tokenizer.json</button>
+      <button class="secondary" id="dlVocab">Download vocab.txt</button>
+      <button class="secondary" id="dlReport">Download report.json</button>
+      <button class="ghost" id="copySummary">Copy submission summary</button>
+    </div>
+  </section>
+
+  <section class="card hidden" id="tryCard">
+    <h2>Try it</h2>
+    <p class="desc">Paste any text — English, Hindi, Telugu, Tamil, or a mix — and see it
+      broken into tokens with this exact trained tokenizer.</p>
+    <textarea id="tryInput" placeholder="Paste or type text here…"></textarea>
+    <div class="rowbtns">
+      <button id="tryBtn">Tokenize</button>
+      <span class="status" id="tryStatus"></span>
+    </div>
+    <div id="tryOut"></div>
+  </section>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  const advToggle = document.getElementById("advToggle");
+  const advBox = document.getElementById("advBox");
+  advToggle.addEventListener("click", () => {
+    advBox.classList.toggle("open");
+    advToggle.textContent = advBox.classList.contains("open")
+      ? "advanced: paste your own text instead of fetching ▴"
+      : "advanced: paste your own text instead of fetching ▾";
+  });
+
+  let lastResult = null;
+
+  function sleep(ms) { return new Promise((r) => setTimeout(r, ms)); }
+
+  document.getElementById("trainBtn").addEventListener("click", async () => {
+    const btn = document.getElementById("trainBtn");
+    const status = document.getElementById("trainStatus");
+    const vocab_size = parseInt(document.getElementById("vocabSize").value, 10) || 10000;
+    const rounds = parseInt(document.getElementById("rounds").value, 10) || 10;
+
+    const texts = {};
+    ["en", "hi", "te", "ta"].forEach((k) => {
+      const v = document.getElementById("txt-" + k).value.trim();
+      if (v.length > 200) texts[k] = v;
+    });
+
+    btn.disabled = true;
+    status.className = "status";
+    status.textContent = "fetching Wikipedia pages…";
+    document.getElementById("resultsCard").classList.add("hidden");
+
+    try {
+      const startRes = await fetch("/api/train", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ vocab_size, rounds, texts }),
+      });
+      const startData = await startRes.json();
+      if (!startRes.ok) {
+        throw new Error(startData.error === "fetch_failed"
+          ? "Wikipedia fetch failed: " + JSON.stringify(startData.details)
+          : (startData.error || "training failed to start"));
+      }
+
+      const jobId = startData.job_id;
+      let data = null;
+      while (true) {
+        await sleep(1500);
+        const pollRes = await fetch(`/api/train/status/${jobId}`);
+        const pollData = await pollRes.json();
+        if (!pollRes.ok || pollData.status === "error") {
+          throw new Error(pollData.error || "training failed");
+        }
+        if (pollData.status === "done") { data = pollData; break; }
+        const scoreTxt = pollData.best_score == null ? "—" : pollData.best_score.toFixed(1);
+        status.textContent = `training on the server — round ${pollData.round}/${pollData.rounds}, best score so far: ${scoreTxt}`;
+      }
+
+      lastResult = data;
+      renderResults(data);
+      status.textContent = "done";
+    } catch (err) {
+      status.className = "status err";
+      status.textContent = "error: " + err.message;
+    }
+    btn.disabled = false;
+  });
+
+  function renderResults(data) {
+    document.getElementById("resultsCard").classList.remove("hidden");
+    document.getElementById("tryCard").classList.remove("hidden");
+    document.getElementById("tryOut").innerHTML = "";
+    document.getElementById("tryStatus").textContent = "";
+    const body = document.getElementById("resultsBody");
+    body.innerHTML = "";
+    const entries = Object.values(data.fert);
+    const minF = Math.min(...entries.map((e) => e.fertility));
+    const maxF = Math.max(...entries.map((e) => e.fertility));
+    entries.sort((a, b) => a.fertility - b.fertility);
+    entries.forEach((e) => {
+      const tr = document.createElement("tr");
+      if (e.fertility === minF) tr.className = "best";
+      if (e.fertility === maxF) tr.className = "worst";
+      tr.innerHTML = `<td>${e.label} <span style="color:var(--muted)">(${e.code})</span></td>
+        <td class="mono">${e.words.toLocaleString()}</td>
+        <td class="mono">${e.tokens.toLocaleString()}</td>
+        <td class="mono">${e.fertility.toFixed(4)}</td>`;
+      body.appendChild(tr);
+    });
+
+    document.getElementById("scoreValue").textContent =
+      data.score == null ? "∞" : data.score.toLocaleString(undefined, { maximumFractionDigits: 1 });
+    document.getElementById("scoreCalc").textContent =
+      `1000 / (${maxF.toFixed(4)} − ${minF.toFixed(4)}) = 1000 / ${data.spread.toFixed(4)}`;
+
+    const bestRound = data.round_log.reduce((a, b) =>
+      (b.score ?? Infinity) > (a.score ?? Infinity) ? b : a);
+    document.getElementById("roundList").innerHTML =
+      "<div><b>round-by-round (auto-balance log)</b></div>" +
+      data.round_log.map((r) =>
+        `<div class="${r === bestRound ? "win" : ""}">round ${r.round + 1}: spread ${r.spread.toFixed(4)} → score ${r.score == null ? "∞" : r.score.toFixed(1)}${r === bestRound ? "  ← best" : ""}</div>`
+      ).join("");
+  }
+
+  function dl(url, filename) {
+    const a = document.createElement("a");
+    a.href = url; a.download = filename; a.click();
+  }
+  document.getElementById("dlTokenizer").addEventListener("click", () => {
+    if (lastResult) dl(`/api/download/tokenizer/${lastResult.run_id}`, "tokenizer.json");
+  });
+  document.getElementById("dlVocab").addEventListener("click", () => {
+    if (lastResult) dl(`/api/download/vocab/${lastResult.run_id}`, "vocab.txt");
+  });
+  document.getElementById("dlReport").addEventListener("click", () => {
+    if (lastResult) dl(`/api/download/report/${lastResult.run_id}`, "report.json");
+  });
+  document.getElementById("copySummary").addEventListener("click", async () => {
+    if (!lastResult) return;
+    const lines = Object.values(lastResult.fert).map((f) =>
+      `${f.code}: fertility ${f.fertility.toFixed(4)} (${f.words} words → ${f.tokens} tokens)`);
+    const text = [
+      "ERA V5 — Session 2 Assignment — Fair BPE Tokenizer",
+      `Vocab size: ${lastResult.vocab_size}`,
+      ...lines,
+      `Spread: ${lastResult.spread.toFixed(4)}`,
+      `Self-score: ${lastResult.score == null ? "∞" : lastResult.score.toFixed(1)}`,
+      "Tokenizer hosted at: <paste your Render URL here>",
+    ].join("\n");
+    try {
+      await navigator.clipboard.writeText(text);
+      alert("Summary copied — paste it into your assignment.");
+    } catch (e) {
+      prompt("Copy this manually:", text);
+    }
+  });
+
+  document.getElementById("tryBtn").addEventListener("click", async () => {
+    const btn = document.getElementById("tryBtn");
+    const status = document.getElementById("tryStatus");
+    const out = document.getElementById("tryOut");
+    const text = document.getElementById("tryInput").value.trim();
+    if (!lastResult) { status.className = "status err"; status.textContent = "train a tokenizer first"; return; }
+    if (!text) { status.className = "status err"; status.textContent = "paste some text first"; return; }
+
+    btn.disabled = true;
+    status.className = "status";
+    status.textContent = "tokenizing…";
+    out.innerHTML = "";
+
+    try {
+      const res = await fetch("/api/encode", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ run_id: lastResult.run_id, text }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "tokenize failed");
+
+      out.innerHTML =
+        `<div class="chips">${data.tokens.map((t) => `<span class="chip">${escapeHtml(t)}</span>`).join("")}</div>
+         <div class="trystats">${data.words} words → ${data.token_count} tokens · fertility ${data.fertility == null ? "—" : data.fertility.toFixed(4)}</div>`;
+      status.textContent = "done";
+    } catch (err) {
+      status.className = "status err";
+      status.textContent = "error: " + err.message;
+    }
+    btn.disabled = false;
+  });
+
+  function escapeHtml(s) {
+    return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  }
+})();
+</script>
+</body>
+</html>
