@@ -157,6 +157,36 @@
     </div>
     <div id="tryOut"></div>
   </section>
+
+  <section class="card">
+    <h2>Why these numbers?</h2>
+    <p class="desc">
+      Fertility = tokens ÷ whitespace words. Score = 1000 / (max fertility − min fertility) —
+      it rewards being <i>equally</i> efficient across English, Hindi, Telugu and Tamil, not
+      being efficient in an absolute sense.
+    </p>
+    <p class="desc">
+      <b>Why the score is tied to this dataset:</b> training uses one Wikipedia article per
+      language (the "India" page). BPE merges are chosen by counting the most frequent
+      byte-pairs <i>in that corpus</i>, so words that don't appear there — like "hello" — never
+      earn a dedicated merge and fall back to fragments, even though the trained score above
+      is good. Indic scripts also need more merges per word than English (conjuncts, matras,
+      a larger effective alphabet), so a shared 10k-token budget split four ways leaves them
+      behind before rebalancing even starts.
+    </p>
+    <p class="desc">
+      <b>Why you can't just "fix" BPE:</b> merge selection is greedy frequency counting with no
+      built-in notion of fairness. The auto-balance rounds are a workaround bolted on top —
+      retrain from scratch each round with adjusted per-language weights — not a change to BPE
+      itself, so it converges to a <i>locally</i> good spread, not a perfect one.
+    </p>
+    <p class="desc">
+      <b>To get better numbers:</b> (1) use a broader corpus per language, not one topic page —
+      biggest lever; (2) raise vocab size (try closer to 20,000); (3) raise auto-balance rounds
+      (try closer to 16); (4) test on text representative of the training domain — a single
+      out-of-corpus word like "hello" isn't a fair comparison to the trained score.
+    </p>
+  </section>
 </div>
 
 <script>
