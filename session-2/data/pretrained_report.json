@@ -1,0 +1,35 @@
+{
+  "fert": {
+    "en": {
+      "words": 10121,
+      "tokens": 17617,
+      "fertility": 1.7406382768501136,
+      "label": "English",
+      "code": "en"
+    },
+    "hi": {
+      "words": 8078,
+      "tokens": 13018,
+      "fertility": 1.6115375092844764,
+      "label": "Hindi",
+      "code": "hi"
+    },
+    "te": {
+      "words": 2511,
+      "tokens": 4756,
+      "fertility": 1.8940661091198725,
+      "label": "Telugu",
+      "code": "te"
+    },
+    "ta": {
+      "words": 10297,
+      "tokens": 17226,
+      "fertility": 1.6729144410993493,
+      "label": "Tamil",
+      "code": "ta"
+    }
+  },
+  "spread": 0.28252859983539613,
+  "score": 3539.464679266487,
+  "vocab_size": 10000
+}

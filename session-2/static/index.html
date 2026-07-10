@@ -205,19 +205,30 @@
 
   function sleep(ms) { return new Promise((r) => setTimeout(r, ms)); }
 
-  // On load: if the app ships with a pretrained tokenizer.json, wire up the
-  // "Try it" box immediately so encoding doesn't require running Train first.
+  // On load: if the app ships with a pretrained tokenizer.json (+ a static
+  // words-vs-tokens report), wire up the Results table and "Try it" box
+  // immediately — no training, no Wikipedia fetch, no server compute at all.
   (async function loadPretrained() {
     try {
       const res = await fetch("/api/pretrained");
       const data = await res.json();
       if (!data.available) return;
-      lastResult = { run_id: data.run_id, vocab_size: data.vocab_size, score: data.score, spread: data.spread };
+      lastResult = {
+        run_id: data.run_id, vocab_size: data.vocab_size,
+        score: data.score, spread: data.spread, fert: data.fert, round_log: [],
+      };
       document.getElementById("tryCard").classList.remove("hidden");
       document.getElementById("tryDesc").textContent =
         `Using the pretrained tokenizer already in this deployment (vocab size ${data.vocab_size.toLocaleString()}` +
         (data.score != null ? `, self-score ${data.score.toFixed(1)}` : "") +
         `). Paste any text — English, Hindi, Telugu, Tamil, or a mix.`;
+
+      if (data.fert && Object.keys(data.fert).length) {
+        renderResults(lastResult);
+        document.getElementById("roundList").innerHTML =
+          "<div><b>source: static pretrained report</b> (data/pretrained_report.json — " +
+          "built offline, no live fetch/training on this server)</div>";
+      }
     } catch (e) { /* no pretrained tokenizer available, ignore */ }
   })();
 
@@ -304,6 +315,10 @@
     document.getElementById("scoreCalc").textContent =
       `1000 / (${maxF.toFixed(4)} − ${minF.toFixed(4)}) = 1000 / ${data.spread.toFixed(4)}`;
 
+    if (!data.round_log || !data.round_log.length) {
+      document.getElementById("roundList").innerHTML = "";
+      return;
+    }
     const bestRound = data.round_log.reduce((a, b) =>
       (b.score ?? Infinity) > (a.score ?? Infinity) ? b : a);
     document.getElementById("roundList").innerHTML =

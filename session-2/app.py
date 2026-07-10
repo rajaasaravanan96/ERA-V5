@@ -62,12 +62,18 @@ DEFAULT_LANGS = {
 BYTE_TO_CHAR, CHAR_TO_BYTE = bytes_to_unicode()
 
 PRETRAINED_RUN_ID = "pretrained"
-PRETRAINED_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "tokenizer.json")
+HERE_DIR = os.path.dirname(os.path.abspath(__file__))
+PRETRAINED_PATH = os.path.join(HERE_DIR, "tokenizer.json")
+PRETRAINED_REPORT_PATH = os.path.join(HERE_DIR, "data", "pretrained_report.json")
 
 
 def _load_pretrained():
     """If tokenizer.json ships with the app, register it as a run so /api/encode
-    and the frontend's "Try it" box work immediately — no training required."""
+    and the frontend's "Try it" box work immediately — no training required.
+    If data/pretrained_report.json (built offline by build_pretrained_report.py)
+    is also present, its words-vs-tokens comparison is attached too, so the
+    Results table can render without the server ever fetching Wikipedia or
+    running BPE training."""
     if not os.path.exists(PRETRAINED_PATH):
         return None
     with open(PRETRAINED_PATH, encoding="utf-8") as f:
@@ -77,10 +83,19 @@ def _load_pretrained():
     merges = [tuple(pair) for pair in data["merges"]]
     meta = data.get("meta", {})
     lang_meta = {lang["code"]: lang for lang in meta.get("languages", [])}
+
+    fert, score, spread = {}, meta.get("self_score"), meta.get("spread")
+    if os.path.exists(PRETRAINED_REPORT_PATH):
+        with open(PRETRAINED_REPORT_PATH, encoding="utf-8") as f:
+            report = json.load(f)
+        fert = report.get("fert", {})
+        score = report.get("score", score)
+        spread = report.get("spread", spread)
+
     run = {
         "vocab": vocab, "merges": merges, "lang_meta": lang_meta,
-        "fert": {}, "weights": {}, "round_log": [],
-        "score": meta.get("self_score"), "spread": meta.get("spread"),
+        "fert": fert, "weights": {}, "round_log": [],
+        "score": score, "spread": spread,
         "vocab_size_target": meta.get("vocab_size", len(vocab)), "created": time.time(),
     }
     RUNS[PRETRAINED_RUN_ID] = run
@@ -102,6 +117,7 @@ def pretrained():
         "score": run["score"],
         "spread": run["spread"],
         "languages": list(run["lang_meta"].values()),
+        "fert": run["fert"],
     })
 
 
