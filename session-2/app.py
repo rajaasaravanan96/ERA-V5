@@ -61,6 +61,49 @@ DEFAULT_LANGS = {
 
 BYTE_TO_CHAR, CHAR_TO_BYTE = bytes_to_unicode()
 
+PRETRAINED_RUN_ID = "pretrained"
+PRETRAINED_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "tokenizer.json")
+
+
+def _load_pretrained():
+    """If tokenizer.json ships with the app, register it as a run so /api/encode
+    and the frontend's "Try it" box work immediately — no training required."""
+    if not os.path.exists(PRETRAINED_PATH):
+        return None
+    with open(PRETRAINED_PATH, encoding="utf-8") as f:
+        data = json.load(f)
+    vocab_dict = data["vocab"]
+    vocab = sorted(vocab_dict, key=vocab_dict.get)
+    merges = [tuple(pair) for pair in data["merges"]]
+    meta = data.get("meta", {})
+    lang_meta = {lang["code"]: lang for lang in meta.get("languages", [])}
+    run = {
+        "vocab": vocab, "merges": merges, "lang_meta": lang_meta,
+        "fert": {}, "weights": {}, "round_log": [],
+        "score": meta.get("self_score"), "spread": meta.get("spread"),
+        "vocab_size_target": meta.get("vocab_size", len(vocab)), "created": time.time(),
+    }
+    RUNS[PRETRAINED_RUN_ID] = run
+    return run
+
+
+_load_pretrained()
+
+
+@app.route("/api/pretrained")
+def pretrained():
+    run = RUNS.get(PRETRAINED_RUN_ID)
+    if not run:
+        return jsonify({"available": False})
+    return jsonify({
+        "available": True,
+        "run_id": PRETRAINED_RUN_ID,
+        "vocab_size": len(run["vocab"]),
+        "score": run["score"],
+        "spread": run["spread"],
+        "languages": list(run["lang_meta"].values()),
+    })
+
 
 @app.route("/")
 def index():

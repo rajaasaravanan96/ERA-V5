@@ -148,7 +148,7 @@
 
   <section class="card hidden" id="tryCard">
     <h2>Try it</h2>
-    <p class="desc">Paste any text — English, Hindi, Telugu, Tamil, or a mix — and see it
+    <p class="desc" id="tryDesc">Paste any text — English, Hindi, Telugu, Tamil, or a mix — and see it
       broken into tokens with this exact trained tokenizer.</p>
     <textarea id="tryInput" placeholder="Paste or type text here…"></textarea>
     <div class="rowbtns">
@@ -174,6 +174,22 @@
   let lastResult = null;
 
   function sleep(ms) { return new Promise((r) => setTimeout(r, ms)); }
+
+  // On load: if the app ships with a pretrained tokenizer.json, wire up the
+  // "Try it" box immediately so encoding doesn't require running Train first.
+  (async function loadPretrained() {
+    try {
+      const res = await fetch("/api/pretrained");
+      const data = await res.json();
+      if (!data.available) return;
+      lastResult = { run_id: data.run_id, vocab_size: data.vocab_size, score: data.score, spread: data.spread };
+      document.getElementById("tryCard").classList.remove("hidden");
+      document.getElementById("tryDesc").textContent =
+        `Using the pretrained tokenizer already in this deployment (vocab size ${data.vocab_size.toLocaleString()}` +
+        (data.score != null ? `, self-score ${data.score.toFixed(1)}` : "") +
+        `). Paste any text — English, Hindi, Telugu, Tamil, or a mix.`;
+    } catch (e) { /* no pretrained tokenizer available, ignore */ }
+  })();
 
   document.getElementById("trainBtn").addEventListener("click", async () => {
     const btn = document.getElementById("trainBtn");
@@ -234,6 +250,8 @@
     document.getElementById("tryCard").classList.remove("hidden");
     document.getElementById("tryOut").innerHTML = "";
     document.getElementById("tryStatus").textContent = "";
+    document.getElementById("tryDesc").textContent =
+      "Paste any text — English, Hindi, Telugu, Tamil, or a mix — and see it broken into tokens with this exact trained tokenizer.";
     const body = document.getElementById("resultsBody");
     body.innerHTML = "";
     const entries = Object.values(data.fert);
