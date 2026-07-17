@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bharat-40B · Design Brief · ERA V5 Session 3</title>
+<style>
+  :root{--bg:#0d1117;--card:#161b22;--line:#2d333b;--fg:#e6edf3;--dim:#9aa4b2;
+        --amber:#e3b341;--teal:#56d4bc;--mono:ui-monospace,'SF Mono',Menlo,monospace}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--fg);font:15.5px/1.55 -apple-system,'Segoe UI',sans-serif;padding:32px 16px}
+  .wrap{max-width:900px;margin:0 auto}
+  .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.14em;color:var(--dim);text-transform:uppercase}
+  h1{font-size:clamp(26px,5vw,38px);margin:6px 0 8px}
+  h2{font-size:19px;margin-bottom:10px;color:var(--amber)}
+  h3{font-size:15px;margin:14px 0 6px;color:var(--teal)}
+  .sub{color:var(--dim);max-width:720px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:22px;margin-top:20px;overflow-x:auto}
+  table{width:100%;border-collapse:collapse;margin-top:6px;font-size:14px}
+  th,td{text-align:left;padding:7px 9px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{font-family:var(--mono);font-size:11.5px;color:var(--dim);text-transform:uppercase;letter-spacing:.07em}
+  .mono{font-family:var(--mono);font-size:13px}
+  .pick{color:var(--amber);font-weight:700}
+  ol,ul{padding-left:20px;margin-top:6px}
+  li{margin-bottom:5px}
+  .why{color:var(--dim)}
+  code{font-family:var(--mono);font-size:13px;color:var(--teal)}
+  .kv{font-family:var(--mono);font-size:13px;color:var(--teal)}
+  footer{color:var(--dim);font-size:13px;margin:26px 0 8px;text-align:center}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">ERA V5 · Session 3 assignment</div>
+    <h1>Bharat-40B — Design Brief</h1>
+    <p class="sub">A 40B-parameter, Gemma-4-class model that is excellent at <b>coding, agentic work and Indic
+    languages</b>, and is <b>India-first</b> — it should view the world from an Indian perspective because its
+    <i>corpus and annotators</i> do, not because a system prompt tells it to.
+    Working assumptions: dense 40B, <span class="kv">d_model = 6144</span>, ~10T-token pre-training budget
+    (≈12× Chinchilla — over-training is standard for serving-class models).</p>
+  </header>
+
+  <section class="card">
+    <h2>1 · Data</h2>
+    <h3>Pre-training mix — 10T tokens</h3>
+    <table>
+      <thead><tr><th>Slice</th><th class="mono">Share</th><th>What &amp; why</th></tr></thead>
+      <tbody>
+      <tr><td>English web + books</td><td class="mono">34%</td><td>Filtered CommonCrawl, books, encyclopedias — the backbone of general knowledge and reasoning.</td></tr>
+      <tr><td>Code</td><td class="mono">24%</td><td>Permissively-licensed GitHub <b>plus PRs, issues, commit diffs, CI logs, notebooks</b>. The PR/issue/diff layer — not raw files — is what teaches repo-level reasoning that agents need.</td></tr>
+      <tr><td>Indic languages (12)</td><td class="mono">16%</td><td>Web, news archives, wikis, books, subtitles, ASR transcripts across 12 languages; includes 0.3T En↔Indic <b>parallel</b> text so English knowledge transfers into Indic. 16% ≈ every clean organic Indic token that exists (~0.8T) at ~2 epochs — repeating more hurts.</td></tr>
+      <tr><td>Math + science</td><td class="mono">9%</td><td>arXiv, OpenWebMath-class corpora, textbooks, proofs — reasoning depth for coding/agentic work rides on this.</td></tr>
+      <tr><td>India-first curated</td><td class="mono">6%</td><td>NCERT-class textbooks, bare acts + court judgments, Parliament/gazette bilingual records, Indian news archives, culture/history corpora written in India. <span class="why">The "Indian perspective" is bought here.</span></td></tr>
+      <tr><td>Agentic traces</td><td class="mono">3%</td><td>Terminal sessions, browser interaction traces, tool/API documentation, structured logs — priors for tool use before any RL.</td></tr>
+      <tr><td>Synthetic</td><td class="mono">8%</td><td>Textbook-style generation for low-resource Indic, <b>verified</b> translations of reasoning chains, code explanations in Indic. Used only where organic data runs out, never to replace it.</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Post-training (SFT) — ≈2M examples</h3>
+    <ul>
+      <li><b>40% code</b> — multi-turn, repo-level, unified-diff output format (agent-compatible from day one).</li>
+      <li><b>25% agentic trajectories</b> — only environment-<i>verified</i> successes; deliberately includes failure-then-recovery turns.</li>
+      <li><b>20% Indic instructions</b> — natively authored, never translation-only; includes code-mixed Hinglish/Tanglish because that is how India actually types.</li>
+      <li><b>10% India-first QA</b> — civics, law, geography, festivals, current affairs, authored in-country.</li>
+      <li><b>5% safety</b> — communal-sensitivity, multilingual jailbreaks, Indian PII norms.</li>
+    </ul>
+
+    <h3>RL / alignment</h3>
+    <ul>
+      <li><b>RLVR wherever a verifier exists:</b> code (hidden unit tests), math (answer match), agentic (sandboxed SWE/browser/terminal tasks; outcome reward, small per-step cost to discourage flailing).</li>
+      <li><b>Preference RL (DPO → online RLHF)</b> with a pan-India annotator pool under explicit quotas (language × region × urban/rural) and a written rubric grounded in constitutional values (pluralism, dignity, secularism). <span class="why">India-first alignment is an annotator-recruitment decision, not a slogan.</span></li>
+    </ul>
+  </section>
+
+  <section class="card">
+    <h2>2 · Cleaning — ordered pipeline</h2>
+    <ol>
+      <li><b>Language ID</b> trained in-house, robust to code-mixing and romanized Indic — off-the-shelf LID silently deletes Hinglish.</li>
+      <li><b>Script normalization: NFC only.</b> Preserve ZWJ/ZWNJ (they change meaning in Indic conjuncts — क्ष vs क्‌ष). Never NFKC on code or math (it rewrites symbols).</li>
+      <li><b>Dedup</b> — exact SHA + MinHash, at document <i>and</i> paragraph level, across sources.</li>
+      <li><b>Quality filtering per language</b> — a small classifier trained per Indic language. <span class="why">An English-perplexity filter is the classic silent killer of Indic data; it must never gate non-English text.</span></li>
+      <li><b>Code-specific:</b> license allowlist, secret/credential scrub, vendored &amp; generated code removal, parse/compile check, near-clone dedup.</li>
+      <li><b>PII + toxicity, India-tuned:</b> Aadhaar/PAN/phone patterns; per-language toxicity thresholds audited by humans so dialects aren't over-deleted.</li>
+      <li><b>Decontamination:</b> 13-gram overlap against every benchmark in §3 — including their translations.</li>
+    </ol>
+  </section>
+
+  <section class="card">
+    <h2>3 · Evaluation against the objectives</h2>
+    <table>
+      <thead><tr><th>Objective</th><th>Benchmarks</th><th>Bar</th></tr></thead>
+      <tbody>
+      <tr><td>Coding</td><td>LiveCodeBench (rolling → contamination-proof), SWE-bench Verified, MBPP+/HumanEval multi-language</td><td class="mono">≥ Gemma 4</td></tr>
+      <tr><td>Agentic</td><td>τ²-bench, WebArena, Terminal-Bench, tool-call schema accuracy; plus an <b>error-recovery rate</b> (inject a failure mid-task, measure recovery)</td><td class="mono">≥ Gemma 4 · recovery ≥ 60%</td></tr>
+      <tr><td>Indic</td><td>MILU, IndicXTREME, Flores-200 En↔12; native-speaker human eval per language</td><td class="mono">beat Gemma 4 on all 12 · human ≥ 4/5, no language &lt; 3.8</td></tr>
+      <tr><td>India-first</td><td><b>BharatEval (built by us):</b> 5k natively-authored items — civics, law, history, culture, current affairs + JEE/NEET-style STEM in Hindi &amp; English; perspective probes scoring which sources/framing the model centres</td><td class="mono">≥ 85% · framing audited by humans</td></tr>
+      <tr><td>Process</td><td>Every choice ablated at 1.5B and 8B before the 40B run; per-domain loss curves; fertility dashboard (§4) gates the tokenizer <i>before</i> training starts</td><td class="mono">—</td></tr>
+      </tbody>
+    </table>
+    <p class="why" style="margin-top:8px">Native-authored evals matter: translated benchmarks test translation, not the language.</p>
+  </section>
+
+  <section class="card">
+    <h2>4 · Tokenizer — fertility targets → vocabulary size</h2>
+    <h3>Language focus</h3>
+    <p><b>Tier 1:</b> English, Hindi, code · <b>Tier 2:</b> Bengali, Tamil, Telugu, Marathi ·
+       <b>Tier 3:</b> Gujarati, Kannada, Malayalam, Punjabi, Odia, Urdu <span class="why">(Sanskrit, Assamese best-effort)</span></p>
+
+    <h3>Fertility targets (tokens/word on held-out native text, unless stated)</h3>
+    <table>
+      <thead><tr><th>Domain</th><th class="mono">Target</th><th>Anchor</th></tr></thead>
+      <tbody>
+      <tr><td>English</td><td class="mono">≤ 1.25</td><td>parity with o200k_base (1.23)</td></tr>
+      <tr><td>Hindi</td><td class="mono">≤ 1.35</td><td>Brahmic-tokenizer territory; romanized code-mix ≤ 1.45</td></tr>
+      <tr><td>Bengali · Tamil · Telugu · Marathi</td><td class="mono">≤ 1.55</td><td>agglutinative scripts need more merges</td></tr>
+      <tr><td>Other Tier-3 Indic</td><td class="mono">≤ 1.70</td><td>bounded by smaller corpora</td></tr>
+      <tr><td>Code</td><td class="mono">≤ 0.30 tok/char</td><td>state-of-the-art code tokenizers ≈ 0.29–0.32</td></tr>
+      <tr><td>Math / LaTeX</td><td class="mono">≤ 0.35 tok/char</td><td>operators &amp; common macros as single tokens</td></tr>
+      <tr><td>Agentic JSON / tool calls</td><td class="mono">≤ 1.1 tok/syntactic unit</td><td>schema keys, braces, delimiters = 1 token each + reserved control tokens</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Vocab-size arithmetic (the load-bearing decision)</h3>
+    <p class="mono">embedding + LM-head cost = 2 · V · d_model, with d_model = 6144:</p>
+    <table>
+      <thead><tr><th class="mono">V</th><th class="mono">emb params</th><th class="mono">% of 40B</th><th>Verdict</th></tr></thead>
+      <tbody>
+      <tr><td class="mono">65,536 (2¹⁶)</td><td class="mono">0.8B</td><td class="mono">2%</td><td>cheap, but 12 scripts cannot hit the Indic targets above</td></tr>
+      <tr><td class="mono pick">131,072 (2¹⁷)</td><td class="mono pick">1.6B</td><td class="mono pick">4%</td><td class="pick">targets reachable (validated with small weighted-BPE runs) — chosen</td></tr>
+      <tr><td class="mono">262,144 (2¹⁸)</td><td class="mono">3.2B</td><td class="mono">8%</td><td>&lt;2% extra sequence compression beyond 131k — diminishing returns</td></tr>
+      </tbody>
+    </table>
+    <p style="margin-top:8px"><b>Decision: V = 131,072</b> — GPU-friendly power of two, 4% parameter tax.
+    Budget: ≈46k Latin/English+code merges · ≈42k Indic (weighted by tier) · ≈10k math/science symbols ·
+    ≈32k shared punctuation/digits/multilingual residue · 256 byte-fallback (nothing is ever unrepresentable)
+    · ≈600 reserved specials (tool-call/observation markers, FIM, control).</p>
+    <p class="why">Method: BPE with per-language corpus weights tuned in a measure-fertility → adjust-weights → retrain loop —
+    the same procedure as our Session-2 tokenizer, scaled up. The fertility dashboard in §3 is the acceptance gate.</p>
+  </section>
+
+  <section class="card">
+    <h2>Trade-offs owned</h2>
+    <ul>
+      <li>24% code + 16% Indic squeezes English web to 34% — accepted: code + math carry reasoning, and English transfers via parallel data.</li>
+      <li>Indic fertility targets bound the vocab from <i>below</i>; the 2·V·d embedding tax bounds it from <i>above</i> — <b>2¹⁷ is the intersection</b>.</li>
+      <li>Synthetic Indic is capped at 8% and always verifier-checked — low-resource languages are where synthetic data most easily poisons style.</li>
+    </ul>
+  </section>
+
+  <footer>ERA V5 · Session 3 · Bharat-40B design brief · sources: session-2 fertility experiments, Brahmic-tokenizer paper discussion (class), public benchmark suites</footer>
+</div>
+</body>
+</html>
