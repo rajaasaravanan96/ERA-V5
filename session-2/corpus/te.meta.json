@@ -1,0 +1,9 @@
+{
+  "language": "Telugu",
+  "code": "te",
+  "title": "భారతదేశం",
+  "source": "https://te.wikipedia.org/api/rest_v1/page/html/",
+  "chars": 86322,
+  "lines": 452,
+  "normalization": "NFKC"
+}

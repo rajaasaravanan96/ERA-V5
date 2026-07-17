@@ -1,0 +1,9 @@
+{
+  "language": "Hindi",
+  "code": "hi",
+  "title": "भारत",
+  "source": "https://hi.wikipedia.org/api/rest_v1/page/html/",
+  "chars": 203624,
+  "lines": 807,
+  "normalization": "NFKC"
+}

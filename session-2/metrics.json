@@ -1,0 +1,37 @@
+{
+  "vocab_size": 10000,
+  "per_language": {
+    "en": {
+      "label": "English",
+      "tokens": 118555,
+      "faithful_units": 144269,
+      "fertility": 0.8217635112186263
+    },
+    "hi": {
+      "label": "Hindi",
+      "tokens": 55599,
+      "faithful_units": 65861,
+      "fertility": 0.8441869998937156
+    },
+    "te": {
+      "label": "Telugu",
+      "tokens": 22884,
+      "faithful_units": 26533,
+      "fertility": 0.8624731466475709
+    },
+    "ta": {
+      "label": "Tamil",
+      "tokens": 125315,
+      "faithful_units": 142705,
+      "fertility": 0.8781402193335903
+    }
+  },
+  "spread": 0.05637670811496398,
+  "raw_score": 17737.82176073121,
+  "hindi_penalty_factor": 1.0,
+  "hindi_adjusted_score": 17737.82176073121,
+  "fertility_threshold": 1.2,
+  "languages_over_threshold": [],
+  "faithful_roundtrip_gate": "PASS",
+  "gate_failures": []
+}

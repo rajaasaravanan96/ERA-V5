@@ -32,15 +32,20 @@ from flask import Flask, Response, jsonify, request, send_from_directory
 from tokenizer_core import (
     bytes_to_unicode,
     build_merge_rank,
-    encode_word_symbols,
+    decode_tokens,
+    encode_text,
     fertility_of,
-    pretokenize,
     symbols_to_text,
+    to_hf_tokenizer_dict,
     train_bpe,
     word_count,
-    word_to_symbols,
 )
 from wiki_fetch import fetch_wiki_text
+
+# The shipped tokenizer.json is a standard HuggingFace Metaspace-BPE tokenizer
+# (see train_tokenizer.py); it is served through the real `tokenizers` library
+# so encode/decode here behave exactly like the grader's harness.
+from tokenizers import Tokenizer as HFTokenizer
 
 app = Flask(__name__, static_folder="static", static_url_path="")
 
@@ -64,39 +69,44 @@ BYTE_TO_CHAR, CHAR_TO_BYTE = bytes_to_unicode()
 PRETRAINED_RUN_ID = "pretrained"
 HERE_DIR = os.path.dirname(os.path.abspath(__file__))
 PRETRAINED_PATH = os.path.join(HERE_DIR, "tokenizer.json")
+METRICS_PATH = os.path.join(HERE_DIR, "metrics.json")
 PRETRAINED_REPORT_PATH = os.path.join(HERE_DIR, "data", "pretrained_report.json")
 
 
+def _visible(text: str) -> str:
+    return "".join(ch for ch in text if not ch.isspace())
+
+
 def _load_pretrained():
-    """If tokenizer.json ships with the app, register it as a run so /api/encode
-    and the frontend's "Try it" box work immediately — no training required.
-    If data/pretrained_report.json (built offline by build_pretrained_report.py)
-    is also present, its words-vs-tokens comparison is attached too, so the
-    Results table can render without the server ever fetching Wikipedia or
-    running BPE training."""
+    """Register the shipped tokenizer.json (HuggingFace Metaspace BPE, built by
+    train_tokenizer.py) as a run so /api/encode, /api/decode and the frontend's
+    "Try it" box work immediately — no training required. Fertility/score for
+    the Results table come from metrics.json (built by evaluate_tokenizer.py:
+    fertility = tokens / faithful units on the faithful Markdown corpus)."""
     if not os.path.exists(PRETRAINED_PATH):
         return None
-    with open(PRETRAINED_PATH, encoding="utf-8") as f:
-        data = json.load(f)
-    vocab_dict = data["vocab"]
-    vocab = sorted(vocab_dict, key=vocab_dict.get)
-    merges = [tuple(pair) for pair in data["merges"]]
-    meta = data.get("meta", {})
-    lang_meta = {lang["code"]: lang for lang in meta.get("languages", [])}
+    hf_tok = HFTokenizer.from_file(PRETRAINED_PATH)
+    vocab_ids = hf_tok.get_vocab()
+    vocab = sorted(vocab_ids, key=vocab_ids.get)
 
-    fert, score, spread = {}, meta.get("self_score"), meta.get("spread")
-    if os.path.exists(PRETRAINED_REPORT_PATH):
-        with open(PRETRAINED_REPORT_PATH, encoding="utf-8") as f:
-            report = json.load(f)
-        fert = report.get("fert", {})
-        score = report.get("score", score)
-        spread = report.get("spread", spread)
+    fert, score, spread = {}, None, None
+    if os.path.exists(METRICS_PATH):
+        with open(METRICS_PATH, encoding="utf-8") as f:
+            metrics = json.load(f)
+        for code, v in metrics.get("per_language", {}).items():
+            fert[code] = {"label": v["label"], "code": code, "tokens": v["tokens"],
+                          "words": v["faithful_units"], "fertility": v["fertility"]}
+        spread = metrics.get("spread")
+        score = metrics.get("hindi_adjusted_score")
+    lang_meta = ({v["code"]: {"label": v["label"], "code": v["code"]} for v in fert.values()}
+                 or {c["code"]: {"label": c["label"], "code": c["code"]}
+                     for c in DEFAULT_LANGS.values()})
 
     run = {
-        "vocab": vocab, "merges": merges, "lang_meta": lang_meta,
+        "hf": hf_tok, "vocab": vocab, "merges": [], "lang_meta": lang_meta,
         "fert": fert, "weights": {}, "round_log": [],
         "score": score, "spread": spread,
-        "vocab_size_target": meta.get("vocab_size", len(vocab)), "created": time.time(),
+        "vocab_size_target": len(vocab), "created": time.time(),
     }
     RUNS[PRETRAINED_RUN_ID] = run
     return run
@@ -256,15 +266,57 @@ def encode():
     if not text:
         return jsonify({"error": "paste some text first"}), 400
 
-    merge_rank = build_merge_rank(run["merges"])
-    tokens = []
-    for tok in pretokenize(text):
-        syms = encode_word_symbols(word_to_symbols(tok, BYTE_TO_CHAR), merge_rank)
-        tokens.extend(symbols_to_text(s, CHAR_TO_BYTE) for s in syms)
+    if run.get("hf"):
+        enc = run["hf"].encode(text)
+        tokens = [t.replace("▁", " ") for t in enc.tokens]
+        ids = list(enc.ids)
+        decoded = run["hf"].decode(ids)
+    else:
+        merge_rank = build_merge_rank(run["merges"])
+        token_ids = {tok: i for i, tok in enumerate(run["vocab"])}
+        symbols = encode_text(text, merge_rank, BYTE_TO_CHAR)
+        tokens = [symbols_to_text(s, CHAR_TO_BYTE) for s in symbols]
+        ids = [token_ids.get(s) for s in symbols]
+        decoded = decode_tokens(symbols, CHAR_TO_BYTE)
 
     words = word_count(text)
     fertility = (len(tokens) / words) if words > 0 else None
-    return jsonify({"tokens": tokens, "words": words, "token_count": len(tokens), "fertility": fertility})
+    return jsonify({
+        "tokens": tokens, "ids": ids, "words": words, "token_count": len(tokens),
+        "fertility": fertility, "decoded": decoded,
+        # the assignment's faithful-roundtrip gate: same visible characters
+        "roundtrip_ok": _visible(decoded) == _visible(text),
+    })
+
+
+@app.route("/api/decode", methods=["POST"])
+def decode():
+    """Faithful inverse of /api/encode: token ids (or raw byte-alphabet token
+    strings) back to text. decode(encode(text)) == text for any input."""
+    body = request.get_json(force=True, silent=True) or {}
+    run = RUNS.get(body.get("run_id"))
+    if not run:
+        return jsonify({"error": "run not found — retrain, this server may have restarted"}), 404
+
+    ids, tokens = body.get("ids"), body.get("tokens")
+    if ids is None and tokens is not None:
+        try:
+            lookup = {tok: i for i, tok in enumerate(run["vocab"])}
+            ids = [lookup[str(t)] for t in tokens]
+        except KeyError:
+            return jsonify({"error": "tokens must be token strings from this vocab"}), 400
+    if ids is None:
+        return jsonify({"error": "provide 'ids' or 'tokens'"}), 400
+
+    try:
+        ids = [int(i) for i in ids]
+        if run.get("hf"):
+            text = run["hf"].decode(ids)
+        else:
+            text = decode_tokens([run["vocab"][i] for i in ids], CHAR_TO_BYTE)
+    except (TypeError, ValueError, IndexError, KeyError):
+        return jsonify({"error": "ids must be integers within the vocab range"}), 400
+    return jsonify({"text": text})
 
 
 @app.route("/api/download/<kind>/<run_id>")
@@ -274,16 +326,14 @@ def download(kind, run_id):
         return jsonify({"error": "run not found — retrain, this server may have restarted"}), 404
 
     if kind == "tokenizer":
-        payload = {
-            "vocab": {tok: i for i, tok in enumerate(run["vocab"])},
-            "merges": run["merges"],
-            "meta": {
-                "vocab_size": len(run["vocab"]),
-                "self_score": (run["score"] if run["score"] != float("inf") else None),
-                "spread": run["spread"],
-                "languages": list(run["lang_meta"].values()),
-            },
-        }
+        # Standard Hugging Face `tokenizers` format so any grading harness can
+        # Tokenizer.from_file() it and get a faithful decode. The pretrained
+        # run serves the exact tokenizer.json file built by train_tokenizer.py.
+        if run.get("hf"):
+            return send_from_directory(
+                HERE_DIR, "tokenizer.json", as_attachment=True,
+                download_name="tokenizer.json", mimetype="application/json")
+        payload = to_hf_tokenizer_dict(run["vocab"], run["merges"])
         return Response(
             json.dumps(payload, ensure_ascii=False, indent=2),
             mimetype="application/json",
@@ -291,13 +341,31 @@ def download(kind, run_id):
         )
 
     if kind == "vocab":
-        lines = [f"{i}\t{symbols_to_text(tok, CHAR_TO_BYTE)}" for i, tok in enumerate(run["vocab"])]
+        def _display(tok):
+            # escape backslashes and every non-printable char so each vocab
+            # entry stays on exactly one line
+            text = tok if run.get("hf") else symbols_to_text(tok, CHAR_TO_BYTE)
+            out = []
+            for ch in text:
+                if ch == "\\":
+                    out.append("\\\\")
+                elif ch == " " or ch.isprintable():
+                    out.append(ch)
+                else:
+                    o = ord(ch)
+                    out.append(f"\\x{o:02x}" if o <= 0xFF else f"\\u{o:04x}")
+            return "".join(out)
+        lines = [f"{i}\t{_display(tok)}" for i, tok in enumerate(run["vocab"])]
         return Response(
             "\n".join(lines), mimetype="text/plain",
             headers={"Content-Disposition": "attachment; filename=vocab.txt"},
         )
 
     if kind == "report":
+        if run.get("hf") and os.path.exists(METRICS_PATH):
+            return send_from_directory(
+                HERE_DIR, "metrics.json", as_attachment=True,
+                download_name="report.json", mimetype="application/json")
         report = {
             "vocab_size": len(run["vocab"]),
             "weights_used": run["weights"],

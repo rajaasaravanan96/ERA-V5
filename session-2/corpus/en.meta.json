@@ -1,0 +1,9 @@
+{
+  "language": "English",
+  "code": "en",
+  "title": "India",
+  "source": "https://en.wikipedia.org/api/rest_v1/page/html/",
+  "chars": 478720,
+  "lines": 1460,
+  "normalization": "NFKC"
+}

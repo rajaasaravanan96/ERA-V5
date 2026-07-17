@@ -1,0 +1,9 @@
+{
+  "language": "Tamil",
+  "code": "ta",
+  "title": "இந்தியா",
+  "source": "https://ta.wikipedia.org/api/rest_v1/page/html/",
+  "chars": 520973,
+  "lines": 1657,
+  "normalization": "NFKC"
+}

@@ -126,7 +126,7 @@
   <section class="card hidden" id="resultsCard">
     <h2>Results</h2>
     <table>
-      <thead><tr><th>Language</th><th class="mono">Words</th><th class="mono">Tokens</th><th class="mono">Fertility</th></tr></thead>
+      <thead><tr><th>Language</th><th class="mono">Faithful units</th><th class="mono">Tokens</th><th class="mono">Fertility</th></tr></thead>
       <tbody id="resultsBody"></tbody>
     </table>
 
@@ -161,7 +161,7 @@
   <section class="card">
     <h2>Why these numbers?</h2>
     <p class="desc">
-      Fertility = tokens ÷ whitespace words. Score = 1000 / (max fertility − min fertility) —
+      Fertility = tokens ÷ faithful units (letter/number runs + visible punctuation). Score = 1000 / (max fertility − min fertility) —
       it rewards being <i>equally</i> efficient across English, Hindi, Telugu and Tamil, not
       being efficient in an absolute sense.
     </p>

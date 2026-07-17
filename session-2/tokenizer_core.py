@@ -153,13 +153,12 @@ def train_bpe(lang_texts: Dict[str, str], weights: Dict[str, int], vocab_size: i
               byte_to_char, progress_cb=None) -> Tuple[List[str], List[Tuple[str, str]]]:
     words = _build_word_freqs(lang_texts, weights, byte_to_char)
 
-    vocab: List[str] = []
-    seen = set()
-    for w in words:
-        for s in w["symbols"]:
-            if s not in seen:
-                seen.add(s)
-                vocab.append(s)
+    # Seed the vocab with ALL 256 base byte symbols, not just the ones that
+    # happen to appear in the training text. Any future input — '#', '_',
+    # emoji, any script — can then always be encoded byte-by-byte, which is
+    # what makes decode(encode(text)) faithful for arbitrary text.
+    vocab: List[str] = [byte_to_char[b] for b in range(256)]
+    seen = set(vocab)
 
     merges: List[Tuple[str, str]] = []
     pair_counts: Dict[tuple, int] = {}
@@ -212,14 +211,86 @@ def encode_word_symbols(symbols: List[str], merge_rank: dict) -> List[str]:
     return syms
 
 
-def count_tokens(text: str, merge_rank: dict, byte_to_char) -> int:
-    total = 0
+def encode_text(text: str, merge_rank: dict, byte_to_char: dict) -> List[str]:
+    """Encode text into a list of token symbols (byte-alphabet strings)."""
+    out: List[str] = []
     for tok in pretokenize(text):
-        total += len(encode_word_symbols(word_to_symbols(tok, byte_to_char), merge_rank))
-    return total
+        out.extend(encode_word_symbols(word_to_symbols(tok, byte_to_char), merge_rank))
+    return out
+
+
+def decode_tokens(tokens: List[str], char_to_byte: dict) -> str:
+    """Faithful inverse of encode_text: token symbols -> bytes -> text.
+    Every token is a string over the 256-char byte alphabet, so this is
+    lossless: decode_tokens(encode_text(text)) == text for any input."""
+    raw = bytes(char_to_byte[ch] for tok in tokens for ch in tok)
+    return raw.decode("utf-8", errors="replace")
+
+
+def count_tokens(text: str, merge_rank: dict, byte_to_char) -> int:
+    return len(encode_text(text, merge_rank, byte_to_char))
 
 
 def fertility_of(text: str, merge_rank: dict, byte_to_char) -> dict:
     words = word_count(text)
     tokens = count_tokens(text, merge_rank, byte_to_char)
     return {"words": words, "tokens": tokens, "fertility": (tokens / words) if words > 0 else float("nan")}
+
+
+# ---------------------------------------------------------------- tokenizer.json (Hugging Face format)
+def to_hf_tokenizer_dict(vocab: List[str], merges: List[Tuple[str, str]]) -> dict:
+    """Serialize vocab + merges as a standard Hugging Face `tokenizers`
+    tokenizer.json (byte-level BPE, GPT-2 style). The ByteLevel pre-tokenizer
+    and ByteLevel decoder mean any harness doing
+    Tokenizer.from_file("tokenizer.json") gets decode(encode(text)) == text
+    for arbitrary input. Ids 0-255 are always the full byte alphabet, so no
+    character can ever be dropped as unknown."""
+    byte_to_char, _ = bytes_to_unicode()
+    ordered = [byte_to_char[b] for b in range(256)]
+    seen = set(ordered)
+    for tok in vocab:
+        if tok not in seen:
+            seen.add(tok)
+            ordered.append(tok)
+    vocab_ids = {tok: i for i, tok in enumerate(ordered)}
+    for a, b in merges:
+        if a not in vocab_ids or b not in vocab_ids or (a + b) not in vocab_ids:
+            raise ValueError(f"merge ({a!r}, {b!r}) references a token missing from the vocab")
+    return {
+        "version": "1.0",
+        "truncation": None,
+        "padding": None,
+        "added_tokens": [],
+        "normalizer": None,
+        "pre_tokenizer": {"type": "ByteLevel", "add_prefix_space": False,
+                          "trim_offsets": True, "use_regex": True},
+        "post_processor": None,
+        "decoder": {"type": "ByteLevel", "add_prefix_space": True,
+                    "trim_offsets": True, "use_regex": True},
+        "model": {
+            "type": "BPE",
+            "dropout": None,
+            "unk_token": None,
+            "continuing_subword_prefix": None,
+            "end_of_word_suffix": None,
+            "fuse_unk": False,
+            "byte_fallback": False,
+            "vocab": vocab_ids,
+            "merges": [f"{a} {b}" for a, b in merges],
+        },
+    }
+
+
+def parse_tokenizer_json(data: dict) -> Tuple[List[str], List[Tuple[str, str]]]:
+    """Read vocab + merges from tokenizer.json — either the Hugging Face
+    format written by to_hf_tokenizer_dict, or the legacy custom format
+    ({"vocab": {...}, "merges": [[a, b], ...]}) from older runs."""
+    if "model" in data:
+        vocab_ids = data["model"]["vocab"]
+        merges = [tuple(m.split(" ")) if isinstance(m, str) else tuple(m)
+                  for m in data["model"]["merges"]]
+    else:
+        vocab_ids = data["vocab"]
+        merges = [tuple(p) for p in data["merges"]]
+    vocab = sorted(vocab_ids, key=vocab_ids.get)
+    return vocab, merges
