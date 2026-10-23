@@ -1,0 +1,31 @@
+{
+ "name": "era-v5-s4-opus47-reasoning-clean",
+ "source": "https://huggingface.co/datasets/lordx64/reasoning-distill-opus-4-7-max-sft",
+ "upstream": "https://huggingface.co/datasets/lordx64/reasoning-distill-claude-opus-4-7-max",
+ "licence": "apache-2.0 (as declared by the source; responses are model-generated, prompts reused from earlier corpora)",
+ "contributor": "rajaasaravanan96",
+ "cleaning_script": "session-4/clean.py",
+ "cleaning_script_sha256": "494cc1e3ee63c2209b4291f57a6663e71624aaff3199fc197ada21cb5dadfc3e",
+ "raw_parquet_sha256": "f1ce3f68a54f77ca75a4af907e2048ac432fdf7236f88d0c341f4b6135fe3c85",
+ "content_sha256": "f894c10f2fe4bcaee54ac41ff4dfe28c1c8d66a685220713878a972425e2d166",
+ "rows": 6636,
+ "chars": 25057449,
+ "tokens": 5887377,
+ "raw_tokens": 6658356,
+ "tokenizer": "Qwen/Qwen2.5-0.5B",
+ "languages": {
+  "English": 6014,
+  "Latin, not English (or code-heavy)": 403,
+  "Cyrillic": 24,
+  "CJK": 22,
+  "Hiragana/Katakana": 25,
+  "Devanagari": 25,
+  "Arabic": 25,
+  "Hangul": 25,
+  "other": 48,
+  "Greek": 25
+ },
+ "rows_with_reasoning": 5518,
+ "format": "one JSON object per line: messages[{role,content}], reasoning, language, id (sha256 of messages)",
+ "status": "ok"
+}

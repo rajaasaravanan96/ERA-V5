@@ -1,0 +1,322 @@
+{
+ "stages": [
+  {
+   "stage": "format",
+   "docs_in": 7823,
+   "docs_out": 7822,
+   "chars_in": 28546622,
+   "chars_out": 27833097,
+   "detail": {
+    "broken <think> block (opened but not closed, or text before it)": 1
+   }
+  },
+  {
+   "stage": "normalize",
+   "docs_in": 7822,
+   "docs_out": 7822,
+   "chars_in": 27833097,
+   "chars_out": 27833042,
+   "detail": {
+    "rows_changed": 15,
+    "mojibake repaired": 11,
+    "html entities unescaped (prose only)": 11,
+    "ZWJ kept": 8,
+    "control character removed": 2,
+    "word joiner removed": 2
+   }
+  },
+  {
+   "stage": "quality",
+   "docs_in": 7822,
+   "docs_out": 7615,
+   "chars_in": 27833042,
+   "chars_out": 26894384,
+   "detail": {
+    "no real task: the answer only asks for the missing problem": 91,
+    "user prompt shorter than 15 characters": 24,
+    "more than 30% duplicated lines": 43,
+    "truncated: unclosed code block in the answer": 49
+   }
+  },
+  {
+   "stage": "dedup",
+   "docs_in": 7615,
+   "docs_out": 6636,
+   "chars_in": 26894384,
+   "chars_out": 25057881,
+   "detail": {
+    "exact_duplicates": 29,
+    "near_duplicate_prompts_removed": 950,
+    "lsh_candidate_pairs": 15189,
+    "verified_pairs": 15188,
+    "clusters": 948,
+    "minhash": "128 perms, 16 bands x 8 rows, 5-word shingles, verify Jaccard >= 0.70"
+   }
+  },
+  {
+   "stage": "language",
+   "docs_in": 6636,
+   "docs_out": 6636,
+   "chars_in": 25057881,
+   "chars_out": 25057881,
+   "detail": {
+    "English": 6014,
+    "Latin, not English (or code-heavy)": 403,
+    "other": 48,
+    "Hiragana/Katakana": 25,
+    "Devanagari": 25,
+    "Arabic": 25,
+    "Hangul": 25,
+    "Greek": 25,
+    "Cyrillic": 24,
+    "CJK": 22
+   }
+  },
+  {
+   "stage": "pii",
+   "docs_in": 6636,
+   "docs_out": 6636,
+   "chars_in": 25057881,
+   "chars_out": 25057449,
+   "detail": {
+    "rows_changed": 22,
+    "email kept (documentation domain)": 74,
+    "version number kept": 42,
+    "IP kept (private/reserved range)": 29,
+    "public IP masked": 22,
+    "email masked": 20,
+    "phone kept (public toll-free line)": 19,
+    "phone masked": 16,
+    "phone kept (fictional 555-01xx)": 1
+   }
+  },
+  {
+   "stage": "decontam",
+   "docs_in": 6636,
+   "docs_out": 6636,
+   "chars_in": 25057449,
+   "chars_out": 25057449,
+   "detail": {
+    "eval_items_indexed": {
+     "GSM8K test": 1319,
+     "HumanEval": 164,
+     "MATH-500": 500
+    },
+    "rows_removed_by_benchmark": {}
+   }
+  }
+ ],
+ "examples": {
+  "format": [
+   {
+    "before": "<|im_start|>system\nYou are a helpful AI assistant.<|im_end|>\n<|im_start|>user\nYour solution must read input from standard input (input()), write output to standard output (print()).\nDo not include any debug prints or additional output.<|im_end|>\n<|im_start|>assistant\n<think>\nI need to ask the user w",
+    "after": "[{\"role\": \"system\", \"content\": \"You are a helpful AI assistant.\"}, {\"role\": \"user\", \"content\": \"Your solution must read input from standard input (input()), write output to standard output (print()).\\nDo not include any debug prints or additional output.\"}]",
+    "note": "literal <|im_start|> markers become structured roles; the model will only ever see real special tokens"
+   }
+  ],
+  "normalize": [
+   {
+    "before": "'opic.\\nQ: ঐতিহাসিক পলাশী দিবসে নব্য ঘসেটি বেগম, মীর জাফর ও রায় দুর্লভদের  মনে পরে \\nA:'",
+    "after": "'opic.\\nQ: ঐতিহাসিক পলাশী দিবসে নব্য ঘসেটি বেগম, মীর জাফর ও রায় দুর্লভদের  মনে পরে \\nA:'",
+    "note": "first difference shown, repr() makes invisible characters visible"
+   },
+   {
+    "before": "'e mother, Karen (Alice Krige) -- the construction crew chiefâ\\x80\\x94is crushed to death protecting him. The dragon flies out of the Underground, '",
+    "after": "'e mother, Karen (Alice Krige) -- the construction crew chief—is crushed to death protecting him. The dragon flies out of the Underground, an'",
+    "note": "first difference shown, repr() makes invisible characters visible"
+   },
+   {
+    "before": "'al saved more than 15,000 bed days in a year, saving almost Â£1m in cash terms.\\nHealth Secretary Vaughan Gething said occupational therapist'",
+    "after": "'al saved more than 15,000 bed days in a year, saving almost £1m in cash terms.\\nHealth Secretary Vaughan Gething said occupational therapists'",
+    "note": "first difference shown, repr() makes invisible characters visible"
+   },
+   {
+    "before": "\"r some time. Murphy, the fort's physician, inspects Brigitteâ\\x80\\x99s wound and applies a leech, surreptitiously testing for werewolf infection. \"",
+    "after": "\"r some time. Murphy, the fort's physician, inspects Brigitte’s wound and applies a leech, surreptitiously testing for werewolf infection. Th\"",
+    "note": "first difference shown, repr() makes invisible characters visible"
+   }
+  ],
+  "quality": [
+   {
+    "before": "Your solution must read input from standard input (input()), write output to standard output (print()).\nDo not include any debug prints or additional output.",
+    "after": "It looks like you've shared formatting instructions but haven't included the actual problem statement. Could you please share:\n\n1. **The problem description** (what needs to be solved)\n2. **Input format** (what the input looks like)\n3. **Output forma",
+    "note": "no real task: the answer only asks for the missing problem"
+   },
+   {
+    "before": "# Problem",
+    "after": "It looks like your message contains just the heading \"# Problem\" without any actual problem description. Could you share the details of what you'd like help with? For example:\n\n- A math or physics problem\n- A coding or debugging issue\n- A logic puzzl",
+    "note": "user prompt shorter than 15 characters"
+   },
+   {
+    "before": "You will be given a competitive programming problem.\nAnalyze the maximum input constraints and identify the optimal algorithmic approach and data structures needed to process the largest possible test cases within the time and memory limits, then exp",
+    "after": "I notice that you've provided the instructions for how to approach a competitive programming problem, but the actual **problem statement is missing**. \n\nCould you please share the problem you'd like me to solve? I'll need details such as:\n\n- **Proble",
+    "note": "no real task: the answer only asks for the missing problem"
+   },
+   {
+    "before": "# Problem",
+    "after": "It looks like your message came through with just a heading but no problem details. Could you share the problem you'd like help with? I'm happy to assist once I know what you're working on—whether it's math, coding, writing, or something else entirel",
+    "note": "user prompt shorter than 15 characters"
+   },
+   {
+    "before": "Your solution must read input from standard input (cin), write output to standard output (cout).\nDo not include any debug prints or additional output.",
+    "after": "It looks like you've provided formatting instructions but haven't shared the actual problem to solve. Could you please provide:\n\n1. **The problem statement** - what the program should do\n2. **Input format** - what data will be provided via stdin\n3. *",
+    "note": "no real task: the answer only asks for the missing problem"
+   },
+   {
+    "before": "Your solution must read input from standard input (cin), write output to standard output (cout).\nDo not include any debug prints or additional output.",
+    "after": "It looks like you've provided formatting instructions but haven't included the actual problem statement. Could you please share the problem you'd like me to solve? I'll need details such as:\n\n- Problem description\n- Input format\n- Output format\n- Con",
+    "note": "no real task: the answer only asks for the missing problem"
+   }
+  ],
+  "dedup": [
+   {
+    "before": "When the percentage is calculated the player himself is taken into account. That means that if two players played the game and the first one gained 100 points and the second one 1000 points, then the first player's result is not worse than the result that 50% of players have, and the second one is n",
+    "after": "When the percentage is calculated the player himself is taken into account. That means that if two players played the game and the first one gained 100 points and the second one 1000 points, then the first player's result is not worse than the result that 50% of players have, and the second one is n",
+    "note": "near-duplicate prompts, Jaccard 1.00; kept the one with the fuller answer"
+   },
+   {
+    "before": "Detailed Instructions: Given a sentence in English language, translate the sentence to Somali language keeping the meaning of the original sentence intact\nProblem:English sentence: In Somaliland, The FSNAU and the Famine Early Warning Systems Network (FEWSNET) reported in September that 31 percent o",
+    "after": "Detailed Instructions: Given a sentence in English language, translate the sentence to Somali language keeping the meaning of the original sentence intact\nProblem:English sentence: In Somaliland, The FSNAU and the Famine Early Warning Systems Network (FEWSNET) reported in September that 31 percent o",
+    "note": "near-duplicate prompts, Jaccard 1.00; kept the one with the fuller answer"
+   },
+   {
+    "before": "What differential equation should be used to model the temperature distribution near the focal point in bulk glass due to laser heating?A: Wave equation\nB: Heat equation\nC: Schrödinger equation\nD: Laplace equation",
+    "after": "What differential equation should be used to model the temperature distribution near the focal point in bulk glass due to laser heating?A: Wave equation\nB: Heat equation\nC: Schrödinger equation\nD: Laplace equation",
+    "note": "near-duplicate prompts, Jaccard 1.00; kept the one with the fuller answer"
+   },
+   {
+    "before": "Generate a short movie review that has \"positive\" sentiment (Pick from: --negative --positive).",
+    "after": "Generate a short movie review that has \"positive\" sentiment (Pick from:\n +negative\n +positive).",
+    "note": "near-duplicate prompts, Jaccard 1.00; kept the one with the fuller answer"
+   }
+  ],
+  "language": [
+   {
+    "before": "220. Differentiate the function $y=2 x^{3}\\left(x^{6}-1\\right)$.",
+    "after": "Latin, not English (or code-heavy)",
+    "note": "dataset card says \"en\"; detector disagrees"
+   },
+   {
+    "before": "How do you convert particles per liter to grams per liter?A: \\( x \\frac{particles}{L} \\times \\frac {1 mol}{6.023 \\times 10^{23}particles}\\times \\frac{volume \\, L}{mol} \\)\nB: \\( x \\frac{particles}{L} \\times \\frac {1 mol}{6.023 \\times 10^{23}particles}",
+    "after": "Latin, not English (or code-heavy)",
+    "note": "dataset card says \"en\"; detector disagrees"
+   },
+   {
+    "before": "Kim's dad would buy her some candy bars a week. She would eat 1 candy bar every 4 weeks, saving the rest. After 16 weeks, Kim had 28 candy bars saved. How many candy bars did her dad buy her each week?",
+    "after": "Latin, not English (or code-heavy)",
+    "note": "dataset card says \"en\"; detector disagrees"
+   },
+   {
+    "before": "Let z=1-i. Compute z^8.",
+    "after": "Latin, not English (or code-heavy)",
+    "note": "dataset card says \"en\"; detector disagrees"
+   },
+   {
+    "before": "and calculations were fulfilling with the help of slide rules.\n\nTranslate to Russian",
+    "after": "Cyrillic",
+    "note": "dataset card says \"en\"; detector disagrees"
+   }
+  ],
+  "pii": [
+   {
+    "before": ": HK$ 100 Start / Finish : Kowloon Public Pier   Tel : (852) 2853 3888 E - mail:enquiry@chinatravel1.co You are 8 years old, how much will y",
+    "after": ": HK$ 100 Start / Finish : Kowloon Public Pier   Tel : (852) 2853 3888 E - mail:<EMAIL> You are 8 years old, how much will you pay? A) HK$10",
+    "note": "masked with a typed placeholder"
+   },
+   {
+    "before": "# Bonus: Handling Multiple Test Cases\n\n```python\ntest_strings = ['123hello!?', 'Py@thon3.11', 'No-Numbers#Here$', 'Hello World 2024!']\n\nfor ",
+    "after": "# Bonus: Handling Multiple Test Cases\n\n```python\ntest_strings = ['123hello!?', '<EMAIL>', 'No-Numbers#Here$', 'Hello World 2024!']\n\nfor s in",
+    "note": "masked with a typed placeholder"
+   },
+   {
+    "before": "nance:**\n```yaml\n- uses: slsa-framework/slsa-github-generator/.github/workflows/generator_container_slsa3.yml@v1.9.0\n  with:\n    image: ${{ ",
+    "after": "nance:**\n```yaml\n- uses: slsa-framework/slsa-github-generator/.github/workflows/<EMAIL>\n  with:\n    image: ${{ env.IMAGE }}\n    digest: ${{ ",
+    "note": "masked with a typed placeholder"
+   },
+   {
+    "before": "Write me a regex that matches US phone numbers in all common formats: (555) 123-4567, 555-123-4567, 5551234567, +1-555-123-4567, 1",
+    "after": "Write me a regex that matches US phone numbers in all common formats: <PHONE>, <PHONE>, 5551234567, <PHONE>, 1-555-123-4567. Expla",
+    "note": "masked with a typed placeholder"
+   }
+  ]
+ },
+ "raw": {
+  "rows": 7823,
+  "chars": 28546622,
+  "parquet_sha256": "f1ce3f68a54f77ca75a4af907e2048ac432fdf7236f88d0c341f4b6135fe3c85",
+  "rows_with_system_prompt": 3804
+ },
+ "dedup_jaccard_hist": {
+  "1.0": 15184,
+  "0.8": 4
+ },
+ "dedup_lowest_pairs": [
+  {
+   "jaccard": 0.842,
+   "a": "I have a (fetish?? Infatuation?? idk) about having an older girlfriend (like 30). It's made me less fearful of getting old, in a way? Because as I go into my 20s I'll slowly become what I want from others, and it's made me almost happy. Like, I can't wait to become like a 30-40 year old woman and ma",
+   "b": "I have a (fetish?? Infatuation?? idk) about having an older girlfriend (like 30). It's made me less fearful of getting old, in a way? Because as I go into my 20s I'll slowly become what I want from others, and it's made me almost happy. Like, I can't wait to become like a 30-40 year old woman and ma"
+  },
+  {
+   "jaccard": 1.0,
+   "a": "When the percentage is calculated the player himself is taken into account. That means that if two players played the game and the first one gained 100 points and the second one 1000 points, then the first player's result is not worse than the result that 50% of players have, and the second one is n",
+   "b": "When the percentage is calculated the player himself is taken into account. That means that if two players played the game and the first one gained 100 points and the second one 1000 points, then the first player's result is not worse than the result that 50% of players have, and the second one is n"
+  },
+  {
+   "jaccard": 1.0,
+   "a": "Detailed Instructions: Given a sentence in English language, translate the sentence to Somali language keeping the meaning of the original sentence intact\nProblem:English sentence: In Somaliland, The FSNAU and the Famine Early Warning Systems Network (FEWSNET) reported in September that 31 percent o",
+   "b": "Detailed Instructions: Given a sentence in English language, translate the sentence to Somali language keeping the meaning of the original sentence intact\nProblem:English sentence: In Somaliland, The FSNAU and the Famine Early Warning Systems Network (FEWSNET) reported in September that 31 percent o"
+  }
+ ],
+ "manifest": {
+  "name": "era-v5-s4-opus47-reasoning-clean",
+  "source": "https://huggingface.co/datasets/lordx64/reasoning-distill-opus-4-7-max-sft",
+  "upstream": "https://huggingface.co/datasets/lordx64/reasoning-distill-claude-opus-4-7-max",
+  "licence": "apache-2.0 (as declared by the source; responses are model-generated, prompts reused from earlier corpora)",
+  "contributor": "rajaasaravanan96",
+  "cleaning_script": "session-4/clean.py",
+  "cleaning_script_sha256": "494cc1e3ee63c2209b4291f57a6663e71624aaff3199fc197ada21cb5dadfc3e",
+  "raw_parquet_sha256": "f1ce3f68a54f77ca75a4af907e2048ac432fdf7236f88d0c341f4b6135fe3c85",
+  "content_sha256": "f894c10f2fe4bcaee54ac41ff4dfe28c1c8d66a685220713878a972425e2d166",
+  "rows": 6636,
+  "chars": 25057449,
+  "tokens": 5887377,
+  "raw_tokens": 6658356,
+  "tokenizer": "Qwen/Qwen2.5-0.5B",
+  "languages": {
+   "English": 6014,
+   "Latin, not English (or code-heavy)": 403,
+   "Cyrillic": 24,
+   "CJK": 22,
+   "Hiragana/Katakana": 25,
+   "Devanagari": 25,
+   "Arabic": 25,
+   "Hangul": 25,
+   "other": 48,
+   "Greek": 25
+  },
+  "rows_with_reasoning": 5518,
+  "format": "one JSON object per line: messages[{role,content}], reasoning, language, id (sha256 of messages)",
+  "status": "ok"
+ },
+ "seconds": 81.7,
+ "harm_test": {
+  "good_docs": 307,
+  "changed": 5,
+  "changed_pct": 1.629,
+  "changed_by": {
+   "byte-order mark removed": 2,
+   "html entities unescaped (prose only)": 5
+  },
+  "harmful_changes": 0,
+  "harmful_pct": 0.0,
+  "zwj_zwnj_before": 19,
+  "zwj_zwnj_after": 19,
+  "code_block_untouched": true,
+  "passed": true
+ },
+ "determinism": {
+  "run1": "f894c10f2fe4bcaee54ac41ff4dfe28c1c8d66a685220713878a972425e2d166",
+  "run2": "f894c10f2fe4bcaee54ac41ff4dfe28c1c8d66a685220713878a972425e2d166",
+  "identical": true
+ }
+}

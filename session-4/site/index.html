@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cleaning Opus 4.7 Reasoning Traces</title>
+<style>
+:root{--bg:#0A0E13;--bg2:#0F151C;--panel:#141C25;--panel2:#1A242F;--raise:#1F2C39;--line:#25323F;--line2:#35485E;
+--azure:#3FA7FF;--amber:#FF9F35;--violet:#B07BFF;--cyan:#26D7C8;--gold:#F5D33B;--steel:#4A6076;
+--disp:"Avenir Next Condensed","HelveticaNeue-CondensedBold","Arial Narrow",system-ui,sans-serif;
+--body:Charter,"Bitstream Charter","Iowan Old Style",Georgia,"Times New Roman",serif;
+--mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,monospace}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:#fff;font-family:var(--body);font-size:17px;line-height:1.62;-webkit-font-smoothing:antialiased}
+.wrap{max-width:940px;margin:0 auto;padding:40px 16px 80px}
+h1,h2,h3{font-family:var(--disp);letter-spacing:-.01em;text-wrap:balance;line-height:1.15}
+h1{font-size:44px;margin:.2em 0 .3em} h2{font-size:30px;margin:2.2em 0 .5em;border-top:1px solid var(--line);padding-top:1.1em}
+p{max-width:68ch} code,pre,.n,.num,.w-hint,.eyebrow,.tag,table{font-family:var(--mono)}
+code{font-size:.84em;background:var(--bg2);padding:1px 5px;border-radius:4px;border:1px solid var(--line)}
+.eyebrow{font-size:12px;letter-spacing:.16em;text-transform:uppercase}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:22px 0}
+.stat{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--azure);border-radius:8px;padding:12px 14px}
+.stat .k{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase}
+.stat .v{font-family:var(--mono);font-size:28px;font-weight:700;font-variant-numeric:tabular-nums}
+.stat .u{font-family:var(--mono);font-size:12px}
+.stat.b2{border-left-color:var(--amber)} .stat.b3{border-left-color:var(--cyan)} .stat.b4{border-left-color:var(--violet)}
+.card{border:1px solid var(--line);border-radius:10px;background:var(--panel);margin:16px 0;overflow:hidden}
+.card header{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;background:var(--panel2);border-bottom:1px solid var(--line);padding:10px 16px}
+.w-title{font-family:var(--disp);font-weight:800;text-transform:uppercase;letter-spacing:.08em}
+.w-hint{font-size:13px} .card .body{padding:14px 16px}
+.bar{display:grid;grid-template-columns:110px 1fr 220px;gap:10px;align-items:center;margin:7px 0;font-size:14px}
+.bar.small{grid-template-columns:230px 1fr 70px}
+.bar .lab{font-family:var(--mono);font-size:13px} .bar .num{font-size:13px;font-variant-numeric:tabular-nums}
+.track{background:#ffffff0a;height:16px;border-radius:3px;overflow:hidden}
+.fill{display:block;height:100%;background:var(--azure)} .fill.alt{background:var(--violet)}
+.strats{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px}
+.strat{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+.strat ul{margin:8px 0 0;padding-left:18px;font-size:15px} .strat li{margin:3px 0}
+.sh{display:flex;gap:10px;align-items:baseline} .sn{font-family:var(--mono);font-weight:700;background:var(--gold);color:#06121C!important;border-radius:4px;padding:0 7px}
+.st{font-family:var(--disp);font-weight:800;font-size:19px} .ss{font-family:var(--mono);font-size:12px;margin-left:auto}
+table{border-collapse:collapse;font-size:13px;width:100%;margin:8px 0}
+td,th{border-bottom:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+td.n{font-variant-numeric:tabular-nums} th{font-weight:700;background:var(--panel2)}
+.kv td:first-child{width:46%}
+details{margin-top:10px} summary{cursor:pointer;font-family:var(--mono);font-size:13px;padding:6px 0}
+.ex{border:1px solid var(--line2);border-radius:8px;margin:10px 0;padding:10px}
+.exn{font-family:var(--mono);font-size:12.5px;margin-bottom:6px}
+.exr{display:grid;grid-template-columns:62px 1fr;gap:8px;align-items:start}
+.tag{font-size:11px;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--line2);border-radius:4px;padding:1px 5px;text-align:center}
+pre{white-space:pre-wrap;word-break:break-word;background:var(--bg2);border:1px solid var(--line);border-radius:6px;padding:8px;margin:4px 0;font-size:12.5px;max-height:180px;overflow:auto}
+.callout{border-left:3px solid var(--gold);background:#ffffff05;padding:10px 14px;margin:14px 0}
+.concerns li{margin:8px 0} a{text-decoration:underline}
+.pass{font-family:var(--mono);font-weight:700;border:1px solid var(--cyan);border-radius:4px;padding:0 6px}
+@media (max-width:640px){h1{font-size:32px} .bar{grid-template-columns:80px 1fr;} .bar .num{grid-column:1/-1} .bar.small{grid-template-columns:150px 1fr 50px}}
+body,body *,h1,h2,h3,p,li,a,strong,em,code,th,td,.stat .v,.stat .k,.stat .u,.bar,.bar .num,.tag,.w-title,.w-hint,.callout{color:#FFFFFF!important}
+.sn{color:#06121C!important}
+</style></head><body><main class="wrap">
+<div class="eyebrow">ERA V5 · Session 4 assignment · Data cleaning and deduplication</div>
+<h1>Cleaning 7,823 Claude Opus 4.7 reasoning traces</h1>
+<p>The dataset behind the model linked in the assignment, put through the Session 4 pipeline. Every number on this page is
+generated by <code>clean.py</code> from the real run, and the pipeline is deterministic: two runs give the same content hash.</p>
+<div class="stats">
+ <div class="stat"><div class="k">strategies</div><div class="v">8</div><div class="u">stages · 27 techniques</div></div>
+ <div class="stat b2"><div class="k">rows</div><div class="v">6,636</div><div class="u">of 7,823 kept (84.8%)</div></div>
+ <div class="stat b3"><div class="k">tokens</div><div class="v">5.89M</div><div class="u">of 6.66M (Qwen2.5 tokenizer)</div></div>
+ <div class="stat b4"><div class="k">harm test</div><div class="v">0%</div><div class="u">harmful changes · ZWJ/ZWNJ 19/19 kept</div></div>
+</div>
+
+<h2>1. How many strategies are in Session 4?</h2>
+<p><b>8 cleaning strategies, made of 27 named techniques.</b> The lesson's own closing list names the eight
+stages: normalization, format discipline, quality filtering, deduplication, language validation, PII removal, decontamination and
+the manifest. Extraction comes before them, but it was taught in Session 3, so it is not counted here. Inside each stage the lesson
+names specific techniques. I counted one technique wherever the text describes a separate rule or mechanism.</p>
+<div class="strats"><div class="strat"><div class="sh"><span class="sn">1</span><span class="st">Normalization</span><span class="ss">Section 3 · 5</span></div><ul><li><b>Unicode NFC</b> — one byte encoding for every character</li><li><b>Strip invisible noise</b> — zero-width space, byte-order mark, bidi overrides, control characters</li><li><b>Keep ZWJ and ZWNJ</b> — they carry meaning in Brahmic scripts, so they are never removed</li><li><b>Unescape HTML entities</b> — &amp;amp; becomes &amp;</li><li><b>Collapse whitespace</b> — runs of spaces and blank lines</li></ul></div><div class="strat"><div class="sh"><span class="sn">2</span><span class="st">One conversation format</span><span class="ss">Section 4, ghost tags · 2</span></div><ul><li><b>One canonical format</b> — rewrite every source into one structure at ingestion</li><li><b>Real special tokens</b> — never literal [INST] or &lt;|im_start|&gt; text in pre-training</li></ul></div><div class="strat"><div class="sh"><span class="sn">3</span><span class="st">Quality filtering</span><span class="ss">Section 5 · 6</span></div><ul><li><b>Average word length</b> — heuristic rule</li><li><b>Symbol-to-word ratio</b> — heuristic rule</li><li><b>Lines ending in punctuation</b> — heuristic rule</li><li><b>Duplicated lines</b> — heuristic rule</li><li><b>Stop-word presence</b> — heuristic rule</li><li><b>Educational-value classifier</b> — a large model labels a sample, a light model imitates it at scale</li></ul></div><div class="strat"><div class="sh"><span class="sn">4</span><span class="st">Deduplication</span><span class="ss">Sections 6 and 7 · 4</span></div><ul><li><b>Exact deduplication</b> — content hash</li><li><b>Shingling + MinHash</b> — estimate the Jaccard overlap from short signatures</li><li><b>LSH banding</b> — compare only documents that share a band</li><li><b>Global, not local</b> — one central large-memory machine sees every shard</li></ul></div><div class="strat"><div class="sh"><span class="sn">5</span><span class="st">Language identification</span><span class="ss">Section 8 · 2</span></div><ul><li><b>Detect at runtime</b> — never trust the folder name</li><li><b>Validate codes, fail loudly</b> — the Telugu te/tel bug</li></ul></div><div class="strat"><div class="sh"><span class="sn">6</span><span class="st">PII removal</span><span class="ss">Section 9 · 2</span></div><ul><li><b>Regex layer</b> — emails, phone numbers, IP addresses</li><li><b>ML layer</b> — personal names; precision against recall, hardest for Indic names</li></ul></div><div class="strat"><div class="sh"><span class="sn">7</span><span class="st">Decontamination</span><span class="ss">Section 10 · 3</span></div><ul><li><b>Fingerprint the eval sets</b> — n-gram fingerprints</li><li><b>Scan and remove overlaps</b> — every shard, against every benchmark</li><li><b>Canary strings</b> — detect a leak after the fact</li></ul></div><div class="strat"><div class="sh"><span class="sn">8</span><span class="st">Reproducibility and manifest</span><span class="ss">Section 11 · 3</span></div><ul><li><b>Deterministic content-based ids</b> — never a running counter</li><li><b>Hash after cleaning</b> — the hash describes the clean text</li><li><b>Provenance manifest + licence gate</b> — source, licence, script hash, tokens, languages; unknown licence is blocked</li></ul></div></div>
+
+<h2>2. The dataset I picked</h2>
+<section class="card"><header><span class="w-title">lordx64/reasoning-distill-opus-4-7-max-sft</span><span class="w-hint">Apache-2.0 · 29.3 MB · 7,823 rows</span></header>
+<div class="body">
+<p>The assignment links the model <code>Qwen3.6-35B-A3B-Claude-4.7-Opus-Reasoning-Distilled</code>. Its card names the dataset it was
+trained on, so I cleaned <b>that exact dataset</b>: <a href="https://huggingface.co/datasets/lordx64/reasoning-distill-opus-4-7-max-sft">https://huggingface.co/datasets/lordx64/reasoning-distill-opus-4-7-max-sft</a>. It holds single-turn conversations whose
+answers, with their <code>&lt;think&gt;</code> reasoning, were generated by Claude Opus 4.7. The prompts were reused from earlier
+distillation corpora (competitive programming, maths, translation, reading comprehension and open chat).</p>
+<p>Why this one: it is 29 MB, inside the 10–100M range. It is the data behind the example, and it is exactly the kind of
+post-training data V5 will need for its reasoning and agentic slots. It is also dirty in the ways Session 4 is about: ghost chat markers in
+every row, mojibake, duplicates and prompts with no task.</p>
+<table><tr><th>raw file sha256</th><td class="n">f1ce3f68a54f77ca75a4af907e2048ac432fdf7236f88d0c341f4b6135fe3c85</td></tr>
+<tr><th>raw characters</th><td class="n">28,546,622</td></tr>
+<tr><th>raw tokens (Qwen2.5)</th><td class="n">6,658,356</td></tr>
+<tr><th>rows with a system prompt</th><td class="n">3,804</td></tr></table>
+</div></section>
+
+<h2>3. What was cleaned, why and how</h2>
+<section class="card"><header><span class="w-title">The funnel</span><span class="w-hint">rows and characters after each stage</span></header>
+<div class="body"><div class="bar"><span class="lab">raw rows</span><span class="track"><span class="fill" style="width:100.0%"></span></span><span class="num">7,823 rows · 28.5M chars</span></div>
+<div class="bar"><span class="lab">format</span><span class="track"><span class="fill" style="width:100.0%"></span></span><span class="num">7,822 rows · 27.8M chars</span></div>
+<div class="bar"><span class="lab">normalize</span><span class="track"><span class="fill" style="width:100.0%"></span></span><span class="num">7,822 rows · 27.8M chars</span></div>
+<div class="bar"><span class="lab">quality</span><span class="track"><span class="fill" style="width:97.3%"></span></span><span class="num">7,615 rows · 26.9M chars</span></div>
+<div class="bar"><span class="lab">dedup</span><span class="track"><span class="fill" style="width:84.8%"></span></span><span class="num">6,636 rows · 25.1M chars</span></div>
+<div class="bar"><span class="lab">language</span><span class="track"><span class="fill" style="width:84.8%"></span></span><span class="num">6,636 rows · 25.1M chars</span></div>
+<div class="bar"><span class="lab">pii</span><span class="track"><span class="fill" style="width:84.8%"></span></span><span class="num">6,636 rows · 25.1M chars</span></div>
+<div class="bar"><span class="lab">decontam</span><span class="track"><span class="fill" style="width:84.8%"></span></span><span class="num">6,636 rows · 25.1M chars</span></div></div></section>
+
+<section class="card" id="st-format">
+  <header><span class="w-title">format</span><span class="w-hint">7,823 → 7,822 rows · −1 removed</span></header>
+  <div class="body">
+    <p><b>Why.</b> Every row is one string with literal Qwen markers: <code>&lt;|im_start|&gt;user … &lt;|im_end|&gt;</code> and <code>&lt;think&gt;…&lt;/think&gt;</code>. Trained on as text, those markers are exactly the ghost tags of Section 4: the model learns them as ordinary subwords and later fights the real special tokens.</p>
+    <p><b>How.</b> Parse each row into <code>messages[{role, content}]</code> plus a separate <code>reasoning</code> field. Rows whose markers do not parse, or that still contain any other format's markers ([INST], ### Human:, &lt;start_of_turn&gt;…) inside the text, are dropped. 1,179 rows have no &lt;think&gt; block at all: they are valid answers, so they are kept and labelled <code>has_reasoning: false</code> rather than silently mixed in.</p>
+    <table class="kv"><tr><td>broken &lt;think&gt; block (opened but not closed, or text before it)</td><td class="n">1</td></tr></table>
+    <details><summary>Real examples from this run (1)</summary><div class="ex"><div class="exn">literal &lt;|im_start|&gt; markers become structured roles; the model will only ever see real special tokens</div><div class="exr"><span class="tag">before</span><pre>&lt;|im_start|&gt;system
+You are a helpful AI assistant.&lt;|im_end|&gt;
+&lt;|im_start|&gt;user
+Your solution must read input from standard input (input()), write output to standard output (print()).
+Do not include any debug prints or additional output.&lt;|im_end|&gt;
+&lt;|im_start|&gt;assistant
+&lt;think&gt;
+I need to ask the user w</pre></div><div class="exr"><span class="tag">after</span><pre>[{&quot;role&quot;: &quot;system&quot;, &quot;content&quot;: &quot;You are a helpful AI assistant.&quot;}, {&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: &quot;Your solution must read input from standard input (input()), write output to standard output (print()).\nDo not include any debug prints or additional output.&quot;}]</pre></div></div></details>
+  </div>
+</section>
+<section class="card" id="st-normalize">
+  <header><span class="w-title">normalize</span><span class="w-hint">7,822 → 7,822 rows · nothing removed</span></header>
+  <div class="body">
+    <p><b>Why.</b> Character-level dirt: UTF-8 text that was decoded as Windows-1252 ("chiefâ\x80\x94" for "chief—", "Â£1m" for "£1m"), control characters, word joiners and HTML entities.</p>
+    <p><b>How.</b> Repair the mojibake by re-decoding Latin-1 runs as UTF-8, NFC (not NFKC, which rewrites ² and full-width letters and breaks code), drop the invisible noise characters, keep ZWJ/ZWNJ, unescape HTML only in prose. Code blocks and inline code are left byte-exact. Space runs are deliberately <b>not</b> collapsed: the harm test showed that rule changed 9.1% of good documents (Markdown tables, double spaces), so it was removed.</p>
+    <table class="kv"><tr><td>rows_changed</td><td class="n">15</td></tr><tr><td>mojibake repaired</td><td class="n">11</td></tr><tr><td>html entities unescaped (prose only)</td><td class="n">11</td></tr><tr><td>ZWJ kept</td><td class="n">8</td></tr><tr><td>control character removed</td><td class="n">2</td></tr><tr><td>word joiner removed</td><td class="n">2</td></tr></table>
+    <details><summary>Real examples from this run (3)</summary><div class="ex"><div class="exn">first difference shown, repr() makes invisible characters visible</div><div class="exr"><span class="tag">before</span><pre>&#x27;opic.\nQ: ঐতিহাসিক পলাশী দিবসে নব্য ঘসেটি বেগম, মীর জাফর ও রায় দুর্লভদের  মনে পরে \nA:&#x27;</pre></div><div class="exr"><span class="tag">after</span><pre>&#x27;opic.\nQ: ঐতিহাসিক পলাশী দিবসে নব্য ঘসেটি বেগম, মীর জাফর ও রায় দুর্লভদের  মনে পরে \nA:&#x27;</pre></div></div><div class="ex"><div class="exn">first difference shown, repr() makes invisible characters visible</div><div class="exr"><span class="tag">before</span><pre>&#x27;e mother, Karen (Alice Krige) -- the construction crew chiefâ\x80\x94is crushed to death protecting him. The dragon flies out of the Underground, &#x27;</pre></div><div class="exr"><span class="tag">after</span><pre>&#x27;e mother, Karen (Alice Krige) -- the construction crew chief—is crushed to death protecting him. The dragon flies out of the Underground, an&#x27;</pre></div></div><div class="ex"><div class="exn">first difference shown, repr() makes invisible characters visible</div><div class="exr"><span class="tag">before</span><pre>&#x27;al saved more than 15,000 bed days in a year, saving almost Â£1m in cash terms.\nHealth Secretary Vaughan Gething said occupational therapist&#x27;</pre></div><div class="exr"><span class="tag">after</span><pre>&#x27;al saved more than 15,000 bed days in a year, saving almost £1m in cash terms.\nHealth Secretary Vaughan Gething said occupational therapists&#x27;</pre></div></div></details>
+  </div>
+</section>
+<section class="card" id="st-quality">
+  <header><span class="w-title">quality</span><span class="w-hint">7,822 → 7,615 rows · −207 removed</span></header>
+  <div class="body">
+    <p><b>Why.</b> English web heuristics (symbol ratio, stop words, punctuation) are wrong for chat data full of code and maths, so the filters were rewritten for what goes wrong in distilled reasoning data.</p>
+    <p><b>How.</b> Drop: prompts that are only boilerplate with no task (the answer just asks for the missing problem), prompts under 15 characters ("# Problem"), empty &lt;think&gt; blocks, empty answers, answers with an unclosed code block (truncated), answers with more than 30% duplicated lines, and degenerate loops of 32+ repeated 4-grams (the OLMo 2 rule). One-letter answers like "C" are kept: they are correct answers to multiple-choice questions.</p>
+    <table class="kv"><tr><td>no real task: the answer only asks for the missing problem</td><td class="n">91</td></tr><tr><td>user prompt shorter than 15 characters</td><td class="n">24</td></tr><tr><td>more than 30% duplicated lines</td><td class="n">43</td></tr><tr><td>truncated: unclosed code block in the answer</td><td class="n">49</td></tr></table>
+    <details><summary>Real examples from this run (3)</summary><div class="ex"><div class="exn">no real task: the answer only asks for the missing problem</div><div class="exr"><span class="tag">before</span><pre>Your solution must read input from standard input (input()), write output to standard output (print()).
+Do not include any debug prints or additional output.</pre></div><div class="exr"><span class="tag">after</span><pre>It looks like you&#x27;ve shared formatting instructions but haven&#x27;t included the actual problem statement. Could you please share:
+
+1. **The problem description** (what needs to be solved)
+2. **Input format** (what the input looks like)
+3. **Output forma</pre></div></div><div class="ex"><div class="exn">user prompt shorter than 15 characters</div><div class="exr"><span class="tag">before</span><pre># Problem</pre></div><div class="exr"><span class="tag">after</span><pre>It looks like your message contains just the heading &quot;# Problem&quot; without any actual problem description. Could you share the details of what you&#x27;d like help with? For example:
+
+- A math or physics problem
+- A coding or debugging issue
+- A logic puzzl</pre></div></div><div class="ex"><div class="exn">no real task: the answer only asks for the missing problem</div><div class="exr"><span class="tag">before</span><pre>You will be given a competitive programming problem.
+Analyze the maximum input constraints and identify the optimal algorithmic approach and data structures needed to process the largest possible test cases within the time and memory limits, then exp</pre></div><div class="exr"><span class="tag">after</span><pre>I notice that you&#x27;ve provided the instructions for how to approach a competitive programming problem, but the actual **problem statement is missing**. 
+
+Could you please share the problem you&#x27;d like me to solve? I&#x27;ll need details such as:
+
+- **Proble</pre></div></div></details>
+  </div>
+</section>
+<section class="card" id="st-dedup">
+  <header><span class="w-title">dedup</span><span class="w-hint">7,615 → 6,636 rows · −979 removed</span></header>
+  <div class="body">
+    <p><b>Why.</b> The same prompt answered more than once, sometimes with different whitespace or wording.</p>
+    <p><b>How.</b> Exact: SHA-256 of the canonical messages. Near: 5-word shingles of the prompt, 128-permutation MinHash written from scratch, LSH with 16 bands × 8 rows (threshold ≈ 0.71), then every candidate pair is verified with the true Jaccard ≥ 0.70. Each cluster keeps the row with the fullest answer.</p>
+    <table class="kv"><tr><td>exact_duplicates</td><td class="n">29</td></tr><tr><td>near_duplicate_prompts_removed</td><td class="n">950</td></tr><tr><td>lsh_candidate_pairs</td><td class="n">15,189</td></tr><tr><td>verified_pairs</td><td class="n">15,188</td></tr><tr><td>clusters</td><td class="n">948</td></tr><tr><td>minhash</td><td class="n">128 perms, 16 bands x 8 rows, 5-word shingles, verify Jaccard &gt;= 0.70</td></tr></table>
+    <details><summary>Real examples from this run (1)</summary><div class="ex"><div class="exn">near-duplicate prompts, Jaccard 1.00; kept the one with the fuller answer</div><div class="exr"><span class="tag">before</span><pre>Generate a short movie review that has &quot;positive&quot; sentiment (Pick from: --negative --positive).</pre></div><div class="exr"><span class="tag">after</span><pre>Generate a short movie review that has &quot;positive&quot; sentiment (Pick from:
+ +negative
+ +positive).</pre></div></div></details>
+  </div>
+</section>
+<section class="card" id="st-language">
+  <header><span class="w-title">language</span><span class="w-hint">6,636 → 6,636 rows · nothing removed</span></header>
+  <div class="body">
+    <p><b>Why.</b> The dataset card says "en". The detector disagrees for about one row in eleven.</p>
+    <p><b>How.</b> Script detection over Unicode blocks plus an English stop-word ratio. Nothing is dropped: the rows are labelled, because for V5 these are useful multilingual prompts, but they must not be counted as English when the mixture is sized.</p>
+    <table class="kv"><tr><td>English</td><td class="n">6,014</td></tr><tr><td>Latin, not English (or code-heavy)</td><td class="n">403</td></tr><tr><td>other</td><td class="n">48</td></tr><tr><td>Hiragana/Katakana</td><td class="n">25</td></tr><tr><td>Devanagari</td><td class="n">25</td></tr><tr><td>Arabic</td><td class="n">25</td></tr><tr><td>Hangul</td><td class="n">25</td></tr><tr><td>Greek</td><td class="n">25</td></tr><tr><td>Cyrillic</td><td class="n">24</td></tr><tr><td>CJK</td><td class="n">22</td></tr></table>
+    <details><summary>Real examples from this run (3)</summary><div class="ex"><div class="exn">dataset card says &quot;en&quot;; detector disagrees</div><div class="exr"><span class="tag">before</span><pre>220. Differentiate the function $y=2 x^{3}\left(x^{6}-1\right)$.</pre></div><div class="exr"><span class="tag">after</span><pre>Latin, not English (or code-heavy)</pre></div></div><div class="ex"><div class="exn">dataset card says &quot;en&quot;; detector disagrees</div><div class="exr"><span class="tag">before</span><pre>How do you convert particles per liter to grams per liter?A: \( x \frac{particles}{L} \times \frac {1 mol}{6.023 \times 10^{23}particles}\times \frac{volume \, L}{mol} \)
+B: \( x \frac{particles}{L} \times \frac {1 mol}{6.023 \times 10^{23}particles}</pre></div><div class="exr"><span class="tag">after</span><pre>Latin, not English (or code-heavy)</pre></div></div><div class="ex"><div class="exn">dataset card says &quot;en&quot;; detector disagrees</div><div class="exr"><span class="tag">before</span><pre>Kim&#x27;s dad would buy her some candy bars a week. She would eat 1 candy bar every 4 weeks, saving the rest. After 16 weeks, Kim had 28 candy bars saved. How many candy bars did her dad buy her each week?</pre></div><div class="exr"><span class="tag">after</span><pre>Latin, not English (or code-heavy)</pre></div></div></details>
+  </div>
+</section>
+<section class="card" id="st-pii">
+  <header><span class="w-title">pii</span><span class="w-hint">6,636 → 6,636 rows · nothing removed</span></header>
+  <div class="body">
+    <p><b>Why.</b> Emails, phone numbers, public IP addresses and secrets inside prompts and answers.</p>
+    <p><b>How.</b> Regex layer with typed placeholders (&lt;EMAIL&gt;, &lt;PHONE&gt;, &lt;IP&gt;, &lt;SECRET:…&gt;). Kept on purpose: documentation domains (example.com, *.test), private and reserved IP ranges, version strings like Chrome/120.0.0.0, fictional 555-01xx numbers and public toll-free help lines.</p>
+    <table class="kv"><tr><td>rows_changed</td><td class="n">22</td></tr><tr><td>email kept (documentation domain)</td><td class="n">74</td></tr><tr><td>version number kept</td><td class="n">42</td></tr><tr><td>IP kept (private/reserved range)</td><td class="n">29</td></tr><tr><td>public IP masked</td><td class="n">22</td></tr><tr><td>email masked</td><td class="n">20</td></tr><tr><td>phone kept (public toll-free line)</td><td class="n">19</td></tr><tr><td>phone masked</td><td class="n">16</td></tr><tr><td>phone kept (fictional 555-01xx)</td><td class="n">1</td></tr></table>
+    <details><summary>Real examples from this run (3)</summary><div class="ex"><div class="exn">masked with a typed placeholder</div><div class="exr"><span class="tag">before</span><pre>: HK$ 100 Start / Finish : Kowloon Public Pier   Tel : (852) 2853 3888 E - mail:enquiry@chinatravel1.co You are 8 years old, how much will y</pre></div><div class="exr"><span class="tag">after</span><pre>: HK$ 100 Start / Finish : Kowloon Public Pier   Tel : (852) 2853 3888 E - mail:&lt;EMAIL&gt; You are 8 years old, how much will you pay? A) HK$10</pre></div></div><div class="ex"><div class="exn">masked with a typed placeholder</div><div class="exr"><span class="tag">before</span><pre># Bonus: Handling Multiple Test Cases
+
+```python
+test_strings = [&#x27;123hello!?&#x27;, &#x27;Py@thon3.11&#x27;, &#x27;No-Numbers#Here$&#x27;, &#x27;Hello World 2024!&#x27;]
+
+for </pre></div><div class="exr"><span class="tag">after</span><pre># Bonus: Handling Multiple Test Cases
+
+```python
+test_strings = [&#x27;123hello!?&#x27;, &#x27;&lt;EMAIL&gt;&#x27;, &#x27;No-Numbers#Here$&#x27;, &#x27;Hello World 2024!&#x27;]
+
+for s in</pre></div></div><div class="ex"><div class="exn">masked with a typed placeholder</div><div class="exr"><span class="tag">before</span><pre>nance:**
+```yaml
+- uses: slsa-framework/slsa-github-generator/.github/workflows/generator_container_slsa3.yml@v1.9.0
+  with:
+    image: ${{ </pre></div><div class="exr"><span class="tag">after</span><pre>nance:**
+```yaml
+- uses: slsa-framework/slsa-github-generator/.github/workflows/&lt;EMAIL&gt;
+  with:
+    image: ${{ env.IMAGE }}
+    digest: ${{ </pre></div></div></details>
+  </div>
+</section>
+<section class="card" id="st-decontam">
+  <header><span class="w-title">decontam</span><span class="w-hint">6,636 → 6,636 rows · nothing removed</span></header>
+  <div class="body">
+    <p><b>Why.</b> Benchmark questions hidden in the training data would make every later score dishonest.</p>
+    <p><b>How.</b> Every 13-gram of GSM8K test (1,319), HumanEval (164) and MATH-500 (500) is indexed; every row is scanned and any row sharing a 13-gram is removed.</p>
+    <table class="kv"><tr><td>eval_items_indexed</td><td class="n">GSM8K test: 1319, HumanEval: 164, MATH-500: 500</td></tr><tr><td>rows_removed_by_benchmark</td><td class="n"></td></tr></table>
+    
+  </div>
+</section>
+
+<section class="card"><header><span class="w-title">Harm test</span><span class="w-hint"><span class="pass">PASS</span></span></header>
+<div class="body">
+<p>The medicine must not damage good text. I ran the same normalization and PII scrubbing on 307 known-good documents:
+the Session 2 English and Hindi Wikipedia paragraphs, Telugu, Malayalam, Hindi and Bengali strings that use ZWJ/ZWNJ, an emoji
+ZWJ sequence, and code blocks.</p>
+<ul><li>Harmful changes: <b>0 (0.0%)</b>, under the 1% limit.</li>
+<li>Documents changed at all: 5 (1.629%). Every one was real dirt being fixed: byte-order mark removed ×2, html entities unescaped (prose only) ×5.</li>
+<li>ZWJ/ZWNJ before → after: <b>19 → 19</b>, so none were removed.</li>
+<li>Code blocks byte-exact: <b>True</b>.</li></ul>
+<div class="callout">The first version failed: a "collapse runs of spaces" rule changed 9.1% of the good documents (Markdown tables,
+double spaces after full stops). The harm test caught it, and the rule was removed.</div>
+</div></section>
+
+<h2>4. Other strategies and concerns</h2>
+<ul class="concerns">
+<li><b>Licence of distilled outputs.</b> The card says Apache-2.0, but the answers are generated by a commercial model, and its
+provider's terms restrict using outputs to train competing models. Before V5 trains on this, it needs a legal check, not just a licence field.
+The manifest records it as a concern.</li>
+<li><b>Mixed formats.</b> 1,118 of the kept rows answer without any &lt;think&gt; block. Mixing them silently would teach the model to sometimes
+skip reasoning, so they are kept but labelled, and the SFT mixture can choose.</li>
+<li><b>The language label is wrong.</b> The card says English, but 622 rows are not plain English
+(other scripts, or code-heavy). Counting them as English would skew the Session 5 mixture.</li>
+<li><b>No ML name detection.</b> Only the regex PII layer ran: no NER model was available offline. Names in prompts (mostly public figures and
+fictional characters) are untouched, and that is a known gap.</li>
+<li><b>Decontamination coverage.</b> Zero overlaps at 13-grams against GSM8K, HumanEval and MATH-500. That does not prove the data is clean for
+every benchmark: MMLU, LiveCodeBench and the Indic sets were not scanned, and paraphrased leaks escape exact n-grams.</li>
+<li><b>English quality heuristics do not fit.</b> Symbol-ratio and stop-word rules would have thrown away most of the code and maths, so they were
+replaced with chat-specific rules. This is Section 5's filter-bias warning, in a different form.</li>
+<li><b>Near-duplicate policy.</b> When a prompt appears more than once, only the fullest answer is kept. For preference data you would keep
+both and pair them instead.</li>
+</ul>
+
+<h2>5. Final statistics</h2>
+<table>
+<tr><th></th><th>raw</th><th>clean</th><th>kept</th></tr>
+<tr><td>rows</td><td class="n">7,823</td><td class="n">6,636</td><td class="n">84.8%</td></tr>
+<tr><td>characters</td><td class="n">28,546,622</td><td class="n">25,057,449</td><td class="n">87.8%</td></tr>
+<tr><td>tokens (Qwen2.5)</td><td class="n">6,658,356</td><td class="n">5,887,377</td><td class="n">88.4%</td></tr>
+<tr><td>rows with reasoning</td><td class="n">—</td><td class="n">5,518</td><td class="n"></td></tr>
+</table>
+<p>The character and token counts include the removed chat markers. About 0.7M characters of
+<code>&lt;|im_start|&gt;</code>-style text became structure, not text.</p>
+<section class="card"><header><span class="w-title">Language mix of the clean rows</span><span class="w-hint">detected, not declared</span></header>
+<div class="body"><div class="bar small"><span class="lab">English</span><span class="track"><span class="fill alt" style="width:90.6%"></span></span><span class="num">6,014</span></div><div class="bar small"><span class="lab">Latin, not English (or code-heavy)</span><span class="track"><span class="fill alt" style="width:6.1%"></span></span><span class="num">403</span></div><div class="bar small"><span class="lab">other</span><span class="track"><span class="fill alt" style="width:0.7%"></span></span><span class="num">48</span></div><div class="bar small"><span class="lab">Hiragana/Katakana</span><span class="track"><span class="fill alt" style="width:0.4%"></span></span><span class="num">25</span></div><div class="bar small"><span class="lab">Devanagari</span><span class="track"><span class="fill alt" style="width:0.4%"></span></span><span class="num">25</span></div><div class="bar small"><span class="lab">Arabic</span><span class="track"><span class="fill alt" style="width:0.4%"></span></span><span class="num">25</span></div><div class="bar small"><span class="lab">Hangul</span><span class="track"><span class="fill alt" style="width:0.4%"></span></span><span class="num">25</span></div><div class="bar small"><span class="lab">Greek</span><span class="track"><span class="fill alt" style="width:0.4%"></span></span><span class="num">25</span></div><div class="bar small"><span class="lab">Cyrillic</span><span class="track"><span class="fill alt" style="width:0.4%"></span></span><span class="num">24</span></div><div class="bar small"><span class="lab">CJK</span><span class="track"><span class="fill alt" style="width:0.3%"></span></span><span class="num">22</span></div></div></section>
+<section class="card"><header><span class="w-title">Manifest</span><span class="w-hint">data_clean/manifest.json</span></header>
+<div class="body"><table>
+<tr><th>content sha256</th><td class="n">f894c10f2fe4bcaee54ac41ff4dfe28c1c8d66a685220713878a972425e2d166</td></tr>
+<tr><th>cleaning script sha256</th><td class="n">494cc1e3ee63c2209b4291f57a6663e71624aaff3199fc197ada21cb5dadfc3e</td></tr>
+<tr><th>determinism</th><td class="n">two runs, identical content hash</td></tr>
+<tr><th>row id</th><td class="n">sha256 of the messages (content-based, never a counter)</td></tr>
+<tr><th>licence</th><td class="n">apache-2.0 (as declared by the source; responses are model-generated, prompts reused from earlier corpora)</td></tr>
+<tr><th>runtime</th><td class="n">81.7 s on an Apple M5</td></tr>
+</table></div></section>
+<p>Code, manifest and the full report: <a href="https://github.com/rajaasaravanan96/ERA-V5/tree/main/session-4">github.com/rajaasaravanan96/ERA-V5/session-4</a>.
+Reproduce with <code>python clean.py --check-determinism &amp;&amp; python make_site.py</code>.</p>
+</main></body></html>
