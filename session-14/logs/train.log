@@ -1,0 +1,104 @@
+device mps | vocab 10000 | 10,303,920 tokens | d 256 layers 4 ffn 768 | 8 experts top-2
+dense model: 6,002,944 parameters
+[dense_pretrain] step     0  loss 9.2313  val 9.1962  grad 2.395  lr 2.00e-05      1s
+[dense_pretrain] step    50  loss 6.1959  val 5.9360  grad 0.509  lr 1.02e-03      9s
+[dense_pretrain] step   100  loss 5.9015  val 5.6762  grad 0.793  lr 1.98e-03     18s
+[dense_pretrain] step   150  loss 5.4768  val 5.2333  grad 0.589  lr 1.96e-03     27s
+[dense_pretrain] step   200  loss 5.2340  val 4.9721  grad 0.585  lr 1.92e-03     35s
+[dense_pretrain] step   250  loss 5.0794  val 4.7647  grad 0.563  lr 1.88e-03     44s
+[dense_pretrain] step   300  loss 4.9105  val 4.5849  grad 0.587  lr 1.83e-03     53s
+[dense_pretrain] step   350  loss 4.4276  val 4.4316  grad 0.571  lr 1.77e-03     63s
+[dense_pretrain] step   400  loss 4.3733  val 4.3188  grad 0.571  lr 1.70e-03     74s
+[dense_pretrain] step   450  loss 4.4250  val 4.2298  grad 0.526  lr 1.63e-03     83s
+[dense_pretrain] step   500  loss 4.2811  val 4.1404  grad 0.521  lr 1.55e-03     92s
+[dense_pretrain] step   550  loss 4.2539  val 4.0552  grad 0.569  lr 1.47e-03    101s
+[dense_pretrain] step   600  loss 4.3075  val 4.0105  grad 0.524  lr 1.38e-03    109s
+[dense_pretrain] step   650  loss 4.2202  val 3.9244  grad 0.673  lr 1.29e-03    120s
+[dense_pretrain] step   700  loss 3.9165  val 3.8624  grad 0.586  lr 1.19e-03    131s
+[dense_pretrain] step   750  loss 3.9065  val 3.7970  grad 0.634  lr 1.10e-03    142s
+[dense_pretrain] step   800  loss 4.0954  val 3.7356  grad 0.598  lr 1.01e-03    153s
+[dense_pretrain] step   850  loss 4.0402  val 3.6707  grad 0.646  lr 9.13e-04    164s
+[dense_pretrain] step   900  loss 3.7790  val 3.6167  grad 0.636  lr 8.22e-04    175s
+[dense_pretrain] step   950  loss 3.6818  val 3.5751  grad 0.650  lr 7.34e-04    186s
+[dense_pretrain] step  1000  loss 3.9025  val 3.5330  grad 0.657  lr 6.50e-04    196s
+[dense_pretrain] step  1050  loss 3.6732  val 3.4846  grad 0.634  lr 5.71e-04    205s
+[dense_pretrain] step  1100  loss 3.7437  val 3.4472  grad 0.647  lr 4.98e-04    214s
+[dense_pretrain] step  1150  loss 3.5046  val 3.4229  grad 0.654  lr 4.31e-04    222s
+[dense_pretrain] step  1200  loss 3.7775  val 3.3964  grad 0.635  lr 3.72e-04    231s
+[dense_pretrain] step  1250  loss 3.6233  val 3.3801  grad 0.641  lr 3.21e-04    240s
+[dense_pretrain] step  1300  loss 3.5698  val 3.3565  grad 0.675  lr 2.78e-04    248s
+[dense_pretrain] step  1350  loss 3.5466  val 3.3357  grad 0.656  lr 2.44e-04    256s
+[dense_pretrain] step  1400  loss 3.4645  val 3.3147  grad 0.685  lr 2.20e-04    265s
+[dense_pretrain] step  1450  loss 3.8488  val 3.3038  grad 0.717  lr 2.05e-04    275s
+[dense_pretrain] step  1499  loss 3.6005  val 3.2889  grad 0.698  lr 2.00e-04    285s
+dense checkpoint after 1500 steps: val loss 3.2889
+--- dense: total 6,002,944 params, active 6,002,944; val loss right after conversion 3.2889 (dense was 3.2889)
+[dense] step  1500  loss 3.5496  val 3.2889  grad 0.702  lr 4.00e-05      1s
+[dense] step  1550  loss 3.8076  val 3.5344  grad 0.732  lr 1.99e-03     12s
+[dense] step  1600  loss 3.8171  val 3.5413  grad 0.670  lr 1.96e-03     21s
+[dense] step  1650  loss 3.9236  val 3.5385  grad 0.703  lr 1.90e-03     30s
+[dense] step  1700  loss 3.8721  val 3.4960  grad 0.642  lr 1.83e-03     39s
+[dense] step  1750  loss 3.9453  val 3.4276  grad 0.644  lr 1.74e-03     48s
+[dense] step  1800  loss 3.7048  val 3.3960  grad 0.616  lr 1.63e-03     57s
+[dense] step  1850  loss 3.4732  val 3.3433  grad 0.601  lr 1.51e-03     66s
+[dense] step  1900  loss 3.5853  val 3.3173  grad 0.612  lr 1.38e-03     75s
+[dense] step  1950  loss 3.5496  val 3.2866  grad 0.589  lr 1.24e-03     84s
+[dense] step  2000  loss 3.5360  val 3.2429  grad 0.606  lr 1.10e-03     95s
+[dense] step  2050  loss 3.4396  val 3.1919  grad 0.574  lr 9.59e-04    105s
+[dense] step  2100  loss 3.3111  val 3.1581  grad 0.564  lr 8.22e-04    116s
+[dense] step  2150  loss 3.4098  val 3.1320  grad 0.577  lr 6.91e-04    126s
+[dense] step  2200  loss 3.3260  val 3.1115  grad 0.574  lr 5.71e-04    136s
+[dense] step  2250  loss 3.2298  val 3.0788  grad 0.560  lr 4.64e-04    146s
+[dense] step  2300  loss 3.2648  val 3.0563  grad 0.561  lr 3.72e-04    156s
+[dense] step  2350  loss 3.5338  val 3.0352  grad 0.607  lr 2.98e-04    165s
+[dense] step  2400  loss 3.0268  val 3.0298  grad 0.561  lr 2.44e-04    173s
+[dense] step  2450  loss 3.2845  val 3.0130  grad 0.628  lr 2.11e-04    183s
+[dense] step  2499  loss 3.2172  val 3.0070  grad 0.579  lr 2.00e-04    203s
+--- dense: final val loss 3.0070 (change since conversion -0.2819)
+--- copy: total 22,526,208 params, active 8,370,432; val loss right after conversion 3.2889 (dense was 3.2889)
+[copy ] step  1500  loss 3.5496  val 3.2889  grad 0.657  lr 4.00e-05      8s  MaxVio 1.14  dead 0  expert cos 1.000
+[copy ] step  1550  loss 3.8134  val 3.5535  grad 0.707  lr 1.99e-03    107s  MaxVio 2.02  dead 0  expert cos 0.985
+[copy ] step  1600  loss 3.8696  val 3.5822  grad 0.631  lr 1.96e-03    210s  MaxVio 2.96  dead 0  expert cos 0.953
+[copy ] step  1650  loss 3.9481  val 3.5708  grad 0.671  lr 1.90e-03    323s  MaxVio 2.95  dead 0  expert cos 0.927
+[copy ] step  1700  loss 3.8913  val 3.5196  grad 0.620  lr 1.83e-03    436s  MaxVio 2.99  dead 0  expert cos 0.905
+[copy ] step  1750  loss 3.9455  val 3.4448  grad 0.583  lr 1.74e-03    533s  MaxVio 2.97  dead 0  expert cos 0.881
+[copy ] step  1800  loss 3.7128  val 3.4007  grad 0.568  lr 1.63e-03    599s  MaxVio 2.97  dead 0  expert cos 0.860
+[copy ] step  1850  loss 3.4677  val 3.3423  grad 0.558  lr 1.51e-03    660s  MaxVio 2.97  dead 0  expert cos 0.841
+[copy ] step  1900  loss 3.5836  val 3.3136  grad 0.568  lr 1.38e-03    719s  MaxVio 2.98  dead 0  expert cos 0.825
+[copy ] step  1950  loss 3.5447  val 3.2803  grad 0.536  lr 1.24e-03    785s  MaxVio 2.97  dead 0  expert cos 0.812
+[copy ] step  2000  loss 3.5180  val 3.2344  grad 0.548  lr 1.10e-03    906s  MaxVio 2.95  dead 1  expert cos 0.802
+[copy ] step  2050  loss 3.4192  val 3.1798  grad 0.530  lr 9.59e-04   1094s  MaxVio 2.96  dead 0  expert cos 0.794
+[copy ] step  2100  loss 3.2882  val 3.1436  grad 0.508  lr 8.22e-04   1192s  MaxVio 2.95  dead 1  expert cos 0.789
+[copy ] step  2150  loss 3.3806  val 3.1116  grad 0.535  lr 6.91e-04   1305s  MaxVio 2.93  dead 0  expert cos 0.785
+[copy ] step  2200  loss 3.2890  val 3.0889  grad 0.516  lr 5.71e-04   1423s  MaxVio 2.88  dead 0  expert cos 0.782
+[copy ] step  2250  loss 3.2031  val 3.0557  grad 0.504  lr 4.64e-04   1640s  MaxVio 2.86  dead 0  expert cos 0.780
+[copy ] step  2300  loss 3.2264  val 3.0338  grad 0.508  lr 3.72e-04   1767s  MaxVio 2.80  dead 0  expert cos 0.778
+[copy ] step  2350  loss 3.5025  val 3.0134  grad 0.538  lr 2.98e-04   1801s  MaxVio 2.73  dead 0  expert cos 0.778
+[copy ] step  2400  loss 3.0080  val 3.0111  grad 0.509  lr 2.44e-04   1851s  MaxVio 2.66  dead 0  expert cos 0.777
+[copy ] step  2450  loss 3.2505  val 2.9969  grad 0.557  lr 2.11e-04   1901s  MaxVio 2.53  dead 0  expert cos 0.777
+[copy ] step  2499  loss 3.1853  val 2.9896  grad 0.520  lr 2.00e-04   1933s  MaxVio 2.52  dead 0  expert cos 0.777
+--- copy: final val loss 2.9896 (change since conversion -0.2993)
+--- drop: total 22,526,208 params, active 8,370,432; val loss right after conversion 3.9190 (dense was 3.2889)
+[drop ] step  1500  loss 4.2268  val 3.8573  grad 2.268  lr 4.00e-05      2s  MaxVio 1.07  dead 0  expert cos 0.251
+[drop ] step  1550  loss 3.8696  val 3.6157  grad 0.703  lr 1.99e-03     79s  MaxVio 1.97  dead 0  expert cos 0.253
+[drop ] step  1600  loss 3.8890  val 3.6195  grad 0.623  lr 1.96e-03    195s  MaxVio 2.61  dead 0  expert cos 0.255
+[drop ] step  1650  loss 3.9688  val 3.5874  grad 0.655  lr 1.90e-03    298s  MaxVio 2.55  dead 0  expert cos 0.253
+[drop ] step  1700  loss 3.8986  val 3.5430  grad 0.586  lr 1.83e-03    418s  MaxVio 2.72  dead 0  expert cos 0.249
+[drop ] step  1750  loss 3.9718  val 3.4473  grad 0.604  lr 1.74e-03    492s  MaxVio 2.50  dead 0  expert cos 0.245
+[drop ] step  1800  loss 3.7203  val 3.4118  grad 0.573  lr 1.63e-03    568s  MaxVio 2.62  dead 0  expert cos 0.241
+[drop ] step  1850  loss 3.4625  val 3.3442  grad 0.546  lr 1.51e-03    644s  MaxVio 2.53  dead 0  expert cos 0.237
+[drop ] step  1900  loss 3.6006  val 3.3243  grad 0.553  lr 1.38e-03    708s  MaxVio 2.60  dead 0  expert cos 0.233
+[drop ] step  1950  loss 3.5424  val 3.2793  grad 0.533  lr 1.24e-03    776s  MaxVio 2.49  dead 0  expert cos 0.230
+[drop ] step  2000  loss 3.5190  val 3.2371  grad 0.550  lr 1.10e-03    842s  MaxVio 2.37  dead 0  expert cos 0.228
+[drop ] step  2050  loss 3.4167  val 3.1817  grad 0.511  lr 9.59e-04    915s  MaxVio 2.48  dead 0  expert cos 0.226
+[drop ] step  2100  loss 3.2964  val 3.1508  grad 0.517  lr 8.22e-04    975s  MaxVio 2.26  dead 0  expert cos 0.224
+[drop ] step  2150  loss 3.3780  val 3.1092  grad 0.533  lr 6.91e-04   1042s  MaxVio 2.19  dead 0  expert cos 0.223
+[drop ] step  2200  loss 3.2866  val 3.0829  grad 0.524  lr 5.71e-04   1111s  MaxVio 1.99  dead 0  expert cos 0.222
+[drop ] step  2250  loss 3.1972  val 3.0540  grad 0.504  lr 4.64e-04   1173s  MaxVio 1.90  dead 0  expert cos 0.222
+[drop ] step  2300  loss 3.2199  val 3.0296  grad 0.509  lr 3.72e-04   1279s  MaxVio 1.79  dead 0  expert cos 0.221
+[drop ] step  2350  loss 3.5039  val 3.0070  grad 0.548  lr 2.98e-04   1353s  MaxVio 1.67  dead 0  expert cos 0.221
+[drop ] step  2400  loss 2.9884  val 2.9992  grad 0.510  lr 2.44e-04   1616s  MaxVio 1.56  dead 0  expert cos 0.220
+[drop ] step  2450  loss 3.2426  val 2.9804  grad 0.556  lr 2.11e-04   1918s  MaxVio 1.57  dead 0  expert cos 0.220
+[drop ] step  2499  loss 3.1732  val 2.9749  grad 0.523  lr 2.00e-04   2189s  MaxVio 1.51  dead 0  expert cos 0.220
+--- drop: final val loss 2.9749 (change since conversion -0.9441)
+done
