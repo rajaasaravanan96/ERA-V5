@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Attention, In Launch Order</title>
+<style>
+:root{--bg:#0A0E13;--bg2:#0F151C;--panel:#141C25;--panel2:#1A242F;--raise:#1F2C39;--line:#25323F;--line2:#35485E;
+--azure:#3FA7FF;--amber:#FF9F35;--violet:#B07BFF;--cyan:#26D7C8;--gold:#F5D33B;--steel:#4A6076;
+--disp:"Avenir Next Condensed","HelveticaNeue-CondensedBold","Arial Narrow",system-ui,sans-serif;
+--body:Charter,"Bitstream Charter","Iowan Old Style",Georgia,"Times New Roman",serif;
+--mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,monospace}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:#fff;font-family:var(--body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1000px;margin:0 auto;padding:36px 16px 90px}
+h1,h2,h3{font-family:var(--disp);letter-spacing:-.01em;line-height:1.15;text-wrap:balance}
+h1{font-size:46px;margin:.15em 0 .3em} h2{font-size:30px;margin:2em 0 .5em;padding-top:1em;border-top:1px solid var(--line)}
+p{max-width:70ch} code,.mono{font-family:var(--mono);font-size:.86em}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase}
+.eras{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:18px 0}
+.era{border:1px solid var(--line);border-top:4px solid var(--c);border-radius:8px;padding:10px 12px;background:var(--panel)}
+.era b{font-family:var(--disp);font-size:18px;display:block} .era span{font-family:var(--mono);font-size:12px}
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 6px;position:sticky;top:0;background:var(--bg);padding:10px 0;z-index:5;border-bottom:1px solid var(--line)}
+.chip{font-family:var(--mono);font-size:13px;border:1px solid var(--line2);background:var(--raise);color:#fff;border-radius:999px;padding:5px 12px;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--gold);color:#06121C!important;border-color:var(--gold);font-weight:700}
+.chip:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.tl{position:relative;margin-top:10px;padding-left:120px}
+.tl:before{content:"";position:absolute;left:104px;top:0;bottom:0;width:2px;background:var(--line2)}
+.year{position:relative;font-family:var(--disp);font-weight:800;font-size:26px;margin:26px 0 6px -120px;width:96px;text-align:right}
+.card{position:relative;border:1px solid var(--line);border-radius:10px;background:var(--panel);margin:10px 0;overflow:hidden}
+.card:before{content:"";position:absolute;left:-22px;top:20px;width:12px;height:12px;border-radius:50%;background:var(--c);border:2px solid var(--bg)}
+.card{overflow:visible}
+.ch{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center;padding:10px 14px;background:var(--panel2);border-bottom:1px solid var(--line);border-radius:10px 10px 0 0;border-left:4px solid var(--c);cursor:pointer}
+.ch h3{margin:0;font-size:21px} .meta{font-family:var(--mono);font-size:12.5px;text-align:right}
+.tag{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;border:1px solid var(--line2);border-radius:4px;padding:1px 6px;margin-left:6px}
+.cb{display:grid;grid-template-columns:1fr 150px;gap:16px;padding:12px 14px}
+.cb p{margin:.3em 0} .lbl{font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;display:block;margin-top:8px}
+.pc{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:6px}
+.pc div{border:1px solid var(--line);border-radius:8px;padding:8px 10px;background:var(--bg2)}
+.pc .plus{border-left:3px solid var(--azure)} .pc .minus{border-left:3px solid var(--amber)}
+.pc ul{margin:4px 0 0;padding-left:18px;font-size:15px}
+.pick{border-left:3px solid var(--gold);background:#ffffff05;padding:6px 10px;margin-top:10px;font-size:15.5px}
+canvas{width:150px;height:150px;border:1px solid var(--line2);border-radius:6px;background:var(--bg2)}
+.cap{font-family:var(--mono);font-size:11px;text-align:center;margin-top:4px}
+.collapsed .cb{display:none}
+.kv{border:1px solid var(--line);border-radius:10px;background:var(--panel);padding:14px 16px}
+.kv .row{display:grid;grid-template-columns:200px 1fr 170px;gap:10px;align-items:center;margin:7px 0;font-family:var(--mono);font-size:13.5px}
+.track{background:#ffffff0a;height:16px;border-radius:3px;overflow:hidden}.fill{display:block;height:100%;transition:width .4s}
+input[type=range]{width:100%;accent-color:var(--azure)}
+.ctl{display:grid;grid-template-columns:200px 1fr 120px;gap:10px;align-items:center;font-family:var(--mono);font-size:13.5px;margin:6px 0}
+.story li{margin:8px 0}
+table{border-collapse:collapse;font-family:var(--mono);font-size:13px;width:100%}
+td,th{border-bottom:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+a{color:#fff;text-decoration:underline}
+@media (max-width:720px){.tl{padding-left:22px}.tl:before{left:6px}.year{margin-left:-22px;width:auto;text-align:left;padding-left:22px}
+.card:before{left:-22px}.cb{grid-template-columns:1fr}.pc{grid-template-columns:1fr}.eras{grid-template-columns:1fr 1fr}
+.kv .row,.ctl{grid-template-columns:120px 1fr 90px}.ch{grid-template-columns:1fr}.meta{text-align:left}h1{font-size:34px}}
+body,body *,h1,h2,h3,p,li,a,code,td,th,.meta,.tag,.cap,.lbl{color:#FFFFFF!important}
+.chip[aria-pressed="true"]{color:#06121C!important}
+</style></head><body><main class="wrap">
+<div class="eyebrow">ERA V5 · Session 8 · Modern attention variants</div>
+<h1>Attention, in the order it was launched</h1>
+<p>Vanilla attention was never wrong. It was <b>expensive</b>. Every mechanism below is somebody looking at that bill
+(n² compute, and a KV cache that grows with every token, every layer and every head) and trying to pay less of it.
+They are laid out by the date each one first appeared in public, checked against the paper on arXiv or the official
+release. Read the timeline top to bottom and you can watch the field change its mind.</p>
+
+<div class="eras">
+ <div class="era" style="--c:var(--azure)"><b>1 · Exactness</b><span>2014–2019: attention everywhere, every pair</span></div>
+ <div class="era" style="--c:var(--amber)"><b>2 · Length</b><span>2019–2021: sparse, linear, positions that stretch</span></div>
+ <div class="era" style="--c:var(--cyan)"><b>3 · Memory back</b><span>2019–2024: MQA → GQA → MLA, sinks, stretch RoPE</span></div>
+ <div class="era" style="--c:var(--violet)"><b>4 · Both at once</b><span>2024–2026: hybrids, learned sparsity, compression</span></div>
+</div>
+
+<div class="filters" role="toolbar" aria-label="Filter by family">
+ <button class="chip" data-f="all" aria-pressed="true">all</button>
+ <button class="chip" data-f="exact" aria-pressed="false">exact</button>
+ <button class="chip" data-f="position" aria-pressed="false">position</button>
+ <button class="chip" data-f="kv" aria-pressed="false">KV cache</button>
+ <button class="chip" data-f="sparse" aria-pressed="false">sparse / window</button>
+ <button class="chip" data-f="linear" aria-pressed="false">linear / state</button>
+ <button class="chip" data-f="memory" aria-pressed="false">memory tricks</button>
+ <button class="chip" data-x="1" aria-pressed="true">show extras (beyond the lesson list)</button>
+ <button class="chip" data-c="1" aria-pressed="false">collapse all</button>
+</div>
+<div class="tl" id="tl"></div>
+
+<h2>The KV-cache bill, mechanism by mechanism</h2>
+<p>For a 30B-class decoder (48 layers, 64 query heads, head dim 128, bf16), this is what one sequence costs to keep
+in memory while generating. Move the context length and watch which ideas actually change the slope.</p>
+<div class="kv">
+ <div class="ctl"><label for="ctx">context length</label><input id="ctx" type="range" min="10" max="20" step="1" value="17"><span id="ctxv"></span></div>
+ <div id="kvrows"></div>
+ <p class="mono" style="font-size:12.5px;margin-top:10px">MHA keeps 2·L·H·d per token. MQA: 1 K/V head; GQA: 8; MLA: 512 + 64 dims latent; sliding window: 4,096 tokens kept; NSA/CSA-style: blocks of 16 compressed (plus a 4K window); hybrid DDDG: only 1 in 4 layers keeps a cache, the rest hold a fixed state.</p>
+</div>
+
+<h2>What the timeline shows that a list does not</h2>
+<ol class="story">
+<li><b>The field changed its mind four times, and the order is the lesson.</b>
+First it wanted <b>exactness</b> (2014–2017): every token reads every token. Then it wanted <b>length</b> (Sparse Transformer
+2019, Longformer and linear attention 2020), and gave up exactness to get it. Then it wanted <b>memory back</b>: MQA in 2019
+was ignored until decoding cost dominated, then GQA (2023) and MLA (2024) cut the cache while keeping exact attention.
+Now it wants <b>both at once</b>: hybrids with Gated DeltaNet layers, learned sparsity (NSA, DSA) and compressed sequences (DeepSeek-V4).</li>
+<li><b>FlashAttention (2022) is the hinge.</b> Before it, approximate attention (Reformer, Performer, linear) was the road to length.
+After it, exact attention was fast enough again. So the 2022–2024 work moved from <i>"approximate the scores"</i> to
+<i>"keep exact scores, shrink what we store"</i>. You cannot see that turn in a list grouped by family.</li>
+<li><b>The ideas come back, renamed.</b> Fixed sparse patterns (2019) return as learned block selection (NSA, 2025). Linear attention
+(2020) returns as the delta rule (2021) and then Gated DeltaNet (2024) inside hybrids. Transformer-XL's segment memory (2019) returns as V4's Memory Stream.
+Each comeback arrives when hardware or a new trick removes the reason it was abandoned.</li>
+<li><b>Position has its own clock.</b> Positions went from learned tables (2017) to rotations (RoPE, 2021), to stretching rotations
+(PI, NTK, YaRN, 2023), to throwing them away after training (DroPE, Dec 2025). Every step is the same question asked again: how far past the training length can we go?</li>
+<li><b>What comes next, from the trend:</b> the remaining bill is the cache that still grows with every token in the attention layers. The next
+mechanisms will (a) store less per token than a latent (more compression, as V4's HCA already does), (b) put fewer attention layers into each hybrid,
+and (c) learn which tokens deserve a cache entry at all, rather than selecting them at read time.</li>
+</ol>
+
+<h2>Mechanisms here that were not in the lesson's list</h2>
+<p>Marked <span class="tag">extra</span> on the timeline. Each has its date and its paper or release:</p>
+<table id="extras"><tr><th>mechanism</th><th>first public</th><th>source</th></tr></table>
+
+<h2>Sources for the dates</h2>
+<p>Every date with an arXiv id is the <code>published</code> (v1) date returned by the arXiv API, re-checked by
+<code>verify_dates.py</code> in the repository. Three dates have no arXiv v1 and are explained on their cards:
+NTK-aware scaling (a June 2023 Reddit post, cited by YaRN), DeepSeek Sparse Attention (the DeepSeek-V3.2-Exp release on 2025-09-29) and
+DeepSeek-V4's CSA/HCA (the V4-Flash release on 2026-04-22). Source code: <a href="https://github.com/rajaasaravanan96/ERA-V5/tree/main/session-8">github.com/rajaasaravanan96/ERA-V5/session-8</a>.</p>
+</main>
+<script src="mechanisms.js"></script>
+<script>
+const FAM = {prequel:'#4A6076', exact:'#3FA7FF', position:'#F5D33B', kv:'#26D7C8', sparse:'#FF9F35', linear:'#B07BFF', memory:'#3FA7FF'};
+const esc = s => String(s).replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+const fmtDate = d => { const [y,m,day] = d.split('-'); const M=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  return (day ? (+day)+' ' : '') + M[+m-1] + ' ' + y; };
+const src = m => m.arxiv ? `https://arxiv.org/abs/${m.arxiv}` : m.src;
+const items = [...MECHS].sort((a,b) => a.date.localeCompare(b.date) || (a.extra?1:0)-(b.extra?1:0));
+let fam = 'all', extras = true;
+
+function render(){
+  const tl = document.getElementById('tl'); tl.innerHTML = ''; let year = '';
+  items.forEach((m, i) => {
+    if (fam !== 'all' && m.family !== fam) return;
+    if (!extras && m.extra) return;
+    const y = m.date.slice(0,4);
+    if (y !== year){ year = y; const h = document.createElement('div'); h.className='year'; h.textContent=y; tl.appendChild(h); }
+    const c = document.createElement('section'); c.className='card'; c.style.setProperty('--c', FAM[m.family]);
+    c.innerHTML = `<div class="ch" tabindex="0" role="button" aria-expanded="true">
+      <h3>${esc(m.name)}${m.extra?'<span class="tag">extra</span>':''}</h3>
+      <div class="meta">${fmtDate(m.date)} · ${esc(m.family)} · <a href="${src(m)}" target="_blank" rel="noopener">${m.arxiv?'arXiv '+m.arxiv:'release'}</a></div></div>
+      <div class="cb"><div>
+        <span class="lbl">the problem at that moment</span><p>${esc(m.problem)}</p>
+        <span class="lbl">what it does</span><p>${esc(m.how)}</p>
+        ${m.dateNote?`<p class="mono" style="font-size:12.5px">Date note: ${esc(m.dateNote)}</p>`:''}
+        <div class="pc"><div class="plus"><b>buys</b><ul>${m.buys.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>
+        <div class="minus"><b>costs</b><ul>${m.costs.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div></div>
+        <div class="pick"><b>When I would pick it:</b> ${esc(m.pick)}</div>
+      </div><div><canvas width="150" height="150" data-mask="${m.mask}" aria-label="attention pattern"></canvas>
+      <div class="cap">${capOf(m.mask)}</div></div></div>`;
+    c.querySelector('.ch').addEventListener('click', e => { if (e.target.tagName==='A') return; c.classList.toggle('collapsed'); });
+    tl.appendChild(c);
+  });
+  tl.querySelectorAll('canvas').forEach(draw);
+}
+function capOf(k){ return {full:'every earlier token', window:'a band of recent tokens', strided:'local band + strided columns',
+  buckets:'same-hash buckets', state:'no matrix: a fixed state', topk:'top-k per row', alibi:'full, fading with distance',
+  sink:'first tokens + window', nsa:'compressed + selected + window'}[k] || ''; }
+function draw(cv){
+  const k = cv.dataset.mask, n = 24, s = 150 / n, g = cv.getContext('2d'); g.clearRect(0,0,150,150);
+  const on = (i,j) => {
+    if (j > i) return 0;
+    switch(k){
+      case 'full': return 1;
+      case 'window': return i - j < 5 ? 1 : 0;
+      case 'strided': return (i - j < 4 || (j % 6) === 5) ? 1 : 0;
+      case 'buckets': return ((i*7)%4 === (j*7)%4) ? 1 : 0;
+      case 'topk': { const h = Math.sin(i*12.9898 + j*78.233)*43758.5453; return (i-j<1 || (h - Math.floor(h)) > 0.78) ? 1 : 0; }
+      case 'alibi': return Math.max(0.12, 1 - (i-j)/16);
+      case 'sink': return (j < 2 || i - j < 5) ? 1 : 0;
+      case 'nsa': return (i - j < 4) ? 1 : (Math.floor(j/4) % 3 === 1 ? 0.95 : 0.3);
+      case 'state': return 0;
+    }
+  };
+  if (k === 'state'){
+    g.fillStyle = '#B07BFF'; g.fillRect(40,40,70,70);
+    g.strokeStyle='#FFFFFF'; g.lineWidth=1; for(let t=0;t<5;t++){g.beginPath(); g.moveTo(10+t*28,135); g.lineTo(75,112); g.stroke();}
+    g.fillStyle='#FFFFFF'; g.font='11px ui-monospace,monospace'; g.fillText('d × d state', 46, 30); return;
+  }
+  for (let i=0;i<n;i++) for (let j=0;j<n;j++){
+    const v = on(i,j); if (!v) continue;
+    g.globalAlpha = v; g.fillStyle = (k==='nsa' && i-j>=4) ? '#FF9F35' : '#3FA7FF';
+    g.fillRect(j*s+0.5, i*s+0.5, s-1, s-1);
+  }
+  g.globalAlpha = 1;
+}
+document.querySelectorAll('.chip[data-f]').forEach(b => b.onclick = () => {
+  fam = b.dataset.f; document.querySelectorAll('.chip[data-f]').forEach(x => x.setAttribute('aria-pressed', x===b)); render(); });
+document.querySelector('.chip[data-x]').onclick = e => { extras = !extras; e.target.setAttribute('aria-pressed', extras); render(); };
+document.querySelector('.chip[data-c]').onclick = e => { const p = e.target.getAttribute('aria-pressed') !== 'true';
+  e.target.setAttribute('aria-pressed', p); document.querySelectorAll('#tl .card').forEach(c => c.classList.toggle('collapsed', p)); };
+
+// KV cache calculator
+const L=48, H=64, Dh=128, B=2;
+const rowsDef = [
+  ['MHA (2017)', T => 2*L*H*Dh*B*T, '#4A6076'],
+  ['MQA (2019)', T => 2*L*1*Dh*B*T, '#26D7C8'],
+  ['GQA-8 (2023)', T => 2*L*8*Dh*B*T, '#26D7C8'],
+  ['MLA (2024)', T => L*(512+64)*B*T, '#3FA7FF'],
+  ['sliding window 4K', T => 2*L*8*Dh*B*Math.min(T,4096), '#FF9F35'],
+  ['compressed ÷16 + 4K window', T => L*(512+64)*B*(T/16 + Math.min(T,4096)), '#FF9F35'],
+  ['hybrid DDDG (GQA-8 in G)', T => 2*(L/4)*8*Dh*B*T + (3*L/4)*H*Dh*Dh*B, '#B07BFF'],
+];
+function kv(){
+  const T = 2 ** +document.getElementById('ctx').value;
+  document.getElementById('ctxv').textContent = T >= 1048576 ? (T/1048576)+'M tokens' : (T/1024)+'K tokens';
+  const vals = rowsDef.map(r => r[1](T)), mx = Math.max(...vals);
+  document.getElementById('kvrows').innerHTML = rowsDef.map((r,i) => {
+    const gb = vals[i] / 2**30;
+    return `<div class="row"><span>${r[0]}</span><span class="track"><span class="fill" style="width:${Math.max(0.6,100*vals[i]/mx)}%;background:${r[2]}"></span></span><span>${gb>=1?gb.toFixed(1)+' GiB':(gb*1024).toFixed(0)+' MiB'}</span></div>`;
+  }).join('');
+}
+document.getElementById('ctx').oninput = kv; kv();
+const ex = document.getElementById('extras');
+items.filter(m => m.extra).forEach(m => ex.insertAdjacentHTML('beforeend',
+  `<tr><td>${esc(m.name)}</td><td>${fmtDate(m.date)}</td><td><a href="${src(m)}">${m.arxiv?'arXiv '+m.arxiv:'release'}</a></td></tr>`));
+render();
+</script>
+</body></html>
