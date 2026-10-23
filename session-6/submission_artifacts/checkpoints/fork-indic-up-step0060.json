@@ -1,0 +1,41 @@
+{
+ "streams": {
+  "web": {
+   "cursor": 121,
+   "offset": 11,
+   "epoch": 0
+  },
+  "indic": {
+   "cursor": 50,
+   "offset": 98,
+   "epoch": 0
+  },
+  "code": {
+   "cursor": 136,
+   "offset": 0,
+   "epoch": 0
+  },
+  "reasoning": {
+   "cursor": 180,
+   "offset": 0,
+   "epoch": 0
+  }
+ },
+ "step": 60,
+ "ledger_offsets": {
+  "consumption": 20,
+  "opus": 323,
+  "learning": 160,
+  "tokens": 0
+ },
+ "branch": "fork-indic-up",
+ "parent": {
+  "branch": "main",
+  "step": 40,
+  "checkpoint": "main-step0040"
+ },
+ "schedule_sha256": "7dd8aaed0ef9b5f9ef57e8d1735ed31c62fa5c6c7db4fc7d37a40d6fad0940fe",
+ "checkpoint_id": "fork-indic-up-step0060",
+ "n_deferred": 4,
+ "model_sha256": "db78c547c1a55eddd45909dd59310101c4da204b60116393892726382e691992"
+}

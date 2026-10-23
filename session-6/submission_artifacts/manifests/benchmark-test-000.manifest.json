@@ -1,0 +1,462 @@
+{
+ "shard_id": "benchmark-test-000",
+ "lane": "benchmark",
+ "split": "test",
+ "path": "benchmark-test-000.npy",
+ "n_docs": 64,
+ "n_tokens": 5885,
+ "content_sha256": "1aca42872b9fd5642fc052f3f6936c130eb0f3adecdcab1cab88651ee1a17ee6",
+ "tokenizer_sha256": "6cc5722116c53663f378eec02cdb0cb0b7c41b33d8be83babdea95b7adb87504",
+ "never_train": true,
+ "gradient_bearing": false,
+ "docs": [
+  {
+   "doc_id": "2b2e3f9639f6fa28",
+   "start": 0,
+   "end": 114,
+   "loss_from": 0,
+   "source": "openai/gsm8k test (never-train)"
+  },
+  {
+   "doc_id": "de563650cee0d9af",
+   "start": 114,
+   "end": 160,
+   "loss_from": 0,
+   "source": "openai/gsm8k test (never-train)"
+  },
+  {
+   "doc_id": "d3c6224db7dd6691",
+   "start": 160,
+   "end": 230,
+   "loss_from": 0,
+   "source": "openai/gsm8k test (never-train)"
+  },
+  {
+   "doc_id": "94ff3611e184b3ba",
+   "start": 230,
+   "end": 281,
+   "loss_from": 0,
+   "source": "openai/gsm8k test (never-train)"
+  },
+  {
+   "doc_id": "d28df8f7b843b4df",
+   "start": 281,
+   "end": 461,
+   "loss_from": 0,
+   "source": "openai/gsm8k test (never-train)"
+  },
+  {
+   "doc_id": "f76242d8ac82991c",
+   "start": 461,
+   "end": 545,
+   "loss_from": 0,
+   "source": "openai/gsm8k test (never-train)"
+  },
+  {
+   "doc_id": "6e9d9c1d48eaa2d8",
+   "start": 545,
+   "end": 620,
+   "loss_from": 0,
+   "source": "openai/gsm8k test (never-train)"
+  },
+  {
+   "doc_id": "6710fc83e60aca75",
+   "start": 620,
+   "end": 729,
+   "loss_from": 0,
+   "source": "openai/gsm8k test (never-train)"
+  },
+  {
+   "doc_id": "d458d13913f72049",
+   "start": 729,
+   "end": 887,
+   "loss_from": 0,
+   "source": "openai/gsm8k test (never-train)"
+  },
+  {
+   "doc_id": "9b7b776974cef0b5",
+   "start": 887,
+   "end": 971,
+   "loss_from": 0,
+   "source": "openai/gsm8k test (never-train)"
+  },
+  {
+   "doc_id": "e526372b2e960c6d",
+   "start": 971,
+   "end": 1056,
+   "loss_from": 0,
+   "source": "openai/gsm8k test (never-train)"
+  },
+  {
+   "doc_id": "cd592c7656042969",
+   "start": 1056,
+   "end": 1160,
+   "loss_from": 0,
+   "source": "openai/gsm8k test (never-train)"
+  },
+  {
+   "doc_id": "4451889603253c7c",
+   "start": 1160,
+   "end": 1250,
+   "loss_from": 0,
+   "source": "openai/gsm8k test (never-train)"
+  },
+  {
+   "doc_id": "0f494281748adc02",
+   "start": 1250,
+   "end": 1343,
+   "loss_from": 0,
+   "source": "openai/gsm8k test (never-train)"
+  },
+  {
+   "doc_id": "8aba72e5533aaf2c",
+   "start": 1343,
+   "end": 1420,
+   "loss_from": 0,
+   "source": "openai/gsm8k test (never-train)"
+  },
+  {
+   "doc_id": "149e6bcf771ff89f",
+   "start": 1420,
+   "end": 1571,
+   "loss_from": 0,
+   "source": "openai/gsm8k test (never-train)"
+  },
+  {
+   "doc_id": "3ee80dabaf97dbcf",
+   "start": 1571,
+   "end": 1656,
+   "loss_from": 0,
+   "source": "openai/gsm8k test (never-train)"
+  },
+  {
+   "doc_id": "43177c162ef15f62",
+   "start": 1656,
+   "end": 1736,
+   "loss_from": 0,
+   "source": "openai/gsm8k test (never-train)"
+  },
+  {
+   "doc_id": "851e6439f44e55ee",
+   "start": 1736,
+   "end": 1789,
+   "loss_from": 0,
+   "source": "openai/gsm8k test (never-train)"
+  },
+  {
+   "doc_id": "154c8df41aba1614",
+   "start": 1789,
+   "end": 1891,
+   "loss_from": 0,
+   "source": "openai/gsm8k test (never-train)"
+  },
+  {
+   "doc_id": "701ed18140eeba19",
+   "start": 1891,
+   "end": 1980,
+   "loss_from": 0,
+   "source": "openai/gsm8k test (never-train)"
+  },
+  {
+   "doc_id": "7240d8c12e010b82",
+   "start": 1980,
+   "end": 2050,
+   "loss_from": 0,
+   "source": "openai/gsm8k test (never-train)"
+  },
+  {
+   "doc_id": "ef98dac17ebd6338",
+   "start": 2050,
+   "end": 2151,
+   "loss_from": 0,
+   "source": "openai/gsm8k test (never-train)"
+  },
+  {
+   "doc_id": "fe06ee435f2baa14",
+   "start": 2151,
+   "end": 2208,
+   "loss_from": 0,
+   "source": "openai/gsm8k test (never-train)"
+  },
+  {
+   "doc_id": "22cafa0b53b36410",
+   "start": 2208,
+   "end": 2258,
+   "loss_from": 0,
+   "source": "openai/gsm8k test (never-train)"
+  },
+  {
+   "doc_id": "776216f99c34dbd0",
+   "start": 2258,
+   "end": 2364,
+   "loss_from": 0,
+   "source": "openai/gsm8k test (never-train)"
+  },
+  {
+   "doc_id": "43b2c24727802a1c",
+   "start": 2364,
+   "end": 2465,
+   "loss_from": 0,
+   "source": "openai/gsm8k test (never-train)"
+  },
+  {
+   "doc_id": "4b21e8a399668c63",
+   "start": 2465,
+   "end": 2548,
+   "loss_from": 0,
+   "source": "openai/gsm8k test (never-train)"
+  },
+  {
+   "doc_id": "d24440763988694e",
+   "start": 2548,
+   "end": 2621,
+   "loss_from": 0,
+   "source": "openai/gsm8k test (never-train)"
+  },
+  {
+   "doc_id": "b41cc7b74e66b597",
+   "start": 2621,
+   "end": 2737,
+   "loss_from": 0,
+   "source": "openai/gsm8k test (never-train)"
+  },
+  {
+   "doc_id": "d48d64857c030e03",
+   "start": 2737,
+   "end": 2783,
+   "loss_from": 0,
+   "source": "openai/gsm8k test (never-train)"
+  },
+  {
+   "doc_id": "2e203ecfb155ce3e",
+   "start": 2783,
+   "end": 2872,
+   "loss_from": 0,
+   "source": "openai/gsm8k test (never-train)"
+  },
+  {
+   "doc_id": "af4f388da257aab7",
+   "start": 2872,
+   "end": 2937,
+   "loss_from": 0,
+   "source": "openai/gsm8k test (never-train)"
+  },
+  {
+   "doc_id": "885eb87ff9b444b1",
+   "start": 2937,
+   "end": 2981,
+   "loss_from": 0,
+   "source": "openai/gsm8k test (never-train)"
+  },
+  {
+   "doc_id": "b4f3ad0e24f221d0",
+   "start": 2981,
+   "end": 3053,
+   "loss_from": 0,
+   "source": "openai/gsm8k test (never-train)"
+  },
+  {
+   "doc_id": "a27c00492da7960b",
+   "start": 3053,
+   "end": 3119,
+   "loss_from": 0,
+   "source": "openai/gsm8k test (never-train)"
+  },
+  {
+   "doc_id": "e861738e0c5013ff",
+   "start": 3119,
+   "end": 3177,
+   "loss_from": 0,
+   "source": "openai/gsm8k test (never-train)"
+  },
+  {
+   "doc_id": "bfa26e430b44d5e6",
+   "start": 3177,
+   "end": 3262,
+   "loss_from": 0,
+   "source": "openai/gsm8k test (never-train)"
+  },
+  {
+   "doc_id": "917565ed017a384e",
+   "start": 3262,
+   "end": 3328,
+   "loss_from": 0,
+   "source": "openai/gsm8k test (never-train)"
+  },
+  {
+   "doc_id": "abc4bc90358d1be1",
+   "start": 3328,
+   "end": 3446,
+   "loss_from": 0,
+   "source": "openai/gsm8k test (never-train)"
+  },
+  {
+   "doc_id": "80049d4dd366051c",
+   "start": 3446,
+   "end": 3529,
+   "loss_from": 0,
+   "source": "openai/gsm8k test (never-train)"
+  },
+  {
+   "doc_id": "30384332aecb8a01",
+   "start": 3529,
+   "end": 3740,
+   "loss_from": 0,
+   "source": "openai/gsm8k test (never-train)"
+  },
+  {
+   "doc_id": "7207f9cd655e1e79",
+   "start": 3740,
+   "end": 3875,
+   "loss_from": 0,
+   "source": "openai/gsm8k test (never-train)"
+  },
+  {
+   "doc_id": "179c56c92d0315a4",
+   "start": 3875,
+   "end": 3964,
+   "loss_from": 0,
+   "source": "openai/gsm8k test (never-train)"
+  },
+  {
+   "doc_id": "0c68e6790fdc8212",
+   "start": 3964,
+   "end": 4075,
+   "loss_from": 0,
+   "source": "openai/gsm8k test (never-train)"
+  },
+  {
+   "doc_id": "9d0c43c13bd25238",
+   "start": 4075,
+   "end": 4233,
+   "loss_from": 0,
+   "source": "openai/gsm8k test (never-train)"
+  },
+  {
+   "doc_id": "4f85613ff32ec2fb",
+   "start": 4233,
+   "end": 4383,
+   "loss_from": 0,
+   "source": "openai/gsm8k test (never-train)"
+  },
+  {
+   "doc_id": "d0bb365671823346",
+   "start": 4383,
+   "end": 4454,
+   "loss_from": 0,
+   "source": "openai/gsm8k test (never-train)"
+  },
+  {
+   "doc_id": "a80947ed1965b3e7",
+   "start": 4454,
+   "end": 4515,
+   "loss_from": 0,
+   "source": "openai/gsm8k test (never-train)"
+  },
+  {
+   "doc_id": "41554f283daa0278",
+   "start": 4515,
+   "end": 4584,
+   "loss_from": 0,
+   "source": "openai/gsm8k test (never-train)"
+  },
+  {
+   "doc_id": "23fdf08ce87602ed",
+   "start": 4584,
+   "end": 4649,
+   "loss_from": 0,
+   "source": "openai/gsm8k test (never-train)"
+  },
+  {
+   "doc_id": "971dabc5c71b6706",
+   "start": 4649,
+   "end": 4718,
+   "loss_from": 0,
+   "source": "openai/gsm8k test (never-train)"
+  },
+  {
+   "doc_id": "ae51d9dfdc51a42d",
+   "start": 4718,
+   "end": 4816,
+   "loss_from": 0,
+   "source": "openai/gsm8k test (never-train)"
+  },
+  {
+   "doc_id": "817cd01402b580a2",
+   "start": 4816,
+   "end": 4988,
+   "loss_from": 0,
+   "source": "openai/gsm8k test (never-train)"
+  },
+  {
+   "doc_id": "13e140ab86daaa95",
+   "start": 4988,
+   "end": 5109,
+   "loss_from": 0,
+   "source": "openai/gsm8k test (never-train)"
+  },
+  {
+   "doc_id": "07836807c799f44f",
+   "start": 5109,
+   "end": 5180,
+   "loss_from": 0,
+   "source": "openai/gsm8k test (never-train)"
+  },
+  {
+   "doc_id": "0dd2f0349ad536b7",
+   "start": 5180,
+   "end": 5247,
+   "loss_from": 0,
+   "source": "openai/gsm8k test (never-train)"
+  },
+  {
+   "doc_id": "08b78a955d65a516",
+   "start": 5247,
+   "end": 5370,
+   "loss_from": 0,
+   "source": "openai/gsm8k test (never-train)"
+  },
+  {
+   "doc_id": "92f2d98be649fba5",
+   "start": 5370,
+   "end": 5495,
+   "loss_from": 0,
+   "source": "openai/gsm8k test (never-train)"
+  },
+  {
+   "doc_id": "647821b44f949ee2",
+   "start": 5495,
+   "end": 5548,
+   "loss_from": 0,
+   "source": "openai/gsm8k test (never-train)"
+  },
+  {
+   "doc_id": "97d5219c26d5f213",
+   "start": 5548,
+   "end": 5594,
+   "loss_from": 0,
+   "source": "openai/gsm8k test (never-train)"
+  },
+  {
+   "doc_id": "53d5c3c6c081dc8b",
+   "start": 5594,
+   "end": 5682,
+   "loss_from": 0,
+   "source": "openai/gsm8k test (never-train)"
+  },
+  {
+   "doc_id": "b8ef5dec533b9ddb",
+   "start": 5682,
+   "end": 5771,
+   "loss_from": 0,
+   "source": "openai/gsm8k test (never-train)"
+  },
+  {
+   "doc_id": "09a1f6f4ccc6a195",
+   "start": 5771,
+   "end": 5885,
+   "loss_from": 0,
+   "source": "openai/gsm8k test (never-train)"
+  }
+ ]
+}

@@ -1,0 +1,37 @@
+{
+ "streams": {
+  "web": {
+   "cursor": 62,
+   "offset": 238,
+   "epoch": 0
+  },
+  "indic": {
+   "cursor": 13,
+   "offset": 259,
+   "epoch": 0
+  },
+  "code": {
+   "cursor": 60,
+   "offset": 0,
+   "epoch": 0
+  },
+  "reasoning": {
+   "cursor": 90,
+   "offset": 0,
+   "epoch": 0
+  }
+ },
+ "step": 30,
+ "ledger_offsets": {
+  "consumption": 30,
+  "opus": 562,
+  "learning": 240,
+  "tokens": 881
+ },
+ "branch": "main",
+ "parent": null,
+ "schedule_sha256": "2e794bf22a31046643cd14414e69ed573e3f40c9cec8a6f5fbd45f25e2129a01",
+ "checkpoint_id": "main-step0030",
+ "n_deferred": 4,
+ "model_sha256": "f025af08e9a8ab90aace88f2f52000c2a28a4cb1443e7340ff60d0e6ff015b78"
+}

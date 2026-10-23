@@ -1,0 +1,27 @@
+{
+ "packing_utilization": 0.9867,
+ "loss_bearing_fraction": 0.8555,
+ "by_lane": {
+  "web": {
+   "utilization": 1.0,
+   "loss_bearing_fraction": 0.9973
+  },
+  "indic": {
+   "utilization": 1.0,
+   "loss_bearing_fraction": 0.9972
+  },
+  "code": {
+   "utilization": 0.9967,
+   "loss_bearing_fraction": 0.9963
+  },
+  "reasoning": {
+   "utilization": 0.9493,
+   "loss_bearing_fraction": 0.4308
+  }
+ },
+ "loader_only_loss_bearing_tokens_per_s": 4848676,
+ "end_to_end_loss_bearing_tokens_per_s": 1734,
+ "train_seconds": 14.11,
+ "selection_and_packing_seconds": 28.83,
+ "note": "selection time includes OPUS scoring of 1.5x oversampled candidates; measured on CPU"
+}

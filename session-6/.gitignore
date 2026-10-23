@@ -1,0 +1,4 @@
+submission_artifacts/checkpoints/*.pt
+submission_artifacts/reference/
+__pycache__/
+.pytest_cache/

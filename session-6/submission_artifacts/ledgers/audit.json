@@ -1,0 +1,165 @@
+{
+ "spans": {
+  "segments_checked": 765,
+  "missing_or_out_of_doc": 0,
+  "non_train_shards": 0
+ },
+ "eval_leaks_in_loss_bearing_tokens": 0,
+ "mixture": {
+  "web": {
+   "planned": 0.3844,
+   "actual": 0.3844,
+   "abs_diff": 0.0
+  },
+  "indic": {
+   "planned": 0.1828,
+   "actual": 0.1828,
+   "abs_diff": 0.0
+  },
+  "code": {
+   "planned": 0.1828,
+   "actual": 0.1828,
+   "abs_diff": 0.0
+  },
+  "reasoning": {
+   "planned": 0.25,
+   "actual": 0.25,
+   "abs_diff": 0.0
+  }
+ },
+ "protected_floor_violations": 0,
+ "opus": {
+  "decisions": 1353,
+  "by_status": {
+   "blocked": 1,
+   "accepted": 640,
+   "deferred": 357,
+   "rejected": 355
+  },
+  "overrides": 113,
+  "mixture_quota_overrides": 84,
+  "consumed_without_accepted_decision": 0,
+  "by_lane_status": {
+   "web": {
+    "blocked": 1,
+    "accepted": 246,
+    "deferred": 226,
+    "rejected": 116
+   },
+   "indic": {
+    "accepted": 117,
+    "deferred": 11,
+    "rejected": 80
+   },
+   "code": {
+    "rejected": 80,
+    "accepted": 117,
+    "deferred": 28
+   },
+   "reasoning": {
+    "accepted": 160,
+    "deferred": 92,
+    "rejected": 79
+   }
+  }
+ },
+ "learning_records_missing": 0,
+ "shard_report_card": {
+  "code-train-000": {
+   "early_loss": 6.501,
+   "late_loss": 5.029,
+   "loss_delta": -1.471,
+   "mean_opus": -0.0724,
+   "exposures": 46,
+   "classification": "useful"
+  },
+  "code-train-001": {
+   "early_loss": 6.534,
+   "late_loss": 6.059,
+   "loss_delta": -0.476,
+   "mean_opus": -0.0896,
+   "exposures": 39,
+   "classification": "useful"
+  },
+  "code-train-002": {
+   "early_loss": null,
+   "late_loss": 5.995,
+   "loss_delta": null,
+   "mean_opus": -0.0768,
+   "exposures": 32,
+   "classification": "unseen-late"
+  },
+  "indic-train-000": {
+   "early_loss": 8.933,
+   "late_loss": 8.364,
+   "loss_delta": -0.568,
+   "mean_opus": -0.0473,
+   "exposures": 105,
+   "classification": "useful"
+  },
+  "indic-train-001": {
+   "early_loss": null,
+   "late_loss": 8.003,
+   "loss_delta": null,
+   "mean_opus": -0.0294,
+   "exposures": 13,
+   "classification": "unseen-late"
+  },
+  "reasoning-train-000": {
+   "early_loss": NaN,
+   "late_loss": null,
+   "loss_delta": null,
+   "mean_opus": 0.007,
+   "exposures": 43,
+   "classification": "unseen-late"
+  },
+  "reasoning-train-001": {
+   "early_loss": NaN,
+   "late_loss": NaN,
+   "loss_delta": NaN,
+   "mean_opus": 0.0309,
+   "exposures": 43,
+   "classification": "harmful/no-gain"
+  },
+  "reasoning-train-002": {
+   "early_loss": null,
+   "late_loss": NaN,
+   "loss_delta": null,
+   "mean_opus": 0.1093,
+   "exposures": 43,
+   "classification": "unseen-late"
+  },
+  "reasoning-train-003": {
+   "early_loss": null,
+   "late_loss": NaN,
+   "loss_delta": null,
+   "mean_opus": 0.0657,
+   "exposures": 31,
+   "classification": "unseen-late"
+  },
+  "web-train-000": {
+   "early_loss": 8.156,
+   "late_loss": null,
+   "loss_delta": null,
+   "mean_opus": 0.0994,
+   "exposures": 122,
+   "classification": "unseen-late"
+  },
+  "web-train-001": {
+   "early_loss": 7.797,
+   "late_loss": 7.82,
+   "loss_delta": 0.022,
+   "mean_opus": 0.1252,
+   "exposures": 83,
+   "classification": "neutral"
+  },
+  "web-train-002": {
+   "early_loss": null,
+   "late_loss": 8.392,
+   "loss_delta": null,
+   "mean_opus": 0.1666,
+   "exposures": 42,
+   "classification": "unseen-late"
+  }
+ }
+}

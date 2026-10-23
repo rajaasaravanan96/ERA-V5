@@ -1,0 +1,5 @@
+{
+ "file": "sources/tokenizer.json",
+ "sha256": "6cc5722116c53663f378eec02cdb0cb0b7c41b33d8be83babdea95b7adb87504",
+ "note": "frozen tokenizer from session 2; changing it invalidates every shard"
+}

@@ -1,0 +1,49 @@
+01:28:41 [PASS] tokenizer_hash_verified
+01:28:41 shards created: 21 shards, 496,859 tokens, 1132 documents
+01:28:42 shard rewrite refused: shard code-train-000 is immutable and already exists with different content
+01:28:42 manifests validated
+01:28:42 [PASS] manifests_validated
+01:28:42 evaluation data blocked: 6 val/test shards refused as gradient-bearing; 24,088 test 13-gram fingerprints registered
+01:28:42 [PASS] eval_shard_blocked
+01:28:42 mixture compiled: 80 steps, schedule sha256 2e794bf22a310466… (recompiled identically: True)
+01:29:25 reference run (uninterrupted) finished: 80 steps
+01:29:25 batches packed: policies web/indic=concat_chop, code=greedy_files, reasoning=sft_structured; block-diagonal attention, positions reset per segment
+01:29:26 [main] step   0 stage foundation      loss 9.3215 grad 0.525 lanes 4/1/1/2
+01:29:31 [main] checkpoint main-step0010 saved at ledger offset 10
+01:29:31 [main] step  10 stage foundation      loss 7.8395 grad 0.675 lanes 4/1/1/2
+01:29:37 [main] checkpoint main-step0020 saved at ledger offset 20
+01:29:37 [main] step  20 stage foundation      loss 7.8681 grad 0.833 lanes 4/1/1/2
+01:29:41 [main] checkpoint main-step0030 saved at ledger offset 30
+01:29:42 [main] step  30 stage foundation      loss 7.6437 grad 0.661 lanes 4/1/1/2
+01:29:46 [main] checkpoint main-step0040 saved at ledger offset 40
+01:29:47 [main] step  40 stage code_reasoning  loss 7.5007 grad 0.744 lanes 3/2/1/2
+01:29:49 crash simulated: simulated crash after step 44
+01:29:49 OPUS decisions recorded: 798 so far
+01:29:49 [PASS] checkpoint_saved
+01:29:49 run resumed from main-step0040.pt at step 40; 5 consumption events after the checkpoint moved to ledgers/main.consumption.rolled_back.jsonl
+01:29:49 [main] step  40 stage code_reasoning  loss 7.5007 grad 0.744 lanes 3/2/1/2
+01:29:54 [main] checkpoint main-step0050 saved at ledger offset 50
+01:29:54 [main] step  50 stage code_reasoning  loss 7.2348 grad 0.503 lanes 2/2/2/2
+01:29:59 [main] checkpoint main-step0060 saved at ledger offset 60
+01:29:59 [main] step  60 stage code_reasoning  loss 7.2521 grad 0.650 lanes 2/2/2/2
+01:30:04 [main] checkpoint main-step0070 saved at ledger offset 70
+01:30:04 [main] step  70 stage code_reasoning  loss 7.4997 grad 2.250 lanes 2/2/2/2
+01:30:10 [main] checkpoint main-step0080 saved at ledger offset 80
+01:30:10 [PASS] resume_next_batch_matched
+01:30:10 historical stream replayed: steps 20-30, 11/11 batch hashes match
+01:30:10 [PASS] replay_hash_matched
+01:30:10 [fork-indic-up] step  40 stage code_reasoning  loss 7.5007 grad 0.744 lanes 3/2/1/2
+01:30:15 [fork-indic-up] checkpoint fork-indic-up-step0050 saved at ledger offset 10
+01:30:15 [fork-indic-up] step  50 stage code_reasoning  loss 7.4598 grad 0.557 lanes 1/3/2/2
+01:30:20 [fork-indic-up] checkpoint fork-indic-up-step0060 saved at ledger offset 20
+01:30:20 branch forked: fork-indic-up from main@40 for 20 steps; 17/20 batches differ from main; parent recorded = {'branch': 'main', 'step': 40, 'checkpoint': 'main-step0040'}
+01:30:20 [PASS] branch_forked
+01:30:20 audit completed: 765 segments checked, eval leaks 0, OPUS {'blocked': 1, 'accepted': 640, 'deferred': 357, 'rejected': 355}, overrides 113, blocked by firewall 1
+01:30:20 [PASS] packing_correct
+01:30:20 [PASS] eval_firewall_held
+01:30:20 [PASS] mixture_compliance
+01:30:20 [PASS] opus_audit_trail
+01:30:20 [PASS] learning_trace
+01:30:20 performance measured: utilization 98.7%, loss-bearing 85.5%, 1,734 loss-bearing tok/s end to end, loader alone 4,848,676
+01:30:20 [PASS] throughput
+01:30:20 evidence written: 13/13 requirements passed

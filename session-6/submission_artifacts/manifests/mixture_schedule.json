@@ -1,0 +1,1309 @@
+{
+ "sha256": "2e794bf22a31046643cd14414e69ed573e3f40c9cec8a6f5fbd45f25e2129a01",
+ "stages": [
+  {
+   "name": "foundation",
+   "start": 0,
+   "end": 40,
+   "weights": {
+    "web": 0.45,
+    "indic": 0.2,
+    "code": 0.15,
+    "reasoning": 0.2
+   }
+  },
+  {
+   "name": "code_reasoning",
+   "start": 40,
+   "end": 80,
+   "weights": {
+    "web": 0.25,
+    "indic": 0.2,
+    "code": 0.3,
+    "reasoning": 0.25
+   }
+  }
+ ],
+ "steps": [
+  {
+   "step": 0,
+   "stage": "foundation",
+   "weights": {
+    "web": 0.45,
+    "indic": 0.2,
+    "code": 0.15,
+    "reasoning": 0.2
+   },
+   "quota": {
+    "web": 4,
+    "indic": 1,
+    "code": 1,
+    "reasoning": 2
+   }
+  },
+  {
+   "step": 1,
+   "stage": "foundation",
+   "weights": {
+    "web": 0.45,
+    "indic": 0.2,
+    "code": 0.15,
+    "reasoning": 0.2
+   },
+   "quota": {
+    "web": 4,
+    "indic": 1,
+    "code": 1,
+    "reasoning": 2
+   }
+  },
+  {
+   "step": 2,
+   "stage": "foundation",
+   "weights": {
+    "web": 0.45,
+    "indic": 0.2,
+    "code": 0.15,
+    "reasoning": 0.2
+   },
+   "quota": {
+    "web": 4,
+    "indic": 1,
+    "code": 1,
+    "reasoning": 2
+   }
+  },
+  {
+   "step": 3,
+   "stage": "foundation",
+   "weights": {
+    "web": 0.45,
+    "indic": 0.2,
+    "code": 0.15,
+    "reasoning": 0.2
+   },
+   "quota": {
+    "web": 4,
+    "indic": 1,
+    "code": 1,
+    "reasoning": 2
+   }
+  },
+  {
+   "step": 4,
+   "stage": "foundation",
+   "weights": {
+    "web": 0.45,
+    "indic": 0.2,
+    "code": 0.15,
+    "reasoning": 0.2
+   },
+   "quota": {
+    "web": 4,
+    "indic": 1,
+    "code": 1,
+    "reasoning": 2
+   }
+  },
+  {
+   "step": 5,
+   "stage": "foundation",
+   "weights": {
+    "web": 0.45,
+    "indic": 0.2,
+    "code": 0.15,
+    "reasoning": 0.2
+   },
+   "quota": {
+    "web": 4,
+    "indic": 1,
+    "code": 1,
+    "reasoning": 2
+   }
+  },
+  {
+   "step": 6,
+   "stage": "foundation",
+   "weights": {
+    "web": 0.45,
+    "indic": 0.2,
+    "code": 0.15,
+    "reasoning": 0.2
+   },
+   "quota": {
+    "web": 4,
+    "indic": 1,
+    "code": 1,
+    "reasoning": 2
+   }
+  },
+  {
+   "step": 7,
+   "stage": "foundation",
+   "weights": {
+    "web": 0.45,
+    "indic": 0.2,
+    "code": 0.15,
+    "reasoning": 0.2
+   },
+   "quota": {
+    "web": 4,
+    "indic": 1,
+    "code": 1,
+    "reasoning": 2
+   }
+  },
+  {
+   "step": 8,
+   "stage": "foundation",
+   "weights": {
+    "web": 0.45,
+    "indic": 0.2,
+    "code": 0.15,
+    "reasoning": 0.2
+   },
+   "quota": {
+    "web": 4,
+    "indic": 1,
+    "code": 1,
+    "reasoning": 2
+   }
+  },
+  {
+   "step": 9,
+   "stage": "foundation",
+   "weights": {
+    "web": 0.45,
+    "indic": 0.2,
+    "code": 0.15,
+    "reasoning": 0.2
+   },
+   "quota": {
+    "web": 4,
+    "indic": 1,
+    "code": 1,
+    "reasoning": 2
+   }
+  },
+  {
+   "step": 10,
+   "stage": "foundation",
+   "weights": {
+    "web": 0.45,
+    "indic": 0.2,
+    "code": 0.15,
+    "reasoning": 0.2
+   },
+   "quota": {
+    "web": 4,
+    "indic": 1,
+    "code": 1,
+    "reasoning": 2
+   }
+  },
+  {
+   "step": 11,
+   "stage": "foundation",
+   "weights": {
+    "web": 0.45,
+    "indic": 0.2,
+    "code": 0.15,
+    "reasoning": 0.2
+   },
+   "quota": {
+    "web": 4,
+    "indic": 1,
+    "code": 1,
+    "reasoning": 2
+   }
+  },
+  {
+   "step": 12,
+   "stage": "foundation",
+   "weights": {
+    "web": 0.45,
+    "indic": 0.2,
+    "code": 0.15,
+    "reasoning": 0.2
+   },
+   "quota": {
+    "web": 4,
+    "indic": 1,
+    "code": 1,
+    "reasoning": 2
+   }
+  },
+  {
+   "step": 13,
+   "stage": "foundation",
+   "weights": {
+    "web": 0.45,
+    "indic": 0.2,
+    "code": 0.15,
+    "reasoning": 0.2
+   },
+   "quota": {
+    "web": 4,
+    "indic": 1,
+    "code": 1,
+    "reasoning": 2
+   }
+  },
+  {
+   "step": 14,
+   "stage": "foundation",
+   "weights": {
+    "web": 0.45,
+    "indic": 0.2,
+    "code": 0.15,
+    "reasoning": 0.2
+   },
+   "quota": {
+    "web": 4,
+    "indic": 1,
+    "code": 1,
+    "reasoning": 2
+   }
+  },
+  {
+   "step": 15,
+   "stage": "foundation",
+   "weights": {
+    "web": 0.45,
+    "indic": 0.2,
+    "code": 0.15,
+    "reasoning": 0.2
+   },
+   "quota": {
+    "web": 4,
+    "indic": 1,
+    "code": 1,
+    "reasoning": 2
+   }
+  },
+  {
+   "step": 16,
+   "stage": "foundation",
+   "weights": {
+    "web": 0.45,
+    "indic": 0.2,
+    "code": 0.15,
+    "reasoning": 0.2
+   },
+   "quota": {
+    "web": 4,
+    "indic": 1,
+    "code": 1,
+    "reasoning": 2
+   }
+  },
+  {
+   "step": 17,
+   "stage": "foundation",
+   "weights": {
+    "web": 0.45,
+    "indic": 0.2,
+    "code": 0.15,
+    "reasoning": 0.2
+   },
+   "quota": {
+    "web": 4,
+    "indic": 1,
+    "code": 1,
+    "reasoning": 2
+   }
+  },
+  {
+   "step": 18,
+   "stage": "foundation",
+   "weights": {
+    "web": 0.45,
+    "indic": 0.2,
+    "code": 0.15,
+    "reasoning": 0.2
+   },
+   "quota": {
+    "web": 4,
+    "indic": 1,
+    "code": 1,
+    "reasoning": 2
+   }
+  },
+  {
+   "step": 19,
+   "stage": "foundation",
+   "weights": {
+    "web": 0.45,
+    "indic": 0.2,
+    "code": 0.15,
+    "reasoning": 0.2
+   },
+   "quota": {
+    "web": 4,
+    "indic": 1,
+    "code": 1,
+    "reasoning": 2
+   }
+  },
+  {
+   "step": 20,
+   "stage": "foundation",
+   "weights": {
+    "web": 0.45,
+    "indic": 0.2,
+    "code": 0.15,
+    "reasoning": 0.2
+   },
+   "quota": {
+    "web": 4,
+    "indic": 1,
+    "code": 1,
+    "reasoning": 2
+   }
+  },
+  {
+   "step": 21,
+   "stage": "foundation",
+   "weights": {
+    "web": 0.45,
+    "indic": 0.2,
+    "code": 0.15,
+    "reasoning": 0.2
+   },
+   "quota": {
+    "web": 4,
+    "indic": 1,
+    "code": 1,
+    "reasoning": 2
+   }
+  },
+  {
+   "step": 22,
+   "stage": "foundation",
+   "weights": {
+    "web": 0.45,
+    "indic": 0.2,
+    "code": 0.15,
+    "reasoning": 0.2
+   },
+   "quota": {
+    "web": 4,
+    "indic": 1,
+    "code": 1,
+    "reasoning": 2
+   }
+  },
+  {
+   "step": 23,
+   "stage": "foundation",
+   "weights": {
+    "web": 0.45,
+    "indic": 0.2,
+    "code": 0.15,
+    "reasoning": 0.2
+   },
+   "quota": {
+    "web": 4,
+    "indic": 1,
+    "code": 1,
+    "reasoning": 2
+   }
+  },
+  {
+   "step": 24,
+   "stage": "foundation",
+   "weights": {
+    "web": 0.45,
+    "indic": 0.2,
+    "code": 0.15,
+    "reasoning": 0.2
+   },
+   "quota": {
+    "web": 4,
+    "indic": 1,
+    "code": 1,
+    "reasoning": 2
+   }
+  },
+  {
+   "step": 25,
+   "stage": "foundation",
+   "weights": {
+    "web": 0.45,
+    "indic": 0.2,
+    "code": 0.15,
+    "reasoning": 0.2
+   },
+   "quota": {
+    "web": 4,
+    "indic": 1,
+    "code": 1,
+    "reasoning": 2
+   }
+  },
+  {
+   "step": 26,
+   "stage": "foundation",
+   "weights": {
+    "web": 0.45,
+    "indic": 0.2,
+    "code": 0.15,
+    "reasoning": 0.2
+   },
+   "quota": {
+    "web": 4,
+    "indic": 1,
+    "code": 1,
+    "reasoning": 2
+   }
+  },
+  {
+   "step": 27,
+   "stage": "foundation",
+   "weights": {
+    "web": 0.45,
+    "indic": 0.2,
+    "code": 0.15,
+    "reasoning": 0.2
+   },
+   "quota": {
+    "web": 4,
+    "indic": 1,
+    "code": 1,
+    "reasoning": 2
+   }
+  },
+  {
+   "step": 28,
+   "stage": "foundation",
+   "weights": {
+    "web": 0.45,
+    "indic": 0.2,
+    "code": 0.15,
+    "reasoning": 0.2
+   },
+   "quota": {
+    "web": 4,
+    "indic": 1,
+    "code": 1,
+    "reasoning": 2
+   }
+  },
+  {
+   "step": 29,
+   "stage": "foundation",
+   "weights": {
+    "web": 0.45,
+    "indic": 0.2,
+    "code": 0.15,
+    "reasoning": 0.2
+   },
+   "quota": {
+    "web": 4,
+    "indic": 1,
+    "code": 1,
+    "reasoning": 2
+   }
+  },
+  {
+   "step": 30,
+   "stage": "foundation",
+   "weights": {
+    "web": 0.45,
+    "indic": 0.2,
+    "code": 0.15,
+    "reasoning": 0.2
+   },
+   "quota": {
+    "web": 4,
+    "indic": 1,
+    "code": 1,
+    "reasoning": 2
+   }
+  },
+  {
+   "step": 31,
+   "stage": "foundation",
+   "weights": {
+    "web": 0.45,
+    "indic": 0.2,
+    "code": 0.15,
+    "reasoning": 0.2
+   },
+   "quota": {
+    "web": 4,
+    "indic": 1,
+    "code": 1,
+    "reasoning": 2
+   }
+  },
+  {
+   "step": 32,
+   "stage": "foundation",
+   "weights": {
+    "web": 0.45,
+    "indic": 0.2,
+    "code": 0.15,
+    "reasoning": 0.2
+   },
+   "quota": {
+    "web": 4,
+    "indic": 1,
+    "code": 1,
+    "reasoning": 2
+   }
+  },
+  {
+   "step": 33,
+   "stage": "foundation",
+   "weights": {
+    "web": 0.45,
+    "indic": 0.2,
+    "code": 0.15,
+    "reasoning": 0.2
+   },
+   "quota": {
+    "web": 4,
+    "indic": 1,
+    "code": 1,
+    "reasoning": 2
+   }
+  },
+  {
+   "step": 34,
+   "stage": "foundation",
+   "weights": {
+    "web": 0.45,
+    "indic": 0.2,
+    "code": 0.15,
+    "reasoning": 0.2
+   },
+   "quota": {
+    "web": 4,
+    "indic": 1,
+    "code": 1,
+    "reasoning": 2
+   }
+  },
+  {
+   "step": 35,
+   "stage": "foundation",
+   "weights": {
+    "web": 0.45,
+    "indic": 0.2,
+    "code": 0.15,
+    "reasoning": 0.2
+   },
+   "quota": {
+    "web": 4,
+    "indic": 1,
+    "code": 1,
+    "reasoning": 2
+   }
+  },
+  {
+   "step": 36,
+   "stage": "foundation",
+   "weights": {
+    "web": 0.45,
+    "indic": 0.2,
+    "code": 0.15,
+    "reasoning": 0.2
+   },
+   "quota": {
+    "web": 4,
+    "indic": 1,
+    "code": 1,
+    "reasoning": 2
+   }
+  },
+  {
+   "step": 37,
+   "stage": "foundation",
+   "weights": {
+    "web": 0.45,
+    "indic": 0.2,
+    "code": 0.15,
+    "reasoning": 0.2
+   },
+   "quota": {
+    "web": 4,
+    "indic": 1,
+    "code": 1,
+    "reasoning": 2
+   }
+  },
+  {
+   "step": 38,
+   "stage": "foundation",
+   "weights": {
+    "web": 0.45,
+    "indic": 0.2,
+    "code": 0.15,
+    "reasoning": 0.2
+   },
+   "quota": {
+    "web": 4,
+    "indic": 1,
+    "code": 1,
+    "reasoning": 2
+   }
+  },
+  {
+   "step": 39,
+   "stage": "foundation",
+   "weights": {
+    "web": 0.45,
+    "indic": 0.2,
+    "code": 0.15,
+    "reasoning": 0.2
+   },
+   "quota": {
+    "web": 4,
+    "indic": 1,
+    "code": 1,
+    "reasoning": 2
+   }
+  },
+  {
+   "step": 40,
+   "stage": "code_reasoning",
+   "weights": {
+    "web": 0.4318,
+    "indic": 0.2,
+    "code": 0.1636,
+    "reasoning": 0.2045
+   },
+   "quota": {
+    "web": 3,
+    "indic": 2,
+    "code": 1,
+    "reasoning": 2
+   }
+  },
+  {
+   "step": 41,
+   "stage": "code_reasoning",
+   "weights": {
+    "web": 0.4136,
+    "indic": 0.2,
+    "code": 0.1773,
+    "reasoning": 0.2091
+   },
+   "quota": {
+    "web": 3,
+    "indic": 2,
+    "code": 1,
+    "reasoning": 2
+   }
+  },
+  {
+   "step": 42,
+   "stage": "code_reasoning",
+   "weights": {
+    "web": 0.3955,
+    "indic": 0.2,
+    "code": 0.1909,
+    "reasoning": 0.2136
+   },
+   "quota": {
+    "web": 3,
+    "indic": 2,
+    "code": 1,
+    "reasoning": 2
+   }
+  },
+  {
+   "step": 43,
+   "stage": "code_reasoning",
+   "weights": {
+    "web": 0.3773,
+    "indic": 0.2,
+    "code": 0.2045,
+    "reasoning": 0.2182
+   },
+   "quota": {
+    "web": 3,
+    "indic": 1,
+    "code": 2,
+    "reasoning": 2
+   }
+  },
+  {
+   "step": 44,
+   "stage": "code_reasoning",
+   "weights": {
+    "web": 0.3591,
+    "indic": 0.2,
+    "code": 0.2182,
+    "reasoning": 0.2227
+   },
+   "quota": {
+    "web": 3,
+    "indic": 1,
+    "code": 2,
+    "reasoning": 2
+   }
+  },
+  {
+   "step": 45,
+   "stage": "code_reasoning",
+   "weights": {
+    "web": 0.3409,
+    "indic": 0.2,
+    "code": 0.2318,
+    "reasoning": 0.2273
+   },
+   "quota": {
+    "web": 3,
+    "indic": 1,
+    "code": 2,
+    "reasoning": 2
+   }
+  },
+  {
+   "step": 46,
+   "stage": "code_reasoning",
+   "weights": {
+    "web": 0.3227,
+    "indic": 0.2,
+    "code": 0.2455,
+    "reasoning": 0.2318
+   },
+   "quota": {
+    "web": 2,
+    "indic": 2,
+    "code": 2,
+    "reasoning": 2
+   }
+  },
+  {
+   "step": 47,
+   "stage": "code_reasoning",
+   "weights": {
+    "web": 0.3045,
+    "indic": 0.2,
+    "code": 0.2591,
+    "reasoning": 0.2364
+   },
+   "quota": {
+    "web": 2,
+    "indic": 2,
+    "code": 2,
+    "reasoning": 2
+   }
+  },
+  {
+   "step": 48,
+   "stage": "code_reasoning",
+   "weights": {
+    "web": 0.2864,
+    "indic": 0.2,
+    "code": 0.2727,
+    "reasoning": 0.2409
+   },
+   "quota": {
+    "web": 2,
+    "indic": 2,
+    "code": 2,
+    "reasoning": 2
+   }
+  },
+  {
+   "step": 49,
+   "stage": "code_reasoning",
+   "weights": {
+    "web": 0.2682,
+    "indic": 0.2,
+    "code": 0.2864,
+    "reasoning": 0.2455
+   },
+   "quota": {
+    "web": 2,
+    "indic": 2,
+    "code": 2,
+    "reasoning": 2
+   }
+  },
+  {
+   "step": 50,
+   "stage": "code_reasoning",
+   "weights": {
+    "web": 0.25,
+    "indic": 0.2,
+    "code": 0.3,
+    "reasoning": 0.25
+   },
+   "quota": {
+    "web": 2,
+    "indic": 2,
+    "code": 2,
+    "reasoning": 2
+   }
+  },
+  {
+   "step": 51,
+   "stage": "code_reasoning",
+   "weights": {
+    "web": 0.25,
+    "indic": 0.2,
+    "code": 0.3,
+    "reasoning": 0.25
+   },
+   "quota": {
+    "web": 2,
+    "indic": 2,
+    "code": 2,
+    "reasoning": 2
+   }
+  },
+  {
+   "step": 52,
+   "stage": "code_reasoning",
+   "weights": {
+    "web": 0.25,
+    "indic": 0.2,
+    "code": 0.3,
+    "reasoning": 0.25
+   },
+   "quota": {
+    "web": 2,
+    "indic": 2,
+    "code": 2,
+    "reasoning": 2
+   }
+  },
+  {
+   "step": 53,
+   "stage": "code_reasoning",
+   "weights": {
+    "web": 0.25,
+    "indic": 0.2,
+    "code": 0.3,
+    "reasoning": 0.25
+   },
+   "quota": {
+    "web": 2,
+    "indic": 2,
+    "code": 2,
+    "reasoning": 2
+   }
+  },
+  {
+   "step": 54,
+   "stage": "code_reasoning",
+   "weights": {
+    "web": 0.25,
+    "indic": 0.2,
+    "code": 0.3,
+    "reasoning": 0.25
+   },
+   "quota": {
+    "web": 2,
+    "indic": 2,
+    "code": 2,
+    "reasoning": 2
+   }
+  },
+  {
+   "step": 55,
+   "stage": "code_reasoning",
+   "weights": {
+    "web": 0.25,
+    "indic": 0.2,
+    "code": 0.3,
+    "reasoning": 0.25
+   },
+   "quota": {
+    "web": 2,
+    "indic": 2,
+    "code": 2,
+    "reasoning": 2
+   }
+  },
+  {
+   "step": 56,
+   "stage": "code_reasoning",
+   "weights": {
+    "web": 0.25,
+    "indic": 0.2,
+    "code": 0.3,
+    "reasoning": 0.25
+   },
+   "quota": {
+    "web": 2,
+    "indic": 2,
+    "code": 2,
+    "reasoning": 2
+   }
+  },
+  {
+   "step": 57,
+   "stage": "code_reasoning",
+   "weights": {
+    "web": 0.25,
+    "indic": 0.2,
+    "code": 0.3,
+    "reasoning": 0.25
+   },
+   "quota": {
+    "web": 2,
+    "indic": 2,
+    "code": 2,
+    "reasoning": 2
+   }
+  },
+  {
+   "step": 58,
+   "stage": "code_reasoning",
+   "weights": {
+    "web": 0.25,
+    "indic": 0.2,
+    "code": 0.3,
+    "reasoning": 0.25
+   },
+   "quota": {
+    "web": 2,
+    "indic": 2,
+    "code": 2,
+    "reasoning": 2
+   }
+  },
+  {
+   "step": 59,
+   "stage": "code_reasoning",
+   "weights": {
+    "web": 0.25,
+    "indic": 0.2,
+    "code": 0.3,
+    "reasoning": 0.25
+   },
+   "quota": {
+    "web": 2,
+    "indic": 2,
+    "code": 2,
+    "reasoning": 2
+   }
+  },
+  {
+   "step": 60,
+   "stage": "code_reasoning",
+   "weights": {
+    "web": 0.25,
+    "indic": 0.2,
+    "code": 0.3,
+    "reasoning": 0.25
+   },
+   "quota": {
+    "web": 2,
+    "indic": 2,
+    "code": 2,
+    "reasoning": 2
+   }
+  },
+  {
+   "step": 61,
+   "stage": "code_reasoning",
+   "weights": {
+    "web": 0.25,
+    "indic": 0.2,
+    "code": 0.3,
+    "reasoning": 0.25
+   },
+   "quota": {
+    "web": 2,
+    "indic": 2,
+    "code": 2,
+    "reasoning": 2
+   }
+  },
+  {
+   "step": 62,
+   "stage": "code_reasoning",
+   "weights": {
+    "web": 0.25,
+    "indic": 0.2,
+    "code": 0.3,
+    "reasoning": 0.25
+   },
+   "quota": {
+    "web": 2,
+    "indic": 2,
+    "code": 2,
+    "reasoning": 2
+   }
+  },
+  {
+   "step": 63,
+   "stage": "code_reasoning",
+   "weights": {
+    "web": 0.25,
+    "indic": 0.2,
+    "code": 0.3,
+    "reasoning": 0.25
+   },
+   "quota": {
+    "web": 2,
+    "indic": 2,
+    "code": 2,
+    "reasoning": 2
+   }
+  },
+  {
+   "step": 64,
+   "stage": "code_reasoning",
+   "weights": {
+    "web": 0.25,
+    "indic": 0.2,
+    "code": 0.3,
+    "reasoning": 0.25
+   },
+   "quota": {
+    "web": 2,
+    "indic": 2,
+    "code": 2,
+    "reasoning": 2
+   }
+  },
+  {
+   "step": 65,
+   "stage": "code_reasoning",
+   "weights": {
+    "web": 0.25,
+    "indic": 0.2,
+    "code": 0.3,
+    "reasoning": 0.25
+   },
+   "quota": {
+    "web": 2,
+    "indic": 2,
+    "code": 2,
+    "reasoning": 2
+   }
+  },
+  {
+   "step": 66,
+   "stage": "code_reasoning",
+   "weights": {
+    "web": 0.25,
+    "indic": 0.2,
+    "code": 0.3,
+    "reasoning": 0.25
+   },
+   "quota": {
+    "web": 2,
+    "indic": 2,
+    "code": 2,
+    "reasoning": 2
+   }
+  },
+  {
+   "step": 67,
+   "stage": "code_reasoning",
+   "weights": {
+    "web": 0.25,
+    "indic": 0.2,
+    "code": 0.3,
+    "reasoning": 0.25
+   },
+   "quota": {
+    "web": 2,
+    "indic": 2,
+    "code": 2,
+    "reasoning": 2
+   }
+  },
+  {
+   "step": 68,
+   "stage": "code_reasoning",
+   "weights": {
+    "web": 0.25,
+    "indic": 0.2,
+    "code": 0.3,
+    "reasoning": 0.25
+   },
+   "quota": {
+    "web": 2,
+    "indic": 2,
+    "code": 2,
+    "reasoning": 2
+   }
+  },
+  {
+   "step": 69,
+   "stage": "code_reasoning",
+   "weights": {
+    "web": 0.25,
+    "indic": 0.2,
+    "code": 0.3,
+    "reasoning": 0.25
+   },
+   "quota": {
+    "web": 2,
+    "indic": 2,
+    "code": 2,
+    "reasoning": 2
+   }
+  },
+  {
+   "step": 70,
+   "stage": "code_reasoning",
+   "weights": {
+    "web": 0.25,
+    "indic": 0.2,
+    "code": 0.3,
+    "reasoning": 0.25
+   },
+   "quota": {
+    "web": 2,
+    "indic": 2,
+    "code": 2,
+    "reasoning": 2
+   }
+  },
+  {
+   "step": 71,
+   "stage": "code_reasoning",
+   "weights": {
+    "web": 0.25,
+    "indic": 0.2,
+    "code": 0.3,
+    "reasoning": 0.25
+   },
+   "quota": {
+    "web": 2,
+    "indic": 2,
+    "code": 2,
+    "reasoning": 2
+   }
+  },
+  {
+   "step": 72,
+   "stage": "code_reasoning",
+   "weights": {
+    "web": 0.25,
+    "indic": 0.2,
+    "code": 0.3,
+    "reasoning": 0.25
+   },
+   "quota": {
+    "web": 2,
+    "indic": 2,
+    "code": 2,
+    "reasoning": 2
+   }
+  },
+  {
+   "step": 73,
+   "stage": "code_reasoning",
+   "weights": {
+    "web": 0.25,
+    "indic": 0.2,
+    "code": 0.3,
+    "reasoning": 0.25
+   },
+   "quota": {
+    "web": 2,
+    "indic": 2,
+    "code": 2,
+    "reasoning": 2
+   }
+  },
+  {
+   "step": 74,
+   "stage": "code_reasoning",
+   "weights": {
+    "web": 0.25,
+    "indic": 0.2,
+    "code": 0.3,
+    "reasoning": 0.25
+   },
+   "quota": {
+    "web": 2,
+    "indic": 2,
+    "code": 2,
+    "reasoning": 2
+   }
+  },
+  {
+   "step": 75,
+   "stage": "code_reasoning",
+   "weights": {
+    "web": 0.25,
+    "indic": 0.2,
+    "code": 0.3,
+    "reasoning": 0.25
+   },
+   "quota": {
+    "web": 2,
+    "indic": 2,
+    "code": 2,
+    "reasoning": 2
+   }
+  },
+  {
+   "step": 76,
+   "stage": "code_reasoning",
+   "weights": {
+    "web": 0.25,
+    "indic": 0.2,
+    "code": 0.3,
+    "reasoning": 0.25
+   },
+   "quota": {
+    "web": 2,
+    "indic": 2,
+    "code": 2,
+    "reasoning": 2
+   }
+  },
+  {
+   "step": 77,
+   "stage": "code_reasoning",
+   "weights": {
+    "web": 0.25,
+    "indic": 0.2,
+    "code": 0.3,
+    "reasoning": 0.25
+   },
+   "quota": {
+    "web": 2,
+    "indic": 2,
+    "code": 2,
+    "reasoning": 2
+   }
+  },
+  {
+   "step": 78,
+   "stage": "code_reasoning",
+   "weights": {
+    "web": 0.25,
+    "indic": 0.2,
+    "code": 0.3,
+    "reasoning": 0.25
+   },
+   "quota": {
+    "web": 2,
+    "indic": 2,
+    "code": 2,
+    "reasoning": 2
+   }
+  },
+  {
+   "step": 79,
+   "stage": "code_reasoning",
+   "weights": {
+    "web": 0.25,
+    "indic": 0.2,
+    "code": 0.3,
+    "reasoning": 0.25
+   },
+   "quota": {
+    "web": 2,
+    "indic": 2,
+    "code": 2,
+    "reasoning": 2
+   }
+  }
+ ]
+}

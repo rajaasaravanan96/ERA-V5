@@ -1,0 +1,41 @@
+{
+ "registry": [
+  {
+   "shard_id": "benchmark-test-000",
+   "split": "test",
+   "content_sha256": "1aca42872b9fd5642fc052f3f6936c130eb0f3adecdcab1cab88651ee1a17ee6",
+   "never_train": true
+  },
+  {
+   "shard_id": "benchmark-test-001",
+   "split": "test",
+   "content_sha256": "2467619b02c13f7d84a82f29e40e8624f820901476fdafb56f0cf51f09a21f8c",
+   "never_train": true
+  },
+  {
+   "shard_id": "benchmark-test-002",
+   "split": "test",
+   "content_sha256": "e1aacc5e68e282deb00aa0d47191786cd7b446868e4d45f529067b02746f3e37",
+   "never_train": true
+  },
+  {
+   "shard_id": "benchmark-test-003",
+   "split": "test",
+   "content_sha256": "2ff41cf89b6cda39a6f0a512d5b8c9fdde56241b88cd6ce794b5dd46cc9487d8",
+   "never_train": true
+  },
+  {
+   "shard_id": "benchmark-test-004",
+   "split": "test",
+   "content_sha256": "186b08bf14390198221532bb68712759f9a77c1c2aa1f594df9bff76caddd870",
+   "never_train": true
+  },
+  {
+   "shard_id": "web-val-000",
+   "split": "val",
+   "content_sha256": "887e412e38409f2bf36e6ccc5f81e4310af437c33644aafe806679697356942e",
+   "never_train": true
+  }
+ ],
+ "fingerprints": 24088
+}

@@ -1,0 +1,462 @@
+{
+ "shard_id": "reasoning-train-002",
+ "lane": "reasoning",
+ "split": "train",
+ "path": "reasoning-train-002.npy",
+ "n_docs": 64,
+ "n_tokens": 27274,
+ "content_sha256": "bfda5f95e99b56afa3f6c5b0baa784bdf693928dd8a5a424a0363c7d575c063b",
+ "tokenizer_sha256": "6cc5722116c53663f378eec02cdb0cb0b7c41b33d8be83babdea95b7adb87504",
+ "never_train": false,
+ "gradient_bearing": true,
+ "docs": [
+  {
+   "doc_id": "127ddc588168e588",
+   "start": 0,
+   "end": 680,
+   "loss_from": 18,
+   "source": "session-4 cleaned chat rows (SFT format)"
+  },
+  {
+   "doc_id": "c3f698fe58b29d74",
+   "start": 680,
+   "end": 750,
+   "loss_from": 13,
+   "source": "session-4 cleaned chat rows (SFT format)"
+  },
+  {
+   "doc_id": "c2a9eae123692456",
+   "start": 750,
+   "end": 903,
+   "loss_from": 77,
+   "source": "session-4 cleaned chat rows (SFT format)"
+  },
+  {
+   "doc_id": "c379f0c2d0a24984",
+   "start": 903,
+   "end": 1300,
+   "loss_from": 46,
+   "source": "session-4 cleaned chat rows (SFT format)"
+  },
+  {
+   "doc_id": "c10127490289634c",
+   "start": 1300,
+   "end": 1728,
+   "loss_from": 28,
+   "source": "session-4 cleaned chat rows (SFT format)"
+  },
+  {
+   "doc_id": "e5770e1b64d470dd",
+   "start": 1728,
+   "end": 2216,
+   "loss_from": 70,
+   "source": "session-4 cleaned chat rows (SFT format)"
+  },
+  {
+   "doc_id": "afeff2ba8c6c38ce",
+   "start": 2216,
+   "end": 2307,
+   "loss_from": 50,
+   "source": "session-4 cleaned chat rows (SFT format)"
+  },
+  {
+   "doc_id": "f1606843c7344b14",
+   "start": 2307,
+   "end": 2686,
+   "loss_from": 47,
+   "source": "session-4 cleaned chat rows (SFT format)"
+  },
+  {
+   "doc_id": "738d8afc47ea6cf4",
+   "start": 2686,
+   "end": 2877,
+   "loss_from": 65,
+   "source": "session-4 cleaned chat rows (SFT format)"
+  },
+  {
+   "doc_id": "a08d604af42f63dd",
+   "start": 2877,
+   "end": 3226,
+   "loss_from": 115,
+   "source": "session-4 cleaned chat rows (SFT format)"
+  },
+  {
+   "doc_id": "647a3ce4da461ac1",
+   "start": 3226,
+   "end": 3760,
+   "loss_from": 34,
+   "source": "session-4 cleaned chat rows (SFT format)"
+  },
+  {
+   "doc_id": "a338d3119851820d",
+   "start": 3760,
+   "end": 4177,
+   "loss_from": 11,
+   "source": "session-4 cleaned chat rows (SFT format)"
+  },
+  {
+   "doc_id": "867b0d162837844b",
+   "start": 4177,
+   "end": 4354,
+   "loss_from": 87,
+   "source": "session-4 cleaned chat rows (SFT format)"
+  },
+  {
+   "doc_id": "8a6e884667f1964c",
+   "start": 4354,
+   "end": 5170,
+   "loss_from": 811,
+   "source": "session-4 cleaned chat rows (SFT format)"
+  },
+  {
+   "doc_id": "bb57e888d3109536",
+   "start": 5170,
+   "end": 6000,
+   "loss_from": 15,
+   "source": "session-4 cleaned chat rows (SFT format)"
+  },
+  {
+   "doc_id": "5544fe134eac97f7",
+   "start": 6000,
+   "end": 6585,
+   "loss_from": 30,
+   "source": "session-4 cleaned chat rows (SFT format)"
+  },
+  {
+   "doc_id": "4dae80411c3a2c31",
+   "start": 6585,
+   "end": 7371,
+   "loss_from": 21,
+   "source": "session-4 cleaned chat rows (SFT format)"
+  },
+  {
+   "doc_id": "2bf93f19fcea5814",
+   "start": 7371,
+   "end": 7544,
+   "loss_from": 28,
+   "source": "session-4 cleaned chat rows (SFT format)"
+  },
+  {
+   "doc_id": "62cf4a7f7f77481f",
+   "start": 7544,
+   "end": 7885,
+   "loss_from": 278,
+   "source": "session-4 cleaned chat rows (SFT format)"
+  },
+  {
+   "doc_id": "07c43130e6548ac4",
+   "start": 7885,
+   "end": 8302,
+   "loss_from": 28,
+   "source": "session-4 cleaned chat rows (SFT format)"
+  },
+  {
+   "doc_id": "9795d205f58a4d7f",
+   "start": 8302,
+   "end": 8722,
+   "loss_from": 37,
+   "source": "session-4 cleaned chat rows (SFT format)"
+  },
+  {
+   "doc_id": "62d607b3bf89358c",
+   "start": 8722,
+   "end": 9374,
+   "loss_from": 15,
+   "source": "session-4 cleaned chat rows (SFT format)"
+  },
+  {
+   "doc_id": "11e891071a4c8413",
+   "start": 9374,
+   "end": 10211,
+   "loss_from": 27,
+   "source": "session-4 cleaned chat rows (SFT format)"
+  },
+  {
+   "doc_id": "a9af8a7bff490272",
+   "start": 10211,
+   "end": 10423,
+   "loss_from": 27,
+   "source": "session-4 cleaned chat rows (SFT format)"
+  },
+  {
+   "doc_id": "62eaa2f5fe92d9f3",
+   "start": 10423,
+   "end": 10761,
+   "loss_from": 269,
+   "source": "session-4 cleaned chat rows (SFT format)"
+  },
+  {
+   "doc_id": "a2019043cff44f02",
+   "start": 10761,
+   "end": 10982,
+   "loss_from": 97,
+   "source": "session-4 cleaned chat rows (SFT format)"
+  },
+  {
+   "doc_id": "d6d07991ca14068b",
+   "start": 10982,
+   "end": 11223,
+   "loss_from": 117,
+   "source": "session-4 cleaned chat rows (SFT format)"
+  },
+  {
+   "doc_id": "ec3239710befdf51",
+   "start": 11223,
+   "end": 11953,
+   "loss_from": 472,
+   "source": "session-4 cleaned chat rows (SFT format)"
+  },
+  {
+   "doc_id": "edab53c2ab500eb7",
+   "start": 11953,
+   "end": 12171,
+   "loss_from": 216,
+   "source": "session-4 cleaned chat rows (SFT format)"
+  },
+  {
+   "doc_id": "81d506e58a6a213c",
+   "start": 12171,
+   "end": 12833,
+   "loss_from": 15,
+   "source": "session-4 cleaned chat rows (SFT format)"
+  },
+  {
+   "doc_id": "b6f33c47599d4f10",
+   "start": 12833,
+   "end": 13416,
+   "loss_from": 580,
+   "source": "session-4 cleaned chat rows (SFT format)"
+  },
+  {
+   "doc_id": "493b0604ce053d74",
+   "start": 13416,
+   "end": 13869,
+   "loss_from": 85,
+   "source": "session-4 cleaned chat rows (SFT format)"
+  },
+  {
+   "doc_id": "5f2673f7ccf5a6de",
+   "start": 13869,
+   "end": 14507,
+   "loss_from": 11,
+   "source": "session-4 cleaned chat rows (SFT format)"
+  },
+  {
+   "doc_id": "6fbd04cc6635e7d8",
+   "start": 14507,
+   "end": 14841,
+   "loss_from": 130,
+   "source": "session-4 cleaned chat rows (SFT format)"
+  },
+  {
+   "doc_id": "283addb17f5fb468",
+   "start": 14841,
+   "end": 15535,
+   "loss_from": 132,
+   "source": "session-4 cleaned chat rows (SFT format)"
+  },
+  {
+   "doc_id": "1bc874e530d36a41",
+   "start": 15535,
+   "end": 16357,
+   "loss_from": 132,
+   "source": "session-4 cleaned chat rows (SFT format)"
+  },
+  {
+   "doc_id": "fee2277967ab2bde",
+   "start": 16357,
+   "end": 17259,
+   "loss_from": 125,
+   "source": "session-4 cleaned chat rows (SFT format)"
+  },
+  {
+   "doc_id": "8925b4def3841094",
+   "start": 17259,
+   "end": 17974,
+   "loss_from": 71,
+   "source": "session-4 cleaned chat rows (SFT format)"
+  },
+  {
+   "doc_id": "1b459f4b1fbd0589",
+   "start": 17974,
+   "end": 18299,
+   "loss_from": 74,
+   "source": "session-4 cleaned chat rows (SFT format)"
+  },
+  {
+   "doc_id": "6e73422f69671cfb",
+   "start": 18299,
+   "end": 18489,
+   "loss_from": 34,
+   "source": "session-4 cleaned chat rows (SFT format)"
+  },
+  {
+   "doc_id": "a31f52510fbd63e7",
+   "start": 18489,
+   "end": 19000,
+   "loss_from": 18,
+   "source": "session-4 cleaned chat rows (SFT format)"
+  },
+  {
+   "doc_id": "a4fbc5f2bbeb10d6",
+   "start": 19000,
+   "end": 19049,
+   "loss_from": 36,
+   "source": "session-4 cleaned chat rows (SFT format)"
+  },
+  {
+   "doc_id": "22b2b7141942b558",
+   "start": 19049,
+   "end": 19202,
+   "loss_from": 101,
+   "source": "session-4 cleaned chat rows (SFT format)"
+  },
+  {
+   "doc_id": "15a6e1e1f58b1f56",
+   "start": 19202,
+   "end": 19870,
+   "loss_from": 13,
+   "source": "session-4 cleaned chat rows (SFT format)"
+  },
+  {
+   "doc_id": "41aaa8c1a8e9f5a9",
+   "start": 19870,
+   "end": 20686,
+   "loss_from": 108,
+   "source": "session-4 cleaned chat rows (SFT format)"
+  },
+  {
+   "doc_id": "3e36c144d499f133",
+   "start": 20686,
+   "end": 20840,
+   "loss_from": 107,
+   "source": "session-4 cleaned chat rows (SFT format)"
+  },
+  {
+   "doc_id": "7893b2675fe11bbc",
+   "start": 20840,
+   "end": 21179,
+   "loss_from": 63,
+   "source": "session-4 cleaned chat rows (SFT format)"
+  },
+  {
+   "doc_id": "f56b223d736b4ba1",
+   "start": 21179,
+   "end": 21322,
+   "loss_from": 23,
+   "source": "session-4 cleaned chat rows (SFT format)"
+  },
+  {
+   "doc_id": "b5485e1e97d8f6e5",
+   "start": 21322,
+   "end": 21821,
+   "loss_from": 29,
+   "source": "session-4 cleaned chat rows (SFT format)"
+  },
+  {
+   "doc_id": "78cb0faa39bb2060",
+   "start": 21821,
+   "end": 22326,
+   "loss_from": 24,
+   "source": "session-4 cleaned chat rows (SFT format)"
+  },
+  {
+   "doc_id": "4dbdc4e988a9316b",
+   "start": 22326,
+   "end": 22488,
+   "loss_from": 31,
+   "source": "session-4 cleaned chat rows (SFT format)"
+  },
+  {
+   "doc_id": "67dcf301351f6ad3",
+   "start": 22488,
+   "end": 22671,
+   "loss_from": 16,
+   "source": "session-4 cleaned chat rows (SFT format)"
+  },
+  {
+   "doc_id": "efd24c12b20f333b",
+   "start": 22671,
+   "end": 23032,
+   "loss_from": 35,
+   "source": "session-4 cleaned chat rows (SFT format)"
+  },
+  {
+   "doc_id": "77f66f2770309003",
+   "start": 23032,
+   "end": 23627,
+   "loss_from": 288,
+   "source": "session-4 cleaned chat rows (SFT format)"
+  },
+  {
+   "doc_id": "315cfe57a31d0498",
+   "start": 23627,
+   "end": 23703,
+   "loss_from": 34,
+   "source": "session-4 cleaned chat rows (SFT format)"
+  },
+  {
+   "doc_id": "6bf51e04cb051311",
+   "start": 23703,
+   "end": 23787,
+   "loss_from": 78,
+   "source": "session-4 cleaned chat rows (SFT format)"
+  },
+  {
+   "doc_id": "a2e60c7de1c64b3a",
+   "start": 23787,
+   "end": 24078,
+   "loss_from": 46,
+   "source": "session-4 cleaned chat rows (SFT format)"
+  },
+  {
+   "doc_id": "cd82a1fcb32d9619",
+   "start": 24078,
+   "end": 24886,
+   "loss_from": 15,
+   "source": "session-4 cleaned chat rows (SFT format)"
+  },
+  {
+   "doc_id": "6f1d2ce934bec386",
+   "start": 24886,
+   "end": 25044,
+   "loss_from": 15,
+   "source": "session-4 cleaned chat rows (SFT format)"
+  },
+  {
+   "doc_id": "609058fe9cc4a041",
+   "start": 25044,
+   "end": 25715,
+   "loss_from": 666,
+   "source": "session-4 cleaned chat rows (SFT format)"
+  },
+  {
+   "doc_id": "1075015857db7a38",
+   "start": 25715,
+   "end": 26402,
+   "loss_from": 9,
+   "source": "session-4 cleaned chat rows (SFT format)"
+  },
+  {
+   "doc_id": "ae4f9a7a2caff94e",
+   "start": 26402,
+   "end": 26626,
+   "loss_from": 35,
+   "source": "session-4 cleaned chat rows (SFT format)"
+  },
+  {
+   "doc_id": "1534ba96c037a574",
+   "start": 26626,
+   "end": 27120,
+   "loss_from": 34,
+   "source": "session-4 cleaned chat rows (SFT format)"
+  },
+  {
+   "doc_id": "0eb41c303327c871",
+   "start": 27120,
+   "end": 27274,
+   "loss_from": 23,
+   "source": "session-4 cleaned chat rows (SFT format)"
+  }
+ ]
+}

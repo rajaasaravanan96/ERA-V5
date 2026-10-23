@@ -1,0 +1,462 @@
+{
+ "shard_id": "code-train-000",
+ "lane": "code",
+ "split": "train",
+ "path": "code-train-000.npy",
+ "n_docs": 64,
+ "n_tokens": 33797,
+ "content_sha256": "4c106ddd99e52d1ef091fea8cf70eaa11aee062d40edace1758a5177490de927",
+ "tokenizer_sha256": "6cc5722116c53663f378eec02cdb0cb0b7c41b33d8be83babdea95b7adb87504",
+ "never_train": false,
+ "gradient_bearing": true,
+ "docs": [
+  {
+   "doc_id": "1ae2a1a7cfe4cdf9",
+   "start": 0,
+   "end": 1254,
+   "loss_from": 0,
+   "source": "python blocks from session-4 cleaned reasoning traces"
+  },
+  {
+   "doc_id": "858500d24e30585c",
+   "start": 1254,
+   "end": 1394,
+   "loss_from": 0,
+   "source": "python blocks from session-4 cleaned reasoning traces"
+  },
+  {
+   "doc_id": "64af26d69f48165e",
+   "start": 1394,
+   "end": 3100,
+   "loss_from": 0,
+   "source": "python blocks from session-4 cleaned reasoning traces"
+  },
+  {
+   "doc_id": "8006aa0ac5207281",
+   "start": 3100,
+   "end": 3339,
+   "loss_from": 0,
+   "source": "python blocks from session-4 cleaned reasoning traces"
+  },
+  {
+   "doc_id": "7ba436eb3653ee4f",
+   "start": 3339,
+   "end": 4515,
+   "loss_from": 0,
+   "source": "python blocks from session-4 cleaned reasoning traces"
+  },
+  {
+   "doc_id": "731c85548947cb34",
+   "start": 4515,
+   "end": 4808,
+   "loss_from": 0,
+   "source": "python blocks from session-4 cleaned reasoning traces"
+  },
+  {
+   "doc_id": "f0f299d4d9bb3a45",
+   "start": 4808,
+   "end": 5435,
+   "loss_from": 0,
+   "source": "python blocks from session-4 cleaned reasoning traces"
+  },
+  {
+   "doc_id": "ad938c31871d63de",
+   "start": 5435,
+   "end": 5692,
+   "loss_from": 0,
+   "source": "python blocks from session-4 cleaned reasoning traces"
+  },
+  {
+   "doc_id": "d3a3b3cb226bea96",
+   "start": 5692,
+   "end": 6447,
+   "loss_from": 0,
+   "source": "python blocks from session-4 cleaned reasoning traces"
+  },
+  {
+   "doc_id": "15574c85d3e9ec4e",
+   "start": 6447,
+   "end": 6817,
+   "loss_from": 0,
+   "source": "python blocks from session-4 cleaned reasoning traces"
+  },
+  {
+   "doc_id": "bf3d2e4322815b0f",
+   "start": 6817,
+   "end": 6960,
+   "loss_from": 0,
+   "source": "python blocks from session-4 cleaned reasoning traces"
+  },
+  {
+   "doc_id": "394e8b8b32e2af38",
+   "start": 6960,
+   "end": 7537,
+   "loss_from": 0,
+   "source": "python blocks from session-4 cleaned reasoning traces"
+  },
+  {
+   "doc_id": "0bd607827734c54b",
+   "start": 7537,
+   "end": 7966,
+   "loss_from": 0,
+   "source": "python blocks from session-4 cleaned reasoning traces"
+  },
+  {
+   "doc_id": "2178ebd7ba0ed628",
+   "start": 7966,
+   "end": 8208,
+   "loss_from": 0,
+   "source": "python blocks from session-4 cleaned reasoning traces"
+  },
+  {
+   "doc_id": "3a4acff8c9054166",
+   "start": 8208,
+   "end": 9393,
+   "loss_from": 0,
+   "source": "python blocks from session-4 cleaned reasoning traces"
+  },
+  {
+   "doc_id": "36d6ca7b6f7a7ed7",
+   "start": 9393,
+   "end": 9605,
+   "loss_from": 0,
+   "source": "python blocks from session-4 cleaned reasoning traces"
+  },
+  {
+   "doc_id": "4882eda658538853",
+   "start": 9605,
+   "end": 9741,
+   "loss_from": 0,
+   "source": "python blocks from session-4 cleaned reasoning traces"
+  },
+  {
+   "doc_id": "2fe611f1c71287c0",
+   "start": 9741,
+   "end": 10098,
+   "loss_from": 0,
+   "source": "python blocks from session-4 cleaned reasoning traces"
+  },
+  {
+   "doc_id": "4637ebd8044175b9",
+   "start": 10098,
+   "end": 11858,
+   "loss_from": 0,
+   "source": "python blocks from session-4 cleaned reasoning traces"
+  },
+  {
+   "doc_id": "70f6ba97d7a9eb52",
+   "start": 11858,
+   "end": 11997,
+   "loss_from": 0,
+   "source": "python blocks from session-4 cleaned reasoning traces"
+  },
+  {
+   "doc_id": "e8ec2d692fc19cfa",
+   "start": 11997,
+   "end": 12148,
+   "loss_from": 0,
+   "source": "python blocks from session-4 cleaned reasoning traces"
+  },
+  {
+   "doc_id": "fd5b76e190af33f0",
+   "start": 12148,
+   "end": 12311,
+   "loss_from": 0,
+   "source": "python blocks from session-4 cleaned reasoning traces"
+  },
+  {
+   "doc_id": "53999ba7b7ddd79c",
+   "start": 12311,
+   "end": 13038,
+   "loss_from": 0,
+   "source": "python blocks from session-4 cleaned reasoning traces"
+  },
+  {
+   "doc_id": "9352085f1669eac0",
+   "start": 13038,
+   "end": 14475,
+   "loss_from": 0,
+   "source": "python blocks from session-4 cleaned reasoning traces"
+  },
+  {
+   "doc_id": "2ee21943efaa119e",
+   "start": 14475,
+   "end": 14838,
+   "loss_from": 0,
+   "source": "python blocks from session-4 cleaned reasoning traces"
+  },
+  {
+   "doc_id": "68f9cb730797f2f9",
+   "start": 14838,
+   "end": 15155,
+   "loss_from": 0,
+   "source": "python blocks from session-4 cleaned reasoning traces"
+  },
+  {
+   "doc_id": "6aba601834b3771e",
+   "start": 15155,
+   "end": 15845,
+   "loss_from": 0,
+   "source": "python blocks from session-4 cleaned reasoning traces"
+  },
+  {
+   "doc_id": "37d4bd3c17924db9",
+   "start": 15845,
+   "end": 16061,
+   "loss_from": 0,
+   "source": "python blocks from session-4 cleaned reasoning traces"
+  },
+  {
+   "doc_id": "f4e64c87e4f613fd",
+   "start": 16061,
+   "end": 16246,
+   "loss_from": 0,
+   "source": "python blocks from session-4 cleaned reasoning traces"
+  },
+  {
+   "doc_id": "4e528f27f80b7f4c",
+   "start": 16246,
+   "end": 16461,
+   "loss_from": 0,
+   "source": "python blocks from session-4 cleaned reasoning traces"
+  },
+  {
+   "doc_id": "f1029594df8ab23b",
+   "start": 16461,
+   "end": 16623,
+   "loss_from": 0,
+   "source": "python blocks from session-4 cleaned reasoning traces"
+  },
+  {
+   "doc_id": "d7d389301f69321e",
+   "start": 16623,
+   "end": 16798,
+   "loss_from": 0,
+   "source": "python blocks from session-4 cleaned reasoning traces"
+  },
+  {
+   "doc_id": "3f863329dee7b905",
+   "start": 16798,
+   "end": 17061,
+   "loss_from": 0,
+   "source": "python blocks from session-4 cleaned reasoning traces"
+  },
+  {
+   "doc_id": "da7ffdf0930a4245",
+   "start": 17061,
+   "end": 17295,
+   "loss_from": 0,
+   "source": "python blocks from session-4 cleaned reasoning traces"
+  },
+  {
+   "doc_id": "bea5af04789335c6",
+   "start": 17295,
+   "end": 18416,
+   "loss_from": 0,
+   "source": "python blocks from session-4 cleaned reasoning traces"
+  },
+  {
+   "doc_id": "ed4bafe6079130d5",
+   "start": 18416,
+   "end": 18544,
+   "loss_from": 0,
+   "source": "python blocks from session-4 cleaned reasoning traces"
+  },
+  {
+   "doc_id": "0853f8ed7a45dc53",
+   "start": 18544,
+   "end": 19397,
+   "loss_from": 0,
+   "source": "python blocks from session-4 cleaned reasoning traces"
+  },
+  {
+   "doc_id": "fdcfd12ddb905830",
+   "start": 19397,
+   "end": 19615,
+   "loss_from": 0,
+   "source": "python blocks from session-4 cleaned reasoning traces"
+  },
+  {
+   "doc_id": "c6f4bf445bb77998",
+   "start": 19615,
+   "end": 20285,
+   "loss_from": 0,
+   "source": "python blocks from session-4 cleaned reasoning traces"
+  },
+  {
+   "doc_id": "fafbe46a17b1e6a8",
+   "start": 20285,
+   "end": 20809,
+   "loss_from": 0,
+   "source": "python blocks from session-4 cleaned reasoning traces"
+  },
+  {
+   "doc_id": "e5cb8d0ff8f9ccc3",
+   "start": 20809,
+   "end": 20955,
+   "loss_from": 0,
+   "source": "python blocks from session-4 cleaned reasoning traces"
+  },
+  {
+   "doc_id": "643da9990483f32d",
+   "start": 20955,
+   "end": 21104,
+   "loss_from": 0,
+   "source": "python blocks from session-4 cleaned reasoning traces"
+  },
+  {
+   "doc_id": "7c19ace5f4fb2421",
+   "start": 21104,
+   "end": 21506,
+   "loss_from": 0,
+   "source": "python blocks from session-4 cleaned reasoning traces"
+  },
+  {
+   "doc_id": "7ee59ac970190e6c",
+   "start": 21506,
+   "end": 23133,
+   "loss_from": 0,
+   "source": "python blocks from session-4 cleaned reasoning traces"
+  },
+  {
+   "doc_id": "1b342b021d1d217c",
+   "start": 23133,
+   "end": 23569,
+   "loss_from": 0,
+   "source": "python blocks from session-4 cleaned reasoning traces"
+  },
+  {
+   "doc_id": "763cec1ab013e181",
+   "start": 23569,
+   "end": 24223,
+   "loss_from": 0,
+   "source": "python blocks from session-4 cleaned reasoning traces"
+  },
+  {
+   "doc_id": "b295e210fb237881",
+   "start": 24223,
+   "end": 24571,
+   "loss_from": 0,
+   "source": "python blocks from session-4 cleaned reasoning traces"
+  },
+  {
+   "doc_id": "dd7d301867f7dad8",
+   "start": 24571,
+   "end": 25076,
+   "loss_from": 0,
+   "source": "python blocks from session-4 cleaned reasoning traces"
+  },
+  {
+   "doc_id": "23162066a3996bc6",
+   "start": 25076,
+   "end": 25426,
+   "loss_from": 0,
+   "source": "python blocks from session-4 cleaned reasoning traces"
+  },
+  {
+   "doc_id": "b692ca77771a5f5f",
+   "start": 25426,
+   "end": 26546,
+   "loss_from": 0,
+   "source": "python blocks from session-4 cleaned reasoning traces"
+  },
+  {
+   "doc_id": "0f100b64190e7932",
+   "start": 26546,
+   "end": 27318,
+   "loss_from": 0,
+   "source": "python blocks from session-4 cleaned reasoning traces"
+  },
+  {
+   "doc_id": "1144c4d1e2a598dd",
+   "start": 27318,
+   "end": 27628,
+   "loss_from": 0,
+   "source": "python blocks from session-4 cleaned reasoning traces"
+  },
+  {
+   "doc_id": "b7bdf180e9f83c20",
+   "start": 27628,
+   "end": 28189,
+   "loss_from": 0,
+   "source": "python blocks from session-4 cleaned reasoning traces"
+  },
+  {
+   "doc_id": "421e85753574cdef",
+   "start": 28189,
+   "end": 29819,
+   "loss_from": 0,
+   "source": "python blocks from session-4 cleaned reasoning traces"
+  },
+  {
+   "doc_id": "2cd3aecdaf124d86",
+   "start": 29819,
+   "end": 30090,
+   "loss_from": 0,
+   "source": "python blocks from session-4 cleaned reasoning traces"
+  },
+  {
+   "doc_id": "e7263a83c52c5e29",
+   "start": 30090,
+   "end": 31036,
+   "loss_from": 0,
+   "source": "python blocks from session-4 cleaned reasoning traces"
+  },
+  {
+   "doc_id": "4848738b2e753efa",
+   "start": 31036,
+   "end": 31788,
+   "loss_from": 0,
+   "source": "python blocks from session-4 cleaned reasoning traces"
+  },
+  {
+   "doc_id": "48258c789a8a31ac",
+   "start": 31788,
+   "end": 31957,
+   "loss_from": 0,
+   "source": "python blocks from session-4 cleaned reasoning traces"
+  },
+  {
+   "doc_id": "b96bd8fe0b96d52a",
+   "start": 31957,
+   "end": 32730,
+   "loss_from": 0,
+   "source": "python blocks from session-4 cleaned reasoning traces"
+  },
+  {
+   "doc_id": "81ac7bbe5a923b57",
+   "start": 32730,
+   "end": 32863,
+   "loss_from": 0,
+   "source": "python blocks from session-4 cleaned reasoning traces"
+  },
+  {
+   "doc_id": "90f8d3a9fdfdf2d7",
+   "start": 32863,
+   "end": 33015,
+   "loss_from": 0,
+   "source": "python blocks from session-4 cleaned reasoning traces"
+  },
+  {
+   "doc_id": "05872cd55c635df2",
+   "start": 33015,
+   "end": 33290,
+   "loss_from": 0,
+   "source": "python blocks from session-4 cleaned reasoning traces"
+  },
+  {
+   "doc_id": "1f9becd3b60bf7a6",
+   "start": 33290,
+   "end": 33627,
+   "loss_from": 0,
+   "source": "python blocks from session-4 cleaned reasoning traces"
+  },
+  {
+   "doc_id": "ffce85b1f70632cf",
+   "start": 33627,
+   "end": 33797,
+   "loss_from": 0,
+   "source": "python blocks from session-4 cleaned reasoning traces"
+  }
+ ]
+}

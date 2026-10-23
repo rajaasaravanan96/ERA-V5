@@ -1,0 +1,462 @@
+{
+ "shard_id": "web-train-001",
+ "lane": "web",
+ "split": "train",
+ "path": "web-train-001.npy",
+ "n_docs": 64,
+ "n_tokens": 15695,
+ "content_sha256": "fba4a6dbddb0abe8392009c94e25cfbbde5250e94ea8bfb776bbaca434d1bf80",
+ "tokenizer_sha256": "6cc5722116c53663f378eec02cdb0cb0b7c41b33d8be83babdea95b7adb87504",
+ "never_train": false,
+ "gradient_bearing": true,
+ "docs": [
+  {
+   "doc_id": "f6b83d01dfcba6a9",
+   "start": 0,
+   "end": 229,
+   "loss_from": 0,
+   "source": "wikipedia-en (session-2 corpus)"
+  },
+  {
+   "doc_id": "717fccb748c77ea3",
+   "start": 229,
+   "end": 538,
+   "loss_from": 0,
+   "source": "wikipedia-en (session-2 corpus)"
+  },
+  {
+   "doc_id": "9f8571511a1cdf75",
+   "start": 538,
+   "end": 743,
+   "loss_from": 0,
+   "source": "wikipedia-en (session-2 corpus)"
+  },
+  {
+   "doc_id": "86bfee7dac2c6df1",
+   "start": 743,
+   "end": 1012,
+   "loss_from": 0,
+   "source": "wikipedia-en (session-2 corpus)"
+  },
+  {
+   "doc_id": "d040073e727a5b43",
+   "start": 1012,
+   "end": 1288,
+   "loss_from": 0,
+   "source": "wikipedia-en (session-2 corpus)"
+  },
+  {
+   "doc_id": "af06ec2053f47792",
+   "start": 1288,
+   "end": 1613,
+   "loss_from": 0,
+   "source": "wikipedia-en (session-2 corpus)"
+  },
+  {
+   "doc_id": "cd0328f52b9a6815",
+   "start": 1613,
+   "end": 1708,
+   "loss_from": 0,
+   "source": "wikipedia-en (session-2 corpus)"
+  },
+  {
+   "doc_id": "989ed19e2cb3d8b8",
+   "start": 1708,
+   "end": 2077,
+   "loss_from": 0,
+   "source": "wikipedia-en (session-2 corpus)"
+  },
+  {
+   "doc_id": "4f73b5bd3a2da314",
+   "start": 2077,
+   "end": 2348,
+   "loss_from": 0,
+   "source": "wikipedia-en (session-2 corpus)"
+  },
+  {
+   "doc_id": "1d8ff5981cdc495e",
+   "start": 2348,
+   "end": 2432,
+   "loss_from": 0,
+   "source": "wikipedia-en (session-2 corpus)"
+  },
+  {
+   "doc_id": "098448abb2f16e03",
+   "start": 2432,
+   "end": 2516,
+   "loss_from": 0,
+   "source": "wikipedia-en (session-2 corpus)"
+  },
+  {
+   "doc_id": "fbeb9a9427ca6501",
+   "start": 2516,
+   "end": 2854,
+   "loss_from": 0,
+   "source": "wikipedia-en (session-2 corpus)"
+  },
+  {
+   "doc_id": "6cf7fca9a57e0933",
+   "start": 2854,
+   "end": 3238,
+   "loss_from": 0,
+   "source": "wikipedia-en (session-2 corpus)"
+  },
+  {
+   "doc_id": "57ac738cc130c028",
+   "start": 3238,
+   "end": 3684,
+   "loss_from": 0,
+   "source": "wikipedia-en (session-2 corpus)"
+  },
+  {
+   "doc_id": "c540387a4a335e23",
+   "start": 3684,
+   "end": 3752,
+   "loss_from": 0,
+   "source": "wikipedia-en (session-2 corpus)"
+  },
+  {
+   "doc_id": "a07f2913c3062b99",
+   "start": 3752,
+   "end": 4091,
+   "loss_from": 0,
+   "source": "wikipedia-en (session-2 corpus)"
+  },
+  {
+   "doc_id": "88e4c46ba830b6b9",
+   "start": 4091,
+   "end": 4238,
+   "loss_from": 0,
+   "source": "wikipedia-en (session-2 corpus)"
+  },
+  {
+   "doc_id": "46e0cbd67e4ebd38",
+   "start": 4238,
+   "end": 4506,
+   "loss_from": 0,
+   "source": "wikipedia-en (session-2 corpus)"
+  },
+  {
+   "doc_id": "71b6f75596117a27",
+   "start": 4506,
+   "end": 4652,
+   "loss_from": 0,
+   "source": "wikipedia-en (session-2 corpus)"
+  },
+  {
+   "doc_id": "4eb126d9414112ff",
+   "start": 4652,
+   "end": 4754,
+   "loss_from": 0,
+   "source": "wikipedia-en (session-2 corpus)"
+  },
+  {
+   "doc_id": "8b9a8826c92bec25",
+   "start": 4754,
+   "end": 4875,
+   "loss_from": 0,
+   "source": "wikipedia-en (session-2 corpus)"
+  },
+  {
+   "doc_id": "cb257c7abf35f7e6",
+   "start": 4875,
+   "end": 4998,
+   "loss_from": 0,
+   "source": "wikipedia-en (session-2 corpus)"
+  },
+  {
+   "doc_id": "fb6ea9a4d819043c",
+   "start": 4998,
+   "end": 5316,
+   "loss_from": 0,
+   "source": "wikipedia-en (session-2 corpus)"
+  },
+  {
+   "doc_id": "5a8b1622c7772090",
+   "start": 5316,
+   "end": 5471,
+   "loss_from": 0,
+   "source": "wikipedia-en (session-2 corpus)"
+  },
+  {
+   "doc_id": "934ae89156cf2784",
+   "start": 5471,
+   "end": 5678,
+   "loss_from": 0,
+   "source": "wikipedia-en (session-2 corpus)"
+  },
+  {
+   "doc_id": "125147b70074ceb7",
+   "start": 5678,
+   "end": 5896,
+   "loss_from": 0,
+   "source": "wikipedia-en (session-2 corpus)"
+  },
+  {
+   "doc_id": "a4928f386da4a074",
+   "start": 5896,
+   "end": 6171,
+   "loss_from": 0,
+   "source": "wikipedia-en (session-2 corpus)"
+  },
+  {
+   "doc_id": "d073e02e6c1dd5bd",
+   "start": 6171,
+   "end": 6326,
+   "loss_from": 0,
+   "source": "wikipedia-en (session-2 corpus)"
+  },
+  {
+   "doc_id": "a86afec383f2ba2c",
+   "start": 6326,
+   "end": 6635,
+   "loss_from": 0,
+   "source": "wikipedia-en (session-2 corpus)"
+  },
+  {
+   "doc_id": "72ee98fa2654e575",
+   "start": 6635,
+   "end": 7162,
+   "loss_from": 0,
+   "source": "wikipedia-en (session-2 corpus)"
+  },
+  {
+   "doc_id": "39d2ba18057a2dce",
+   "start": 7162,
+   "end": 7606,
+   "loss_from": 0,
+   "source": "wikipedia-en (session-2 corpus)"
+  },
+  {
+   "doc_id": "9b902a02df59ea01",
+   "start": 7606,
+   "end": 7744,
+   "loss_from": 0,
+   "source": "wikipedia-en (session-2 corpus)"
+  },
+  {
+   "doc_id": "dd8e5561ac2f78c9",
+   "start": 7744,
+   "end": 7980,
+   "loss_from": 0,
+   "source": "wikipedia-en (session-2 corpus)"
+  },
+  {
+   "doc_id": "024960995cb72ece",
+   "start": 7980,
+   "end": 8112,
+   "loss_from": 0,
+   "source": "wikipedia-en (session-2 corpus)"
+  },
+  {
+   "doc_id": "e3c15dfad77f6b9d",
+   "start": 8112,
+   "end": 8518,
+   "loss_from": 0,
+   "source": "wikipedia-en (session-2 corpus)"
+  },
+  {
+   "doc_id": "d8c70ac41d8b1579",
+   "start": 8518,
+   "end": 8738,
+   "loss_from": 0,
+   "source": "wikipedia-en (session-2 corpus)"
+  },
+  {
+   "doc_id": "262c5801d84df280",
+   "start": 8738,
+   "end": 9315,
+   "loss_from": 0,
+   "source": "wikipedia-en (session-2 corpus)"
+  },
+  {
+   "doc_id": "d5400d9f248fd610",
+   "start": 9315,
+   "end": 9434,
+   "loss_from": 0,
+   "source": "wikipedia-en (session-2 corpus)"
+  },
+  {
+   "doc_id": "cbf4881ec763c0a9",
+   "start": 9434,
+   "end": 9581,
+   "loss_from": 0,
+   "source": "wikipedia-en (session-2 corpus)"
+  },
+  {
+   "doc_id": "ca8b1c2977db9419",
+   "start": 9581,
+   "end": 9789,
+   "loss_from": 0,
+   "source": "wikipedia-en (session-2 corpus)"
+  },
+  {
+   "doc_id": "7a8567c6d3d2f966",
+   "start": 9789,
+   "end": 9934,
+   "loss_from": 0,
+   "source": "wikipedia-en (session-2 corpus)"
+  },
+  {
+   "doc_id": "b492a773b26674fd",
+   "start": 9934,
+   "end": 10230,
+   "loss_from": 0,
+   "source": "wikipedia-en (session-2 corpus)"
+  },
+  {
+   "doc_id": "f3e720ee17016615",
+   "start": 10230,
+   "end": 10860,
+   "loss_from": 0,
+   "source": "wikipedia-en (session-2 corpus)"
+  },
+  {
+   "doc_id": "65d9645b9df7162f",
+   "start": 10860,
+   "end": 11200,
+   "loss_from": 0,
+   "source": "wikipedia-en (session-2 corpus)"
+  },
+  {
+   "doc_id": "4a7e55499d7d27ba",
+   "start": 11200,
+   "end": 11318,
+   "loss_from": 0,
+   "source": "wikipedia-en (session-2 corpus)"
+  },
+  {
+   "doc_id": "741050af1e0bd3f4",
+   "start": 11318,
+   "end": 11504,
+   "loss_from": 0,
+   "source": "wikipedia-en (session-2 corpus)"
+  },
+  {
+   "doc_id": "29c16859100cd240",
+   "start": 11504,
+   "end": 11625,
+   "loss_from": 0,
+   "source": "wikipedia-en (session-2 corpus)"
+  },
+  {
+   "doc_id": "b578620608a77224",
+   "start": 11625,
+   "end": 11813,
+   "loss_from": 0,
+   "source": "wikipedia-en (session-2 corpus)"
+  },
+  {
+   "doc_id": "d99e1a2951538159",
+   "start": 11813,
+   "end": 12417,
+   "loss_from": 0,
+   "source": "wikipedia-en (session-2 corpus)"
+  },
+  {
+   "doc_id": "c5255caf0fbd3494",
+   "start": 12417,
+   "end": 12711,
+   "loss_from": 0,
+   "source": "wikipedia-en (session-2 corpus)"
+  },
+  {
+   "doc_id": "4e88c28fadbbe05d",
+   "start": 12711,
+   "end": 12992,
+   "loss_from": 0,
+   "source": "wikipedia-en (session-2 corpus)"
+  },
+  {
+   "doc_id": "3c6c3cf09276d18c",
+   "start": 12992,
+   "end": 13306,
+   "loss_from": 0,
+   "source": "wikipedia-en (session-2 corpus)"
+  },
+  {
+   "doc_id": "c8cdbbd25e7f1ab7",
+   "start": 13306,
+   "end": 13394,
+   "loss_from": 0,
+   "source": "wikipedia-en (session-2 corpus)"
+  },
+  {
+   "doc_id": "110bfdf454524acf",
+   "start": 13394,
+   "end": 13452,
+   "loss_from": 0,
+   "source": "wikipedia-en (session-2 corpus)"
+  },
+  {
+   "doc_id": "cc8e134801e2f1de",
+   "start": 13452,
+   "end": 13764,
+   "loss_from": 0,
+   "source": "wikipedia-en (session-2 corpus)"
+  },
+  {
+   "doc_id": "d000e8ffbc866e11",
+   "start": 13764,
+   "end": 14210,
+   "loss_from": 0,
+   "source": "wikipedia-en (session-2 corpus)"
+  },
+  {
+   "doc_id": "4b05e132375a995a",
+   "start": 14210,
+   "end": 14444,
+   "loss_from": 0,
+   "source": "wikipedia-en (session-2 corpus)"
+  },
+  {
+   "doc_id": "a5ea127f018d27e2",
+   "start": 14444,
+   "end": 14542,
+   "loss_from": 0,
+   "source": "wikipedia-en (session-2 corpus)"
+  },
+  {
+   "doc_id": "9f6247bc38566cd8",
+   "start": 14542,
+   "end": 14684,
+   "loss_from": 0,
+   "source": "wikipedia-en (session-2 corpus)"
+  },
+  {
+   "doc_id": "c9f599d2fae69329",
+   "start": 14684,
+   "end": 14794,
+   "loss_from": 0,
+   "source": "wikipedia-en (session-2 corpus)"
+  },
+  {
+   "doc_id": "97aa6cf12169c325",
+   "start": 14794,
+   "end": 14874,
+   "loss_from": 0,
+   "source": "wikipedia-en (session-2 corpus)"
+  },
+  {
+   "doc_id": "8fc7c2eb436a3f33",
+   "start": 14874,
+   "end": 15323,
+   "loss_from": 0,
+   "source": "wikipedia-en (session-2 corpus)"
+  },
+  {
+   "doc_id": "b0907fdebd3294ae",
+   "start": 15323,
+   "end": 15562,
+   "loss_from": 0,
+   "source": "wikipedia-en (session-2 corpus)"
+  },
+  {
+   "doc_id": "6e216f2bbd0d491f",
+   "start": 15562,
+   "end": 15695,
+   "loss_from": 0,
+   "source": "wikipedia-en (session-2 corpus)"
+  }
+ ]
+}

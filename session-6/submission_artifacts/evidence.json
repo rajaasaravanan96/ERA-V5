@@ -1,0 +1,156 @@
+{
+ "tokenizer_hash_verified": {
+  "passed": true,
+  "evidence": "tokenizer.lock.json; every manifest.tokenizer_sha256",
+  "sha256": "6cc5722116c53663f378eec02cdb0cb0b7c41b33d8be83babdea95b7adb87504",
+  "vocab_size": 10004
+ },
+ "manifests_validated": {
+  "passed": true,
+  "evidence": "manifests/*.manifest.json",
+  "shards": 21,
+  "content_hash_mismatches": 0,
+  "rewrite_refused": true
+ },
+ "eval_shard_blocked": {
+  "passed": true,
+  "evidence": "manifests/eval_registry.json",
+  "refused": [
+   "benchmark-test-000",
+   "benchmark-test-001",
+   "benchmark-test-002",
+   "benchmark-test-003",
+   "benchmark-test-004",
+   "web-val-000"
+  ]
+ },
+ "checkpoint_saved": {
+  "passed": true,
+  "evidence": "checkpoints/main-step0040.json"
+ },
+ "resume_next_batch_matched": {
+  "passed": true,
+  "evidence": "ledgers/main.consumption.jsonl; ledgers/main.consumption.rolled_back.jsonl",
+  "resumed_from_step": 40,
+  "next_step": 40,
+  "expected_batch_sha256": "68ffd4dedbd7add17fb35d48bd0bd3a8ce815c5b951db035cabf995a720f56f6",
+  "resumed_batch_sha256": "68ffd4dedbd7add17fb35d48bd0bd3a8ce815c5b951db035cabf995a720f56f6",
+  "expected_sample_ids": [
+   "621e0f42e2628b79",
+   "3f838b7e8d942030",
+   "65449283f42a3c5a",
+   "ac849c360cc1960b",
+   "09b8a0d49767f7dc",
+   "236f2247f3e231ac",
+   "177c5643fac53ede",
+   "47ff30b22dfa5cf7"
+  ],
+  "resumed_sample_ids": [
+   "621e0f42e2628b79",
+   "3f838b7e8d942030",
+   "65449283f42a3c5a",
+   "ac849c360cc1960b",
+   "09b8a0d49767f7dc",
+   "236f2247f3e231ac",
+   "177c5643fac53ede",
+   "47ff30b22dfa5cf7"
+  ],
+  "all_80_batches_equal_uninterrupted_run": true,
+  "steps_contiguous_no_skip_no_repeat": true,
+  "final_weights_equal_uninterrupted_run": true
+ },
+ "replay_hash_matched": {
+  "passed": true,
+  "evidence": "ledgers/replay_steps_20_30.json",
+  "steps": 11
+ },
+ "branch_forked": {
+  "passed": true,
+  "evidence": "ledgers/fork-indic-up.consumption.jsonl",
+  "parent": {
+   "branch": "main",
+   "step": 40,
+   "checkpoint": "main-step0040"
+  },
+  "batches_differing_from_main": 17
+ },
+ "packing_correct": {
+  "passed": true,
+  "evidence": "ledgers/audit.json#spans; tests/test_invariants.py",
+  "segments_checked": 765,
+  "missing_or_out_of_doc": 0,
+  "non_train_shards": 0
+ },
+ "eval_firewall_held": {
+  "passed": true,
+  "evidence": "ledgers/main.opus.jsonl (status=blocked); ledgers/audit.json",
+  "blocked_candidates": 1,
+  "blocked_example": "eval firewall: shares a 13-gram with never-train shard benchmark-test-000 (doc 2b2e3f9639f6fa28)"
+ },
+ "mixture_compliance": {
+  "passed": true,
+  "evidence": "ledgers/audit.json#mixture",
+  "shares": {
+   "web": {
+    "planned": 0.3844,
+    "actual": 0.3844,
+    "abs_diff": 0.0
+   },
+   "indic": {
+    "planned": 0.1828,
+    "actual": 0.1828,
+    "abs_diff": 0.0
+   },
+   "code": {
+    "planned": 0.1828,
+    "actual": 0.1828,
+    "abs_diff": 0.0
+   },
+   "reasoning": {
+    "planned": 0.25,
+    "actual": 0.25,
+    "abs_diff": 0.0
+   }
+  },
+  "protected_floor_violations": 0
+ },
+ "opus_audit_trail": {
+  "passed": true,
+  "evidence": "ledgers/main.opus.jsonl",
+  "decisions": 1353,
+  "by_status": {
+   "blocked": 1,
+   "accepted": 640,
+   "deferred": 357,
+   "rejected": 355
+  },
+  "overrides": 113,
+  "mixture_quota_overrides": 84
+ },
+ "learning_trace": {
+  "passed": true,
+  "evidence": "ledgers/main.learning.jsonl; ledgers/main.tokens.jsonl; ledgers/audit.json#shard_report_card",
+  "shards_classified": {
+   "useful": 3,
+   "unseen-late": 7,
+   "harmful/no-gain": 1,
+   "neutral": 1
+  }
+ },
+ "throughput": {
+  "passed": true,
+  "evidence": "performance.json",
+  "packing_utilization": 0.9867,
+  "loss_bearing_fraction": 0.8555,
+  "end_to_end_loss_bearing_tokens_per_s": 1734
+ },
+ "_meta": {
+  "command": "python run_demo.py",
+  "seconds": 99.2,
+  "steps": 80,
+  "crash_after_step": 44,
+  "torch": "2.13.0",
+  "tokenizer_sha256": "6cc5722116c53663f378eec02cdb0cb0b7c41b33d8be83babdea95b7adb87504",
+  "schedule_sha256": "2e794bf22a31046643cd14414e69ed573e3f40c9cec8a6f5fbd45f25e2129a01"
+ }
+}
