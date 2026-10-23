@@ -1,0 +1,74 @@
+{
+ "lanes": {
+  "general web": {
+   "tokens": 7852500000000.0,
+   "share": 0.5510526315789473,
+   "unique": 3835000000000.0,
+   "epochs": 2.047588005215124,
+   "generated": 0.0
+  },
+  "STEM papers": {
+   "tokens": 487500000000.0,
+   "share": 0.034210526315789476,
+   "unique": 97000000000.0,
+   "epochs": 4.0,
+   "generated": 99500000000.0
+  },
+  "code": {
+   "tokens": 3735000000000.0,
+   "share": 0.26210526315789473,
+   "unique": 859000000000.0,
+   "epochs": 4.0,
+   "generated": 299000000000.0
+  },
+  "maths & reasoning": {
+   "tokens": 795000000000.0,
+   "share": 0.05578947368421053,
+   "unique": 70200000000.0,
+   "epochs": 4.0,
+   "generated": 514200000000.0
+  },
+  "long context": {
+   "tokens": 180000000000.0,
+   "share": 0.01263157894736842,
+   "unique": 100000000000.0,
+   "epochs": 1.8,
+   "generated": 0.0
+  },
+  "agentic-shaped": {
+   "tokens": 142500000000.0,
+   "share": 0.01,
+   "unique": 4000000000.0,
+   "epochs": 4.0,
+   "generated": 126500000000.0
+  }
+ },
+ "indic": {
+  "verified": {
+   "tokens": 317250000000.0,
+   "unique": 51200000000.0,
+   "epochs": 4.0,
+   "generated": 112450000000.0
+  },
+  "unverified": {
+   "tokens": 211500000000.0,
+   "unique": 44900000000.0,
+   "epochs": 4.0,
+   "generated": 31900000000.0
+  },
+  "translated": {
+   "tokens": 211500000000.0,
+   "unique": 5000000000.0,
+   "epochs": 4.0,
+   "generated": 191500000000.0
+  },
+  "synthetic": {
+   "tokens": 317250000000.0,
+   "unique": 162000000000.0,
+   "epochs": 1.9583333333333333,
+   "generated": 0.0
+  }
+ },
+ "total_main": 14250000000000.0,
+ "anneal": 300000000000.0
+}
