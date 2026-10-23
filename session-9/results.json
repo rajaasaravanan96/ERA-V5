@@ -1,0 +1,35 @@
+{
+  "padding": {
+    "targets_unmasked": 124,
+    "targets_masked": 86
+  },
+  "packing": {
+    "loss_naive": 6.778635501861572,
+    "loss_masked": 6.713425073868189,
+    "boundary_token_loss": 13.744686126708984
+  },
+  "perplexity": {
+    "V": 10001,
+    "untrained_ppl": 10510.166589174345,
+    "trained_ppl": 978.4498129821185
+  },
+  "tying": {
+    "untied": 5660736,
+    "tied": 3740544,
+    "saved": 1920192
+  },
+  "memory": {
+    "N": 8192,
+    "V": 10001,
+    "ordinary_MB": 937.59423828125,
+    "chunked_MB": 91.907470703125,
+    "ratio": 10.201501913917541
+  },
+  "two_heads": {
+    "val_loss_t1": 6.4985349655151365,
+    "val_loss_t2": 7.184404182434082,
+    "val_sum": 13.682939147949218,
+    "train_last50_t1": 4.372619161605835,
+    "train_last50_t2": 5.260624961853027
+  }
+}
