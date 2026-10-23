@@ -1,0 +1,111 @@
+{
+ "collisions": {
+  "kronecker_32": {
+   "words_in_collisions": 17,
+   "groups": 7,
+   "by_script": {
+    "Devanagari": 12,
+    "Latin": 5
+   },
+   "examples": [
+    [
+     "FOOTNOTEDikshitSchwartzberg202312",
+     "FOOTNOTEDikshitSchwartzberg202313",
+     "FOOTNOTEDikshitSchwartzberg202315"
+    ],
+    [
+     "अर्थव्यवस्था",
+     "अर्थव्यवस्थओं"
+    ],
+    [
+     "राज्यक्षेत्र",
+     "राज्यक्षेत्रों"
+    ],
+    [
+     "हिन्दुस्तान",
+     "हिन्दुस्तानी"
+    ],
+    [
+     "धर्मनिरपेक्ष",
+     "धर्मनिरपेक्षता"
+    ]
+   ],
+   "probe_accuracy_ceiling": 0.9992715617715617
+  },
+  "dynamic": {
+   "words_in_collisions": 0,
+   "groups": 0,
+   "by_script": {},
+   "examples": [],
+   "probe_accuracy_ceiling": 1.0
+  }
+ },
+ "lesson_pair": {
+  "words": [
+   "अंतर्राष्ट्रीयकरण",
+   "अंतर्राष्ट्रीयता"
+  ],
+  "bytes": [
+   51,
+   48
+  ],
+  "kronecker_distance": 0.0,
+  "dynamic_distance": 1.3992880450624587
+ },
+ "length": {
+  "mean_bytes": 9.718968531468532,
+  "mean_bytes_latin": 7.621421573963209,
+  "mean_bytes_devanagari": 17.444478812248686,
+  "words_over_32_bytes": 154,
+  "devanagari_over_32": 133,
+  "longest": 60,
+  "kron_grid_unused_pct": 69.77436625874127
+ },
+ "min_pairwise_distance_sample3000": {
+  "kronecker_32": 0.0,
+  "dynamic": 1.0000019073486328
+ },
+ "probe": {
+  "dense": {
+   "input_params": 1757184,
+   "accuracy": 1.0,
+   "accuracy_words_over_32_bytes": 1.0
+  },
+  "kronecker_32": {
+   "input_params": 1048576,
+   "accuracy": 0.9992715716362,
+   "accuracy_words_over_32_bytes": 0.9350649118423462
+  },
+  "dynamic": {
+   "input_params": 1048576,
+   "accuracy": 1.0,
+   "accuracy_words_over_32_bytes": 1.0
+  }
+ },
+ "lm": {
+  "dense": {
+   "input_params": 11993856,
+   "total_params": 25779840,
+   "final_val": 6.1458337783813475,
+   "final_train": 5.818990230560303,
+   "vocab": 62468,
+   "seconds": 3116.5603518486023
+  },
+  "kronecker_32": {
+   "input_params": 1572864,
+   "total_params": 15358848,
+   "final_val": 6.400669002532959,
+   "final_train": 6.200321674346924,
+   "vocab": 62468,
+   "seconds": 3069.6153180599213
+  },
+  "dynamic": {
+   "input_params": 1572864,
+   "total_params": 15358848,
+   "final_val": 6.11921763420105,
+   "final_train": 5.831130027770996,
+   "vocab": 62468,
+   "seconds": 2975.251438140869
+  }
+ }
+}
