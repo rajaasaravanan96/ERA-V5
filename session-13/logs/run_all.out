@@ -1,0 +1,96 @@
+standard  batch    8: peak   1.44 GiB (state 0.51)  fits
+standard  batch   16: peak   2.58 GiB (state 0.77)  fits
+standard  batch   32: peak   4.78 GiB (state 1.30)  fits
+standard  batch   48: peak   6.76 GiB (state 1.88)  over budget
+standard  batch   64: peak   9.18 GiB (state 2.50)  over budget
+midpoint  batch    8: peak   0.74 GiB (state 0.45)  fits
+midpoint  batch   16: peak   1.13 GiB (state 0.56)  fits
+midpoint  batch   32: peak   1.78 GiB (state 0.65)  fits
+midpoint  batch   48: peak   3.08 GiB (state 0.87)  fits
+midpoint  batch   64: peak   3.85 GiB (state 1.05)  fits
+midpoint  batch   96: peak   3.84 GiB (state 0.50)  fits
+midpoint  batch  128: peak   6.42 GiB (state 0.66)  over budget
+midpoint  batch  160: peak   6.42 GiB (state 0.84)  over budget
+midpoint  batch  192: peak   8.44 GiB (state 0.39)  over budget
+standard: variant standard, batch 32, 6103 steps x 8192 tokens = 49,995,776 tokens, peak lr 1.00e-03, params 19,870,848, device mps
+[standard] step     0/6103  tokens    0.0M  loss 9.2590  val 9.2214  grad 7.725  6,850 tok/s  peak 0.00 GiB       1s
+[standard] step   200/6103  tokens    1.6M  loss 4.5831  val 4.4838  grad 0.611  6,159 tok/s  peak 4.53 GiB     269s
+[standard] step   400/6103  tokens    3.3M  loss 4.1783  val 4.1633  grad 0.504  4,514 tok/s  peak 4.53 GiB     634s
+[standard] step   600/6103  tokens    4.9M  loss 3.8341  val 3.8127  grad 0.585  4,654 tok/s  peak 4.53 GiB     990s
+[standard] step   800/6103  tokens    6.6M  loss 3.6160  val 3.5853  grad 0.537  4,986 tok/s  peak 4.53 GiB    1322s
+[standard] step  1000/6103  tokens    8.2M  loss 3.4672  val 3.4456  grad 0.538  4,987 tok/s  peak 4.53 GiB    1654s
+[standard] step  1200/6103  tokens    9.8M  loss 3.3480  val 3.3415  grad 0.540  5,158 tok/s  peak 4.53 GiB    1975s
+[standard] step  1400/6103  tokens   11.5M  loss 3.3247  val 3.2403  grad 0.527  5,549 tok/s  peak 4.53 GiB    2274s
+[standard] step  1600/6103  tokens   13.1M  loss 3.2961  val 3.1611  grad 0.503  5,760 tok/s  peak 4.53 GiB    2561s
+[standard] step  1800/6103  tokens   14.8M  loss 3.1928  val 3.1048  grad 0.524  5,634 tok/s  peak 4.53 GiB    2854s
+[standard] step  2000/6103  tokens   16.4M  loss 2.9554  val 3.0584  grad 0.485  5,674 tok/s  peak 4.53 GiB    3146s
+[standard] step  2200/6103  tokens   18.0M  loss 2.9247  val 3.0097  grad 0.485  5,508 tok/s  peak 4.53 GiB    3446s
+[standard] step  2400/6103  tokens   19.7M  loss 3.0264  val 2.9735  grad 0.484  5,495 tok/s  peak 4.53 GiB    3746s
+[standard] step  2600/6103  tokens   21.3M  loss 2.9922  val 2.9334  grad 0.491  5,345 tok/s  peak 4.53 GiB    4055s
+[standard] step  2800/6103  tokens   22.9M  loss 2.8868  val 2.9092  grad 0.466  5,857 tok/s  peak 4.53 GiB    4338s
+[standard] step  3000/6103  tokens   24.6M  loss 2.9220  val 2.8764  grad 0.484  5,534 tok/s  peak 4.53 GiB    4637s
+[standard] step  3200/6103  tokens   26.2M  loss 2.8947  val 2.8504  grad 0.475  5,584 tok/s  peak 4.53 GiB    4933s
+[standard] step  3400/6103  tokens   27.9M  loss 2.7723  val 2.8251  grad 0.472  5,928 tok/s  peak 4.53 GiB    5212s
+[standard] step  3600/6103  tokens   29.5M  loss 2.7840  val 2.8045  grad 0.482  5,604 tok/s  peak 4.53 GiB    5507s
+[standard] step  3800/6103  tokens   31.1M  loss 2.7421  val 2.7842  grad 0.497  5,602 tok/s  peak 4.53 GiB    5802s
+[standard] step  4000/6103  tokens   32.8M  loss 2.6876  val 2.7664  grad 0.504  5,889 tok/s  peak 4.53 GiB    6083s
+[standard] step  4200/6103  tokens   34.4M  loss 2.7057  val 2.7433  grad 0.494  5,636 tok/s  peak 4.53 GiB    6376s
+[standard] step  4400/6103  tokens   36.1M  loss 2.7500  val 2.7274  grad 0.516  5,728 tok/s  peak 4.53 GiB    6665s
+[standard] step  4600/6103  tokens   37.7M  loss 2.6795  val 2.7134  grad 0.494  5,623 tok/s  peak 4.53 GiB    6959s
+[standard] step  4800/6103  tokens   39.3M  loss 2.6706  val 2.6961  grad 0.518  5,841 tok/s  peak 4.53 GiB    7243s
+[standard] step  5000/6103  tokens   41.0M  loss 2.5825  val 2.6833  grad 0.516  5,895 tok/s  peak 4.53 GiB    7522s
+[standard] step  5200/6103  tokens   42.6M  loss 2.6470  val 2.6707  grad 0.511  5,908 tok/s  peak 4.53 GiB    7802s
+[standard] step  5400/6103  tokens   44.2M  loss 2.6616  val 2.6627  grad 0.527  6,138 tok/s  peak 4.53 GiB    8071s
+[standard] step  5600/6103  tokens   45.9M  loss 2.6861  val 2.6546  grad 0.538  5,712 tok/s  peak 4.53 GiB    8360s
+[standard] step  5800/6103  tokens   47.5M  loss 2.6070  val 2.6483  grad 0.519  5,707 tok/s  peak 4.53 GiB    8650s
+[standard] step  6000/6103  tokens   49.2M  loss 2.6213  val 2.6428  grad 0.560  5,764 tok/s  peak 4.53 GiB    8937s
+[standard] step  6102/6103  tokens   50.0M  loss 2.6955  val 2.6422  grad 0.544  5,320 tok/s  peak 4.53 GiB    9097s
+{"name": "standard", "variant": "standard", "batch": 32, "steps": 6103, "tokens": 49995776, "params": 19870848, "final_train_loss": 2.635801954269409, "final_val_loss": 2.65566014289856, "tok_s": 5494.099233184421, "wall_s": 9099.904074907303, "peak_GiB": 4.53137731552124}
+reversible: variant midpoint, batch 32, 6103 steps x 8192 tokens = 49,995,776 tokens, peak lr 1.00e-03, params 19,870,848, device mps
+[reversible] step     0/6103  tokens    0.0M  loss 9.2855  val 9.2514  grad 7.601  2,491 tok/s  peak 0.00 GiB       3s  recon err 2.8e-03
+[reversible] step   200/6103  tokens    1.6M  loss 4.5834  val 4.4800  grad 0.678  5,213 tok/s  peak 1.32 GiB     321s  recon err 2.5e-02
+[reversible] step   400/6103  tokens    3.3M  loss 4.1566  val 4.1510  grad 0.520  4,889 tok/s  peak 1.32 GiB     658s  recon err 2.0e-01
+[reversible] step   600/6103  tokens    4.9M  loss 3.8739  val 3.8471  grad 0.616  4,682 tok/s  peak 1.32 GiB    1011s  recon err 5.8e-01
+[reversible] step   800/6103  tokens    6.6M  loss 3.6505  val 3.6378  grad 0.579  7,429 tok/s  peak 1.32 GiB    1236s  recon err 7.2e-01
+[reversible] step  1000/6103  tokens    8.2M  loss 3.5339  val 3.5051  grad 0.601  10,786 tok/s  peak 1.32 GiB    1389s  recon err 1.4e+00
+[reversible] step  1200/6103  tokens    9.8M  loss 3.4136  val 3.4120  grad 0.550  10,553 tok/s  peak 1.32 GiB    1545s  recon err 3.5e+00
+[reversible] step  1400/6103  tokens   11.5M  loss 3.4291  val 3.3358  grad 0.569  10,568 tok/s  peak 1.32 GiB    1702s  recon err 3.6e+00
+[reversible] step  1600/6103  tokens   13.1M  loss 3.4065  val 3.2766  grad 0.533  10,323 tok/s  peak 1.32 GiB    1862s  recon err 4.8e+00
+[reversible] step  1800/6103  tokens   14.8M  loss 3.3002  val 3.2208  grad 0.536  10,599 tok/s  peak 1.32 GiB    2018s  recon err 8.8e+00
+[reversible] step  2000/6103  tokens   16.4M  loss 3.0723  val 3.1830  grad 0.522  10,624 tok/s  peak 1.32 GiB    2173s  recon err 5.8e+00
+[reversible] step  2200/6103  tokens   18.0M  loss 3.0566  val 3.1315  grad 0.519  9,197 tok/s  peak 1.32 GiB    2353s  recon err 7.2e+00
+[reversible] step  2400/6103  tokens   19.7M  loss 3.1653  val 3.0967  grad 0.539  10,550 tok/s  peak 1.32 GiB    2510s  recon err 9.8e+00
+[reversible] step  2600/6103  tokens   21.3M  loss 3.0989  val 3.0545  grad 0.536  10,192 tok/s  peak 1.32 GiB    2671s  recon err 6.9e+00
+[reversible] step  2800/6103  tokens   22.9M  loss 2.9799  val 3.0216  grad 0.515  10,162 tok/s  peak 1.32 GiB    2834s  recon err 4.6e+00
+[reversible] step  3000/6103  tokens   24.6M  loss 3.0496  val 2.9905  grad 0.533  9,903 tok/s  peak 1.32 GiB    3001s  recon err 8.5e+00
+[reversible] step  3200/6103  tokens   26.2M  loss 2.9980  val 2.9562  grad 0.531  9,656 tok/s  peak 1.32 GiB    3172s  recon err 1.1e+01
+[reversible] step  3400/6103  tokens   27.9M  loss 2.8476  val 2.9209  grad 0.545  10,043 tok/s  peak 1.32 GiB    3337s  recon err 1.1e+01
+[reversible] step  3600/6103  tokens   29.5M  loss 2.8674  val 2.9001  grad 0.565  10,379 tok/s  peak 1.32 GiB    3496s  recon err 6.2e+00
+[reversible] step  3800/6103  tokens   31.1M  loss 2.8307  val 2.8747  grad 0.570  9,872 tok/s  peak 1.32 GiB    3663s  recon err 5.6e+00
+[reversible] step  4000/6103  tokens   32.8M  loss 2.7772  val 2.8492  grad 0.587  9,140 tok/s  peak 1.32 GiB    3844s  recon err 8.5e+00
+[reversible] step  4200/6103  tokens   34.4M  loss 2.7634  val 2.8221  grad 0.557  9,658 tok/s  peak 1.32 GiB    4015s  recon err 7.5e+00
+[reversible] step  4400/6103  tokens   36.1M  loss 2.8366  val 2.8061  grad 0.583  9,828 tok/s  peak 1.32 GiB    4183s  recon err 6.8e+00
+[reversible] step  4600/6103  tokens   37.7M  loss 2.7510  val 2.7847  grad 0.579  7,311 tok/s  peak 1.32 GiB    4408s  recon err 5.9e+00
+[reversible] step  4800/6103  tokens   39.3M  loss 2.7453  val 2.7684  grad 0.583  8,559 tok/s  peak 1.32 GiB    4601s  recon err 5.4e+00
+[reversible] step  5000/6103  tokens   41.0M  loss 2.6419  val 2.7538  grad 0.583  8,646 tok/s  peak 1.32 GiB    4792s  recon err 6.2e+00
+[reversible] step  5200/6103  tokens   42.6M  loss 2.7097  val 2.7396  grad 0.598  8,535 tok/s  peak 1.32 GiB    4986s  recon err 5.5e+00
+[reversible] step  5400/6103  tokens   44.2M  loss 2.7264  val 2.7292  grad 0.585  3,547 tok/s  peak 1.32 GiB    5449s  recon err 3.9e+00
+[reversible] step  5600/6103  tokens   45.9M  loss 2.7595  val 2.7196  grad 0.616  3,043 tok/s  peak 1.32 GiB    5991s  recon err 5.6e+00
+[reversible] step  5800/6103  tokens   47.5M  loss 2.6814  val 2.7132  grad 0.603  3,028 tok/s  peak 1.32 GiB    6536s  recon err 5.5e+00
+[reversible] step  6000/6103  tokens   49.2M  loss 2.6903  val 2.7043  grad 0.626  5 tok/s  peak 1.32 GiB  326475s  recon err 5.8e+00
+[reversible] step  6102/6103  tokens   50.0M  loss 2.7587  val 2.7028  grad 0.636  13,860 tok/s  peak 1.32 GiB  326536s  recon err 5.1e+00
+{"name": "reversible", "variant": "midpoint", "batch": 32, "steps": 6103, "tokens": 49995776, "params": 19870848, "final_train_loss": 2.682874708175659, "final_val_loss": 2.7160324478149414, "tok_s": 153.10873240430277, "wall_s": 326537.7174437046, "peak_GiB": 1.3214569091796875}
+rev_maxbatch: variant midpoint, batch 96, 2034 steps x 24576 tokens = 49,987,584 tokens, peak lr 1.73e-03, params 19,870,848, device mps
+[rev_maxbatch] step     0/2034  tokens    0.0M  loss 9.2923  val 9.1021  grad 7.532  8,667 tok/s  peak 0.00 GiB       3s  recon err 3.4e-03
+[rev_maxbatch] step   200/2034  tokens    4.9M  loss 4.1370  val 4.1206  grad 0.436  4,548 tok/s  peak 3.74 GiB    1085s  recon err 2.2e+00
+[rev_maxbatch] step   400/2034  tokens    9.9M  loss 3.6363  val 3.6004  grad 0.532  6,162 tok/s  peak 3.74 GiB    1977s  recon err 5.7e+00
+[rev_maxbatch] step   600/2034  tokens   14.8M  loss 3.4172  val 3.3994  grad 0.477  10,368 tok/s  peak 3.74 GiB    2452s  recon err 1.2e+01
+[rev_maxbatch] step   800/2034  tokens   19.7M  loss 3.3035  val 3.2754  grad 0.471  9,078 tok/s  peak 3.74 GiB    2995s  recon err 1.3e+01
+[rev_maxbatch] step  1000/2034  tokens   24.6M  loss 3.1838  val 3.1787  grad 0.438  10,454 tok/s  peak 3.74 GiB    3467s  recon err 1.6e+01
+[rev_maxbatch] step  1200/2034  tokens   29.5M  loss 3.0728  val 3.0959  grad 0.448  11,891 tok/s  peak 3.74 GiB    3881s  recon err 1.7e+01
+[rev_maxbatch] step  1400/2034  tokens   34.4M  loss 3.0018  val 3.0273  grad 0.435  10,903 tok/s  peak 3.74 GiB    4333s  recon err 1.5e+01
+[rev_maxbatch] step  1600/2034  tokens   39.3M  loss 2.9394  val 2.9653  grad 0.459  8,422 tok/s  peak 3.74 GiB    4918s  recon err 1.3e+01
+[rev_maxbatch] step  1800/2034  tokens   44.3M  loss 2.9226  val 2.9225  grad 0.465  153 tok/s  peak 3.74 GiB   36958s  recon err 1.1e+01
+[rev_maxbatch] step  2000/2034  tokens   49.2M  loss 2.8537  val 2.8936  grad 0.494  10,177 tok/s  peak 3.74 GiB   37442s  recon err 1.4e+01
+[rev_maxbatch] step  2033/2034  tokens   50.0M  loss 2.9053  val 2.8921  grad 0.476  8,500 tok/s  peak 3.74 GiB   37539s  recon err 9.0e+00
+{"name": "rev_maxbatch", "variant": "midpoint", "batch": 96, "steps": 2034, "tokens": 49987584, "params": 19870848, "final_train_loss": 2.874131007194519, "final_val_loss": 2.905019917488098, "tok_s": 1331.559543028112, "wall_s": 37540.62990403175, "peak_GiB": 3.7371349334716797}

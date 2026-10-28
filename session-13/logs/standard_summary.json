@@ -1,0 +1,13 @@
+{
+ "name": "standard",
+ "variant": "standard",
+ "batch": 32,
+ "steps": 6103,
+ "tokens": 49995776,
+ "params": 19870848,
+ "final_train_loss": 2.635801954269409,
+ "final_val_loss": 2.65566014289856,
+ "tok_s": 5494.099233184421,
+ "wall_s": 9099.904074907303,
+ "peak_GiB": 4.53137731552124
+}

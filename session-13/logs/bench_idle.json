@@ -1,0 +1,26 @@
+[
+ {
+  "name": "standard",
+  "variant": "standard",
+  "batch": 32,
+  "tok_s": 12425,
+  "step_s": 0.659,
+  "peak_GiB": 4.51
+ },
+ {
+  "name": "reversible",
+  "variant": "midpoint",
+  "batch": 32,
+  "tok_s": 9125,
+  "step_s": 0.898,
+  "peak_GiB": 1.72
+ },
+ {
+  "name": "rev_maxbatch",
+  "variant": "midpoint",
+  "batch": 96,
+  "tok_s": 7376,
+  "step_s": 3.332,
+  "peak_GiB": 3.74
+ }
+]

@@ -1,0 +1,14 @@
+rev_maxbatch: variant midpoint, batch 96, 2034 steps x 24576 tokens = 49,987,584 tokens, peak lr 1.73e-03, params 19,870,848, device mps
+[rev_maxbatch] step     0/2034  tokens    0.0M  loss 9.2923  val 9.1021  grad 7.532  8,667 tok/s  peak 0.00 GiB       3s  recon err 3.4e-03
+[rev_maxbatch] step   200/2034  tokens    4.9M  loss 4.1370  val 4.1206  grad 0.436  4,548 tok/s  peak 3.74 GiB    1085s  recon err 2.2e+00
+[rev_maxbatch] step   400/2034  tokens    9.9M  loss 3.6363  val 3.6004  grad 0.532  6,162 tok/s  peak 3.74 GiB    1977s  recon err 5.7e+00
+[rev_maxbatch] step   600/2034  tokens   14.8M  loss 3.4172  val 3.3994  grad 0.477  10,368 tok/s  peak 3.74 GiB    2452s  recon err 1.2e+01
+[rev_maxbatch] step   800/2034  tokens   19.7M  loss 3.3035  val 3.2754  grad 0.471  9,078 tok/s  peak 3.74 GiB    2995s  recon err 1.3e+01
+[rev_maxbatch] step  1000/2034  tokens   24.6M  loss 3.1838  val 3.1787  grad 0.438  10,454 tok/s  peak 3.74 GiB    3467s  recon err 1.6e+01
+[rev_maxbatch] step  1200/2034  tokens   29.5M  loss 3.0728  val 3.0959  grad 0.448  11,891 tok/s  peak 3.74 GiB    3881s  recon err 1.7e+01
+[rev_maxbatch] step  1400/2034  tokens   34.4M  loss 3.0018  val 3.0273  grad 0.435  10,903 tok/s  peak 3.74 GiB    4333s  recon err 1.5e+01
+[rev_maxbatch] step  1600/2034  tokens   39.3M  loss 2.9394  val 2.9653  grad 0.459  8,422 tok/s  peak 3.74 GiB    4918s  recon err 1.3e+01
+[rev_maxbatch] step  1800/2034  tokens   44.3M  loss 2.9226  val 2.9225  grad 0.465  153 tok/s  peak 3.74 GiB   36958s  recon err 1.1e+01
+[rev_maxbatch] step  2000/2034  tokens   49.2M  loss 2.8537  val 2.8936  grad 0.494  10,177 tok/s  peak 3.74 GiB   37442s  recon err 1.4e+01
+[rev_maxbatch] step  2033/2034  tokens   50.0M  loss 2.9053  val 2.8921  grad 0.476  8,500 tok/s  peak 3.74 GiB   37539s  recon err 9.0e+00
+{"name": "rev_maxbatch", "variant": "midpoint", "batch": 96, "steps": 2034, "tokens": 49987584, "params": 19870848, "final_train_loss": 2.874131007194519, "final_val_loss": 2.905019917488098, "tok_s": 1331.559543028112, "wall_s": 37540.62990403175, "peak_GiB": 3.7371349334716797}

@@ -1,0 +1,116 @@
+{
+ "budget_GiB": 4.7755653858184814,
+ "rule": "peak of the standard model at batch 32",
+ "rows": [
+  {
+   "variant": "standard",
+   "bs": 8,
+   "peak_GiB": 1.439509630203247,
+   "state_GiB": 0.5143649578094482,
+   "fits": true
+  },
+  {
+   "variant": "standard",
+   "bs": 16,
+   "peak_GiB": 2.578571081161499,
+   "state_GiB": 0.7682101726531982,
+   "fits": true
+  },
+  {
+   "variant": "standard",
+   "bs": 32,
+   "peak_GiB": 4.77556586265564,
+   "state_GiB": 1.3002421855926514,
+   "fits": true
+  },
+  {
+   "variant": "standard",
+   "bs": 48,
+   "peak_GiB": 6.762615203857422,
+   "state_GiB": 1.8843564987182617,
+   "fits": false
+  },
+  {
+   "variant": "standard",
+   "bs": 64,
+   "peak_GiB": 9.180675506591797,
+   "state_GiB": 2.4958295822143555,
+   "fits": false
+  },
+  {
+   "variant": "standard",
+   "max_batch_in_budget": 32
+  },
+  {
+   "variant": "midpoint",
+   "bs": 8,
+   "peak_GiB": 0.7419693470001221,
+   "state_GiB": 0.454512357711792,
+   "fits": true
+  },
+  {
+   "variant": "midpoint",
+   "bs": 16,
+   "peak_GiB": 1.127234697341919,
+   "state_GiB": 0.5593631267547607,
+   "fits": true
+  },
+  {
+   "variant": "midpoint",
+   "bs": 32,
+   "peak_GiB": 1.7803032398223877,
+   "state_GiB": 0.6451098918914795,
+   "fits": true
+  },
+  {
+   "variant": "midpoint",
+   "bs": 48,
+   "peak_GiB": 3.0797877311706543,
+   "state_GiB": 0.8741903305053711,
+   "fits": true
+  },
+  {
+   "variant": "midpoint",
+   "bs": 64,
+   "peak_GiB": 3.847136974334717,
+   "state_GiB": 1.0485830307006836,
+   "fits": true
+  },
+  {
+   "variant": "midpoint",
+   "bs": 96,
+   "peak_GiB": 3.8387486934661865,
+   "state_GiB": 0.5032875537872314,
+   "fits": true
+  },
+  {
+   "variant": "midpoint",
+   "bs": 128,
+   "peak_GiB": 6.419963836669922,
+   "state_GiB": 0.6599841117858887,
+   "fits": false
+  },
+  {
+   "variant": "midpoint",
+   "bs": 160,
+   "peak_GiB": 6.420543909072876,
+   "state_GiB": 0.8443410396575928,
+   "fits": false
+  },
+  {
+   "variant": "midpoint",
+   "bs": 192,
+   "peak_GiB": 8.43742036819458,
+   "state_GiB": 0.3854484558105469,
+   "fits": false
+  },
+  {
+   "variant": "midpoint",
+   "max_batch_in_budget": 96
+  }
+ ],
+ "max_batch": {
+  "standard": 32,
+  "midpoint": 96
+ }
+}

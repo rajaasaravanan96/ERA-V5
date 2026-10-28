@@ -1,0 +1,13 @@
+{
+ "name": "reversible",
+ "variant": "midpoint",
+ "batch": 32,
+ "steps": 6103,
+ "tokens": 49995776,
+ "params": 19870848,
+ "final_train_loss": 2.682874708175659,
+ "final_val_loss": 2.7160324478149414,
+ "tok_s": 153.10873240430277,
+ "wall_s": 326537.7174437046,
+ "peak_GiB": 1.3214569091796875
+}

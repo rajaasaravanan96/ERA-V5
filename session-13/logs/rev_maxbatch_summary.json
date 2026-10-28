@@ -1,0 +1,13 @@
+{
+ "name": "rev_maxbatch",
+ "variant": "midpoint",
+ "batch": 96,
+ "steps": 2034,
+ "tokens": 49987584,
+ "params": 19870848,
+ "final_train_loss": 2.874131007194519,
+ "final_val_loss": 2.905019917488098,
+ "tok_s": 1331.559543028112,
+ "wall_s": 37540.62990403175,
+ "peak_GiB": 3.7371349334716797
+}
